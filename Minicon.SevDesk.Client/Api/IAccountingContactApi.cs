@@ -17,7 +17,8 @@ public interface IAccountingContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body">Creation data (optional)</param>
 	/// <returns>Task of GetAccountContactResponse</returns>
-	Task<GetAccountContactResponse> CreateAccountingContactAsync(ModelAccountingContact body = null);
+	[Post("/AccountingContact")]
+	Task<GetAccountContactResponse> CreateAccountingContactAsync(ModelAccountingContact? body);
 
 	/// <summary>
 	///     Deletes an accounting contact
@@ -27,17 +28,8 @@ public interface IAccountingContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="accountingContactId">Id of accounting contact resource to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
+	[Delete("/AccountingContact/{accountingContactId}")]
 	Task<InlineResponse2003> DeleteAccountingContactAsync(int? accountingContactId);
-
-	/// <summary>
-	///     Deletes an accounting contact
-	/// </summary>
-	/// <remarks>
-	/// </remarks>
-	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
-	/// <param name="accountingContactId">Id of accounting contact resource to delete</param>
-	/// <returns>Task of ApiResponse (InlineResponse2003)</returns>
-	Task<ApiResponse<InlineResponse2003>> DeleteAccountingContactAsyncWithHttpInfo(int? accountingContactId);
 
 	/// <summary>
 	///     Retrieve accounting contact
@@ -49,7 +41,8 @@ public interface IAccountingContactApi
 	/// <param name="contactId">ID of contact for which you want the accounting contact. (optional)</param>
 	/// <param name="contactObjectName">Object name. Only needed if you also defined the ID of a contact. (optional)</param>
 	/// <returns>Task of GetAccountContactResponse</returns>
-	Task<GetAccountContactResponse> GetAccountingContactAsync(string contactId = null, string contactObjectName = null);
+	[Get("/AccountingContact")]
+	Task<GetAccountContactResponse> GetAccountingContactAsync(string? contactId = null, string? contactObjectName = null);
 
 	/// <summary>
 	///     Find accounting contact by ID
@@ -60,7 +53,8 @@ public interface IAccountingContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="accountingContactId">ID of accounting contact to return</param>
 	/// <returns>Task of GetAccountContactResponse</returns>
-	Task<GetAccountContactResponse> GetAccountingContactByIdAsync(int? accountingContactId);
+	[Get("/AccountingContact/{accountingContactId}")]
+	Task<GetAccountContactResponse> GetAccountingContactByIdAsync(int accountingContactId);
 
 	/// <summary>
 	///     Update an existing accounting contact
@@ -72,9 +66,9 @@ public interface IAccountingContactApi
 	/// <param name="accountingContactId">ID of accounting contact to update</param>
 	/// <param name="body">Update data (optional)</param>
 	/// <returns>Task of GetAccountContactResponse</returns>
+	[Put("/AccountingContact/{accountingContactId}")]
 	Task<GetAccountContactResponse> UpdateAccountingContactAsync(
-		int? accountingContactId,
-		ModelAccountingContactUpdate body = null
+		int accountingContactId,
+		ModelAccountingContactUpdate body
 	);
-
 }
