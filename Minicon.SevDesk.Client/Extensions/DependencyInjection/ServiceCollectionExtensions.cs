@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Minicon.SevDesk.Client.Api;
+using Minicon.SevDesk.Client.Logging;
 using Refit;
 
 namespace Minicon.SevDesk.Client.Extensions.DependencyInjection;
@@ -21,8 +22,12 @@ public static class ServiceCollectionExtensions
 			.ConfigureHttpClient(SetupRefitHttpClient);
 		services.AddRefitClient<IContactAddressApi>(RefitSettings())
 			.ConfigureHttpClient(SetupRefitHttpClient);
+
+		services.AddTransient<LoggingHttpMessageHandler<IContactApi>>();
 		services.AddRefitClient<IContactApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
+			.ConfigureHttpClient(SetupRefitHttpClient)
+			.AddHttpMessageHandler<LoggingHttpMessageHandler<IContactApi>>();
+
 		services.AddRefitClient<IContactFieldApi>(RefitSettings())
 			.ConfigureHttpClient(SetupRefitHttpClient);
 		services.AddRefitClient<ICostCentreApi>(RefitSettings())
@@ -67,6 +72,6 @@ public static class ServiceCollectionExtensions
 	{
 		SevDeskOptions options = serviceProvider.GetRequiredService<IOptions<SevDeskOptions>>().Value;
 		httpClient.BaseAddress = new Uri(options.ApiUrl);
-		httpClient.DefaultRequestHeaders.Add("X-API-KEY", options.ApiKey);
+		httpClient.DefaultRequestHeaders.Add("Authorization", options.ApiKey);
 	}
 }

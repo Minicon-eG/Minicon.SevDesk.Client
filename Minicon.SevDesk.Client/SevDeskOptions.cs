@@ -11,6 +11,4 @@ public class SevDeskOptions
 	public string ApiKey { get; init; } = "";
 
 	[Required] [Url] public string ApiUrl { get; init; } = "";
-
-	public string[] AuthorizationKeys { get; init; } = Array.Empty<string>();
 }

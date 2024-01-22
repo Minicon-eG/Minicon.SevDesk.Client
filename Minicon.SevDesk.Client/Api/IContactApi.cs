@@ -16,9 +16,9 @@ public interface IContactApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="customerNumber">The customer number to be checked. (optional)</param>
-	/// <returns>Task of InlineResponse20011</returns>
+	/// <returns>Task of GetIsInvoicePartiallyPaidResponse</returns>
 	[Get("/Contact/Mapper/checkCustomerNumberAvailability")]
-	Task<GetIsInvoicePartiallyPaidResponse> ContactCustomerNumberAvailabilityCheckAsync(string customerNumber = null);
+	Task<GetIsInvoicePartiallyPaidResponse> ContactCustomerNumberAvailabilityCheckAsync(string customerNumber);
 
 	/// <summary>
 	///     Create a new contact

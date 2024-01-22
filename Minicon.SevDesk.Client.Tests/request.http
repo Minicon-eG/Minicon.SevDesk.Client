@@ -1,0 +1,4 @@
+### Simple Request
+GET https://my.sevdesk.de/api/v1/Contact?limit=100&offset=0
+Authorization: {{ApiKey}}
+
