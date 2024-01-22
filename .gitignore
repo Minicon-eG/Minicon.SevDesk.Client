@@ -2,3 +2,4 @@ bin/
 obj/
 .idea/
 http-client.private.env.json
+*.user
