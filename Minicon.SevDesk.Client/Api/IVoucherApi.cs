@@ -22,7 +22,8 @@ public interface IVoucherApi
 	/// <param name="voucherId">ID of voucher to book</param>
 	/// <param name="body">Booking data (optional)</param>
 	/// <returns>Task of InlineResponse200</returns>
-	Task<InlineResponse200> BookVoucherAsync(int? voucherId, VoucherIdBookAmountBody body = null);
+	[Put("/Voucher/{voucherId}/bookAmount")]
+	Task<InlineResponse200> BookVoucherAsync(int voucherId, VoucherIdBookAmountBody body);
 
 	/// <summary>
 	///     Create a new voucher
@@ -53,7 +54,8 @@ public interface IVoucherApi
 	///     of the voucher and voucher position model! (optional)
 	/// </param>
 	/// <returns>Task of SaveVoucherResponse</returns>
-	Task<SaveVoucherResponse> CreateVoucherByFactoryAsync(SaveVoucher body = null);
+	[Post("/Voucher")]
+	Task<SaveVoucherResponse> CreateVoucherByFactoryAsync(SaveVoucher body);
 
 	/// <summary>
 	///     Find voucher by ID
@@ -64,6 +66,7 @@ public interface IVoucherApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="voucherId">ID of voucher to return</param>
 	/// <returns>Task of GetVoucherResponse</returns>
+	[Put("/Voucher/{voucherId}")]
 	Task<GetVoucherResponse> GetVoucherByIdAsync(int? voucherId);
 
 	/// <summary>
@@ -86,9 +89,16 @@ public interface IVoucherApi
 	///     (optional)
 	/// </param>
 	/// <returns>Task of GetVoucherResponse</returns>
-	Task<GetVoucherResponse> GetVouchersAsync(decimal? status = null, string creditDebit = null,
-		string descriptionLike = null, int? startDate = null, int? endDate = null, int? contactId = null,
-		string contactObjectName = null);
+	[Get("/Voucher")]
+	Task<GetVoucherResponse> GetVouchersAsync(
+		decimal? status = null,
+		string? creditDebit = null,
+		string? descriptionLike = null,
+		int? startDate = null,
+		int? endDate = null,
+		int? contactId = null,
+		string? contactObjectName = null
+	);
 
 	/// <summary>
 	///     Update an existing voucher
@@ -100,7 +110,8 @@ public interface IVoucherApi
 	/// <param name="voucherId">ID of voucher to update</param>
 	/// <param name="body">Update data (optional)</param>
 	/// <returns>Task of GetVoucherResponse</returns>
-	Task<GetSingleVoucherResponse> UpdateVoucherAsync(int? voucherId, ModelVoucherUpdate body = null);
+	[Put("/Voucher/{voucherId}")]
+	Task<GetSingleVoucherResponse> UpdateVoucherAsync(int voucherId, ModelVoucherUpdate body);
 
 	/// <summary>
 	///     Upload voucher file
@@ -116,5 +127,6 @@ public interface IVoucherApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body">File to upload (optional)</param>
 	/// <returns>Task of InlineResponse2012</returns>
-	Task<InlineResponse2012> VoucherUploadFileAsync(FactoryUploadTempFileBody body = null);
+	[Post("/Voucher")]
+	Task<UploadFileResponse> VoucherUploadFileAsync(FactoryUploadTempFileBody body);
 }

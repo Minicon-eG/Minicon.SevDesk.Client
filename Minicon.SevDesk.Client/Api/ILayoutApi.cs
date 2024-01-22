@@ -15,8 +15,8 @@ public interface ILayoutApi
 	///     Retrieve all letterpapers with Thumb
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
-	/// <returns>Task of InlineResponse20015</returns>
-	Task<InlineResponse20015> GetLetterpapersWithThumbAsync();
+	/// <returns>Task of GetLetterpapersWithThumbResponse</returns>
+	Task<GetLetterpapersWithThumbResponse> GetLetterpapersWithThumbAsync();
 
 	/// <summary>
 	///     Retrieve templates
@@ -26,8 +26,9 @@ public interface ILayoutApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="type">Type of the templates you want to get. (optional)</param>
-	/// <returns>Task of InlineResponse20037</returns>
-	Task<InlineResponse20037> GetTemplatesAsync(string type = null);
+	/// <returns>Task of GetTemplatesResponse</returns>
+	[Get("/DocServer/getTemplatesWithThumb")]
+	Task<GetTemplatesResponse> GetTemplatesAsync(string? type = null);
 
 	/// <summary>
 	///     Update an of credit note template
@@ -38,8 +39,9 @@ public interface ILayoutApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of credit note to update</param>
 	/// <param name="body">Change Layout (optional)</param>
-	/// <returns>Task of InlineResponse20017</returns>
-	Task<InlineResponse20017> UpdateCreditNoteTemplateAsync(int? creditNoteId, ModelChangeLayout body = null);
+	/// <returns>Task of UpdateTemplateResponse</returns>
+	[Put("/CreditNote/{creditNoteId}/changeParameter")]
+	Task<UpdateTemplateResponse> UpdateCreditNoteTemplateAsync(int creditNoteId, ModelChangeLayout body);
 
 	/// <summary>
 	///     Update an invoice template
@@ -50,8 +52,9 @@ public interface ILayoutApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to update</param>
 	/// <param name="body">Change Layout (optional)</param>
-	/// <returns>Task of InlineResponse20017</returns>
-	Task<InlineResponse20017> UpdateInvoiceTemplateAsync(int? invoiceId, ModelChangeLayout body = null);
+	/// <returns>Task of UpdateTemplateResponse</returns>
+	[Put("/Invoice/{invoiceId}/changeParameter")]
+	Task<UpdateTemplateResponse> UpdateInvoiceTemplateAsync(int invoiceId, ModelChangeLayout body);
 
 	/// <summary>
 	///     Update an order template
@@ -62,6 +65,7 @@ public interface ILayoutApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="orderId">ID of order to update</param>
 	/// <param name="body">Change Layout (optional)</param>
-	/// <returns>Task of InlineResponse20017</returns>
-	Task<InlineResponse20017> UpdateOrderTemplateAsync(int? orderId, ModelChangeLayout body = null);
+	/// <returns>Task of UpdateTemplateResponse</returns>
+	[Put("/Order/{orderId}/changeParameter")]
+	Task<UpdateTemplateResponse> UpdateOrderTemplateAsync(int orderId, ModelChangeLayout body);
 }

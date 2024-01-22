@@ -17,7 +17,8 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body"> (optional)</param>
 	/// <returns>Task of InlineResponse20030</returns>
-	Task<InlineResponse20030> CreateTagAsync(FactoryCreateBody body = null);
+	[Post("/Tag/{tagId}")]
+	Task<GetTagRelationResponse> CreateTagAsync(FactoryCreateBody body);
 
 	/// <summary>
 	///     Deletes a tag
@@ -27,7 +28,8 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="tagId">Id of tag to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
-	Task<InlineResponse2003> DeleteTagAsync(int? tagId);
+	[Delete("/Tag/{tagId}")]
+	Task<DeleteResponse> DeleteTagAsync(int? tagId);
 
 	/// <summary>
 	///     Find tag by ID
@@ -38,7 +40,8 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="tagId">ID of tag to return</param>
 	/// <returns>Task of InlineResponse20019</returns>
-	Task<InlineResponse20019> GetTagByIdAsync(int? tagId);
+	[Get("/Tag/{tagId}")]
+	Task<GetTagResponse> GetTagByIdAsync(int? tagId);
 
 	/// <summary>
 	///     Retrieve tag relations
@@ -48,7 +51,8 @@ public interface ITagApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20030</returns>
-	Task<InlineResponse20030> GetTagRelationsAsync();
+	[Get("/TagRelation")]
+	Task<GetTagRelationResponse> GetTagRelationsAsync();
 
 	/// <summary>
 	///     Retrieve tags
@@ -60,7 +64,8 @@ public interface ITagApi
 	/// <param name="id">ID of the Tag (optional)</param>
 	/// <param name="name">Name of the Tag (optional)</param>
 	/// <returns>Task of InlineResponse20019</returns>
-	Task<InlineResponse20019> GetTagsAsync(decimal? id = null, string name = null);
+	[Get("/Tag")]
+	Task<GetTagResponse> GetTagsAsync(decimal? id = null, string name = null);
 
 	/// <summary>
 	///     Update tag
@@ -72,5 +77,6 @@ public interface ITagApi
 	/// <param name="tagId">ID of tag you want to update</param>
 	/// <param name="body"> (optional)</param>
 	/// <returns>Task of InlineResponse20019</returns>
-	Task<InlineResponse20019> UpdateTagAsync(int? tagId, TagTagIdBody body = null);
+	[Put("/Tag/{tagId}")]
+	Task<GetTagResponse> UpdateTagAsync(int tagId, TagTagIdBody body);
 }

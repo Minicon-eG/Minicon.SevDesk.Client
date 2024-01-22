@@ -24,5 +24,6 @@ public interface IVoucherPosApi
 	///     (optional)
 	/// </param>
 	/// <returns>Task of GetVoucherPositionsResponse</returns>
-	Task<GetVoucherPositionsResponse> GetVoucherPositionsAsync(int? voucherId = null, string voucherObjectName = null);
+	[Get("/VoucherPos")]
+	Task<GetVoucherPositionsResponse> GetVoucherPositionsAsync(int voucherId, string voucherObjectName = "Voucher");
 }

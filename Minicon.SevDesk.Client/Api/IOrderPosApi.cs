@@ -16,7 +16,8 @@ public interface IOrderPosApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="orderPosId">Id of order position resource to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
-	Task<InlineResponse2003> DeleteOrderPosAsync(int? orderPosId);
+	[Delete("/OrderPos/{orderPosId}")]
+	Task<DeleteResponse> DeleteOrderPosAsync(int? orderPosId);
 
 	/// <summary>
 	///     Find order position by ID
@@ -26,8 +27,9 @@ public interface IOrderPosApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="orderPosId">ID of order position to return</param>
-	/// <returns>Task of InlineResponse2007</returns>
-	Task<InlineResponse2007> GetOrderPositionByIdAsync(int? orderPosId);
+	/// <returns>Task of GetOrderPositionsByIdResponse</returns>
+	[Get("/OrderPos/{orderPosId}")]
+	Task<GetOrderPositionsByIdResponse> GetOrderPositionByIdAsync(int orderPosId);
 
 	/// <summary>
 	///     Retrieve order positions
@@ -44,8 +46,9 @@ public interface IOrderPosApi
 	///     Only required if order[id] was provided. &#x27;Order&#x27; should be used as value.
 	///     (optional)
 	/// </param>
-	/// <returns>Task of InlineResponse2007</returns>
-	Task<InlineResponse2007> GetOrderPositionsAsync(int? orderId = null, string orderObjectName = null);
+	/// <returns>Task of GetOrderPositionsByIdResponse</returns>
+	[Get("/OrderPos")]
+	Task<GetOrderPositionsByIdResponse> GetOrderPositionsAsync(int? orderId = null, string orderObjectName = null);
 
 	/// <summary>
 	///     Update an existing order position
@@ -56,6 +59,7 @@ public interface IOrderPosApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="orderPosId">ID of order position to update</param>
 	/// <param name="body">Update data (optional)</param>
-	/// <returns>Task of InlineResponse2007</returns>
-	Task<InlineResponse2007> UpdateOrderPositionAsync(int? orderPosId, ModelOrderPosUpdate body = null);
+	/// <returns>Task of GetOrderPositionsByIdResponse</returns>
+	[Put("/OrderPos/{orderPosId}")]
+	Task<GetOrderPositionsByIdResponse> UpdateOrderPositionAsync(int? orderPosId, ModelOrderPosUpdate body = null);
 }

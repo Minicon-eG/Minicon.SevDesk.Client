@@ -29,7 +29,13 @@ public interface IInvoicePosApi
 	///     Only required if part[id] was provided. &#x27;Part&#x27; should be used as value.
 	///     (optional)
 	/// </param>
-	/// <returns>Task of InlineResponse20022</returns>
-	Task<InlineResponse20022> GetInvoicePosAsync(decimal? id = null, decimal? invoiceId = null,
-		string invoiceObjectName = null, decimal? partId = null, string partObjectName = null);
+	/// <returns>Task of GetInvoicesPositionsResponse</returns>
+	[Get("/InvoicePos")]
+	Task<GetInvoicesPositionsResponse> GetInvoicePosAsync(
+		decimal? id = null,
+		decimal? invoiceId = null,
+		string? invoiceObjectName = null,
+		decimal? partId = null,
+		string? partObjectName = null
+	);
 }

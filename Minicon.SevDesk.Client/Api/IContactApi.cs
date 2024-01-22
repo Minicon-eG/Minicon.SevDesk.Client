@@ -17,7 +17,8 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="customerNumber">The customer number to be checked. (optional)</param>
 	/// <returns>Task of InlineResponse20011</returns>
-	Task<InlineResponse20011> ContactCustomerNumberAvailabilityCheckAsync(string customerNumber = null);
+	[Get("/Contact/Mapper/checkCustomerNumberAvailability")]
+	Task<GetIsInvoicePartiallyPaidResponse> ContactCustomerNumberAvailabilityCheckAsync(string customerNumber = null);
 
 	/// <summary>
 	///     Create a new contact
@@ -29,7 +30,8 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body">Creation data (optional)</param>
 	/// <returns>Task of GetContactResponse</returns>
-	Task<GetContactResponse> CreateContactAsync(ModelContact body = null);
+	[Post("/Contact")]
+	Task<GetContactResponse> CreateContactAsync(ModelContact body);
 
 	/// <summary>
 	///     Deletes a contact
@@ -39,7 +41,8 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactId">Id of contact resource to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
-	Task<InlineResponse2003> DeleteContactAsync(int? contactId);
+	[Delete("/Contact/{contactId}")]
+	Task<DeleteResponse> DeleteContactAsync(int? contactId);
 
 	/// <summary>
 	///     Find contact by ID
@@ -50,6 +53,7 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactId">ID of contact to return</param>
 	/// <returns>Task of GetContactResponse</returns>
+	[Get("/Contact/{contactId}")]
 	Task<GetContactResponse> GetContactByIdAsync(int? contactId);
 
 	/// <summary>
@@ -61,7 +65,8 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactId">ID of contact to return</param>
 	/// <returns>Task of InlineResponse20018</returns>
-	Task<InlineResponse20018> GetContactTabsItemCountByIdAsync(int? contactId);
+	[Get("/Contact/{contactId}/getTabsItemCount")]
+	Task<GetContactTabsItemCountByIdResponse> GetContactTabsItemCountByIdAsync(int contactId);
 
 	/// <summary>
 	///     Retrieve contacts
@@ -77,8 +82,16 @@ public interface IContactApi
 	///     &#x27;0&#x27; -&gt; only organizations, &#x27;1&#x27; -&gt; organizations and persons (optional)
 	/// </param>
 	/// <param name="customerNumber">Retrieve all contacts with this customer number (optional)</param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
 	/// <returns>Task of GetContactResponse</returns>
-	Task<GetContactResponse> GetContactsAsync(string depth = null, string customerNumber = null, int limit = 100, int offset = 0);
+	[Get("/Contact")]
+	Task<GetContactResponse> GetContactsAsync(
+		string? depth = null,
+		string? customerNumber = null,
+		int limit = 100,
+		int offset = 0
+	);
 
 	/// <summary>
 	///     Get next free customer number
@@ -88,7 +101,8 @@ public interface IContactApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20035</returns>
-	Task<InlineResponse20035> GetNextCustomerNumberAsync();
+	[Get("/Contact/Factory/getNextCustomerNumber")]
+	Task<GetNextCustomerNumberResponse> GetNextCustomerNumberAsync();
 
 	/// <summary>
 	///     Update a existing contact
@@ -100,6 +114,7 @@ public interface IContactApi
 	/// <param name="contactId">ID of contact to update</param>
 	/// <param name="body">Update data (optional)</param>
 	/// <returns>Task of GetContactResponse</returns>
-	Task<GetContactResponse> UpdateContactAsync(int? contactId, ModelContactUpdate body = null);
+	[Put("/Contact/{contactId}")]
+	Task<GetContactResponse> UpdateContactAsync(int contactId, ModelContactUpdate body);
 
 }

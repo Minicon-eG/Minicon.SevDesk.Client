@@ -30,7 +30,8 @@ public interface IReportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ReportInvoiceAsync(SevQuery2 sevQuery, bool? download = null);
+	[Get("/Report/invoicelist")]
+	Task<object> ReportInvoiceAsync(ReportInvoiceRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export order list
@@ -42,7 +43,8 @@ public interface IReportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ReportOrderAsync(SevQuery3 sevQuery, bool? download = null);
+	[Get("/Report/orderlist")]
+	Task<object> ReportOrderAsync(ReportOrderRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export voucher list
@@ -54,5 +56,6 @@ public interface IReportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ReportVoucherAsync(SevQuery5 sevQuery, bool? download = null);
+	[Get("/Report/voucherlist")]
+	Task<object> ReportVoucherAsync(ReportVoucherRequest sevQuery, bool? download = null);
 }

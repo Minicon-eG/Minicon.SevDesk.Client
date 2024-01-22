@@ -19,8 +19,9 @@ public interface ICheckAccountTransactionApi
 	///     Creation data. Please be aware, that you need to provide at least all required parameter
 	///     of the CheckAccountTransaction model! (optional)
 	/// </param>
-	/// <returns>Task of InlineResponse2004</returns>
-	Task<InlineResponse2004> CreateTransactionAsync(ModelCheckAccountTransaction body = null);
+	/// <returns>Task of CreateTransactionResponse</returns>
+	[Post("/CheckAccountTransaction")]
+	Task<CreateTransactionResponse> CreateTransactionAsync(ModelCheckAccountTransaction body);
 
 	/// <summary>
 	///     Deletes a check account transaction
@@ -29,9 +30,9 @@ public interface ICheckAccountTransactionApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="checkAccountTransactionId">Id of check account transaction to delete</param>
-	/// <returns>Task of InlineResponse2003</returns>
-	Task<InlineResponse2003> DeleteCheckAccountTransactionAsync(int? checkAccountTransactionId);
-
+	/// <returns>Task of DeleteResponse</returns>
+	[Delete("/CheckAccountTransaction/{checkAccountTransactionId}")]
+	Task<DeleteResponse> DeleteCheckAccountTransactionAsync(int checkAccountTransactionId);
 
 	/// <summary>
 	///     Find check account transaction by ID
@@ -41,8 +42,9 @@ public interface ICheckAccountTransactionApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="checkAccountTransactionId">ID of check account transaction</param>
-	/// <returns>Task of InlineResponse2004</returns>
-	Task<InlineResponse2004> GetCheckAccountTransactionByIdAsync(int? checkAccountTransactionId);
+	/// <returns>Task of CreateTransactionResponse</returns>
+	[Post("/CheckAccountTransaction/{checkAccountTransactionId}")]
+	Task<CreateTransactionResponse> GetCheckAccountTransactionByIdAsync(int checkAccountTransactionId);
 
 	/// <summary>
 	///     Retrieve transactions
@@ -66,10 +68,19 @@ public interface ICheckAccountTransactionApi
 	/// <param name="payeePayerName">Only retrieve transactions with this payee / payer (optional)</param>
 	/// <param name="onlyCredit">Only retrieve credit transactions (optional)</param>
 	/// <param name="onlyDebit">Only retrieve debit transactions (optional)</param>
-	/// <returns>Task of InlineResponse2004</returns>
-	Task<InlineResponse2004> GetTransactionsAsync(int? checkAccountId = null, string checkAccountObjectName = null,
-		bool? isBooked = null, string paymtPurpose = null, DateTime? startDate = null, DateTime? endDate = null,
-		string payeePayerName = null, bool? onlyCredit = null, bool? onlyDebit = null);
+	/// <returns>Task of CheckAccountTransaction</returns>
+	[Get("/CheckAccountTransaction")]
+	Task<CreateTransactionResponse> GetTransactionsAsync(
+		int? checkAccountId = null,
+		string? checkAccountObjectName = null,
+		bool? isBooked = null,
+		string? paymtPurpose = null,
+		DateTime? startDate = null,
+		DateTime? endDate = null,
+		string? payeePayerName = null,
+		bool? onlyCredit = null,
+		bool? onlyDebit = null
+	);
 
 	/// <summary>
 	///     Update an existing check account transaction
@@ -80,8 +91,10 @@ public interface ICheckAccountTransactionApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="checkAccountTransactionId">ID of check account to update transaction</param>
 	/// <param name="body">Update data (optional)</param>
-	/// <returns>Task of InlineResponse2004</returns>
-	Task<InlineResponse2004> UpdateCheckAccountTransactionAsync(int? checkAccountTransactionId,
-		ModelCheckAccountTransactionUpdate body = null);
-
+	/// <returns>Task of CreateTransactionResponse</returns>
+	[Put("/CheckAccountTransaction/{checkAccountTransactionId}")]
+	Task<CreateTransactionResponse> UpdateCheckAccountTransactionAsync(
+		int checkAccountTransactionId,
+		ModelCheckAccountTransactionUpdate body
+	);
 }

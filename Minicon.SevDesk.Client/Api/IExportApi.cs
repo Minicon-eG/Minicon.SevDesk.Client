@@ -18,7 +18,8 @@ public interface IExportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportContactAsync(SevQuery9 sevQuery, bool? download = null);
+	[Get("/Export/contactListCsv")]
+	Task<object> ExportContactAsync(ExportContactRequests sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export creditNote
@@ -30,7 +31,8 @@ public interface IExportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportCreditNoteAsync(SevQuery6 sevQuery, bool? download = null);
+	[Get("/Export/creditNoteCsv")]
+	Task<object> ExportCreditNoteAsync(ExportCreditNoteRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export datev
@@ -52,8 +54,16 @@ public interface IExportApi
 	/// <param name="withEnshrinedDocuments">include enshrined documents (optional)</param>
 	/// <param name="enshrine">Specify if you want to enshrine all models which were included in the export (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportDatevAsync(int? startDate, int? endDate, string scope, bool? download = null,
-		bool? withUnpaidDocuments = null, bool? withEnshrinedDocuments = null, bool? enshrine = null);
+	[Get("/Export/datevCSV")]
+	Task<object> ExportDatevAsync(
+		int? startDate,
+		int? endDate,
+		string scope,
+		bool? download = null,
+		bool? withUnpaidDocuments = null,
+		bool? withEnshrinedDocuments = null,
+		bool? enshrine = null
+	);
 
 	/// <summary>
 	///     Export invoice
@@ -62,10 +72,11 @@ public interface IExportApi
 	///     Export all invoices as csv
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
-	/// <param name="sevQuery"></param>
+	/// <param name="exportInvoiceRequest"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportInvoiceAsync(SevQuery sevQuery, bool? download = null);
+	[Get("/Export/invoiceCsv")]
+	Task<object> ExportInvoiceAsync(ExportInvoiceRequest exportInvoiceRequest, bool? download = null);
 
 	/// <summary>
 	///     Export Invoice as zip
@@ -77,7 +88,8 @@ public interface IExportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportInvoiceZipAsync(SevQuery8 sevQuery, bool? download = null);
+	[Get("/Export/invoiceZip")]
+	Task<object> ExportInvoiceZipAsync(ExportInvoiceZipRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export transaction
@@ -89,7 +101,8 @@ public interface IExportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportTransactionsAsync(SevQuery4 sevQuery, bool? download = null);
+	[Get("/Export/transactionsCsv")]
+	Task<object> ExportTransactionsAsync(ExportTransactionsRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export voucher as zip
@@ -101,7 +114,8 @@ public interface IExportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportVoucherAsync(SevQuery1 sevQuery, bool? download = null);
+	[Get("/Export/voucherListCsv")]
+	Task<object> ExportVoucherAsync(ExportVoucherRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export voucher zip
@@ -113,5 +127,6 @@ public interface IExportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ExportVoucherZipAsync(SevQuery10 sevQuery, bool? download = null);
+	[Get("/Export/voucherZip")]
+	Task<object> ExportVoucherZipAsync(ExportVoucherZipRequsts sevQuery, bool? download = null);
 }

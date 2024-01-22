@@ -19,8 +19,9 @@ public interface IPartApi
 	///     Creation data. Please be aware, that you need to provide at least all required parameter
 	///     of the part model! (optional)
 	/// </param>
-	/// <returns>Task of InlineResponse20021</returns>
-	Task<InlineResponse20021> CreatePartAsync(ModelPart body = null);
+	/// <returns>Task of GetPartResponse</returns>
+	[Post("/Part")]
+	Task<GetPartResponse> CreatePartAsync(ModelPart body);
 
 	/// <summary>
 	///     Find part by ID
@@ -30,8 +31,9 @@ public interface IPartApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="partId">ID of part to return</param>
-	/// <returns>Task of InlineResponse20021</returns>
-	Task<InlineResponse20021> GetPartByIdAsync(int? partId);
+	/// <returns>Task of GetPartResponse</returns>
+	[Get("/Part/{partId}")]
+	Task<GetPartResponse> GetPartByIdAsync(int partId);
 
 	/// <summary>
 	///     Retrieve parts
@@ -42,8 +44,9 @@ public interface IPartApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="partNumber">Retrieve all parts with this part number (optional)</param>
 	/// <param name="name">Retrieve all parts with this name (optional)</param>
-	/// <returns>Task of InlineResponse20021</returns>
-	Task<InlineResponse20021> GetPartsAsync(string partNumber = null, string name = null);
+	/// <returns>Task of GetPartResponse</returns>
+	[Get("/Part")]
+	Task<GetPartResponse> GetPartsAsync(string partNumber = null, string name = null);
 
 	/// <summary>
 	///     Get stock of a part
@@ -53,8 +56,9 @@ public interface IPartApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="partId">ID of part for which you want the current stock.</param>
-	/// <returns>Task of InlineResponse20026</returns>
-	Task<InlineResponse20026> PartGetStockAsync(int? partId);
+	/// <returns>Task of PartGetStockResponse</returns>
+	[Get("/Part/{partId}/getStock")]
+	Task<PartGetStockResponse> PartGetStockAsync(int? partId);
 
 	/// <summary>
 	///     Update an existing part
@@ -65,7 +69,8 @@ public interface IPartApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="partId">ID of part to update</param>
 	/// <param name="body">Update data (optional)</param>
-	/// <returns>Task of InlineResponse20021</returns>
-	Task<InlineResponse20021> UpdatePartAsync(int? partId, ModelPartUpdate body = null);
+	/// <returns>Task of GetPartResponse</returns>
+	[Put("/Part/{partId}")]
+	Task<GetPartResponse> UpdatePartAsync(int partId, ModelPartUpdate body);
 
 }

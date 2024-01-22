@@ -16,8 +16,11 @@ public interface IContactAddressApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactAddressId">ID of contact address to return</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20013</returns>
-	Task<InlineResponse20013> ContactAddressIdAsync(int? contactAddressId);
+	[Get("/ContactAddress/{contactAddressId}")]
+	Task<GetContactAddressResponse> GetContactAddressIdAsync(int? contactAddressId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Create a new contact address
@@ -27,8 +30,11 @@ public interface IContactAddressApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body">Creation data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20013</returns>
-	Task<InlineResponse20013> CreateContactAddressAsync(ModelContactAddress body = null);
+	[Post("/ContactAddress")]
+	Task<GetContactAddressResponse> CreateContactAddressAsync(ModelContactAddress body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Deletes a contact address
@@ -37,8 +43,10 @@ public interface IContactAddressApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactAddressId">Id of contact address resource to delete</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2003</returns>
-	Task<InlineResponse2003> DeleteContactAddressAsync(int? contactAddressId);
+	[Delete("/ContactAddress/{contactAddressId}")]
+	Task<DeleteResponse> DeleteContactAddressAsync(int contactAddressId, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve contact addresses
@@ -48,7 +56,8 @@ public interface IContactAddressApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20013</returns>
-	Task<InlineResponse20013> GetContactAddressesAsync();
+	[Get("/ContactAddress")]
+	Task<GetContactAddressResponse> GetContactAddressesAsync(CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     update a existing contact address
@@ -59,6 +68,12 @@ public interface IContactAddressApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactAddressId">ID of contact address to return</param>
 	/// <param name="body">Creation data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20013</returns>
-	Task<InlineResponse20013> UpdateContactAddressAsync(int? contactAddressId, ModelContactAddressUpdate body = null);
+	[Put("/ContactAddress/{contactAddressId}")]
+	Task<GetContactAddressResponse> UpdateContactAddressAsync(
+		int contactAddressId,
+		ModelContactAddressUpdate body,
+		CancellationToken cancellationToken = default
+	);
 }

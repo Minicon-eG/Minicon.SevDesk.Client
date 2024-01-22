@@ -21,7 +21,8 @@ public interface IInvoiceApi
 	/// <param name="invoiceId">ID of invoice to book</param>
 	/// <param name="body">Booking data (optional)</param>
 	/// <returns>Task of InlineResponse2008</returns>
-	Task<InlineResponse2008> BookInvoiceAsync(int? invoiceId, InvoiceIdBookAmountBody body = null);
+	[Get("/Invoice/{invoiceId}/bookAmount")]
+	Task<GetCreditNote> BookInvoiceAsync(int invoiceId, InvoiceIdBookAmountBody body);
 
 	/// <summary>
 	///     Cancel an invoice / Create cancellation invoice
@@ -34,7 +35,8 @@ public interface IInvoiceApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to be cancelled</param>
 	/// <returns>Task of GetInvoicesResponse</returns>
-	Task<GetInvoicesResponse> CancelInvoiceAsync(int? invoiceId);
+	[Get("/Invoice/{invoiceId}/cancelInvoice")]
+	Task<GetInvoicesResponse> CancelInvoiceAsync(int invoiceId);
 
 	/// <summary>
 	///     Create a new invoice
@@ -76,6 +78,7 @@ public interface IInvoiceApi
 	///     of the invoice model! (optional)
 	/// </param>
 	/// <returns>Task of SaveInvoiceResponse</returns>
+	[Post("/Invoice/Factory/saveInvoice")]
 	Task<SaveInvoiceResponse> CreateInvoiceByFactoryAsync(SaveInvoice body = null);
 
 	/// <summary>
@@ -89,8 +92,12 @@ public interface IInvoiceApi
 	/// <param name="invoiceObjectName">Model name, which is &#x27;Invoice&#x27;</param>
 	/// <param name="body">Create invoice (optional)</param>
 	/// <returns>Task of GetInvoicesResponse</returns>
-	Task<GetInvoicesResponse> CreateInvoiceFromOrderAsync(int? invoiceId, string invoiceObjectName,
-		ModelCreateInvoiceFromOrder body = null);
+	[Post("/Invoice/Factory/createInvoiceFromOrder")]
+	Task<GetInvoicesResponse> CreateInvoiceFromOrderAsync(
+		int invoiceId,
+		string invoiceObjectName,
+		ModelCreateInvoiceFromOrder body
+	);
 
 	/// <summary>
 	///     Create invoice reminder
@@ -103,8 +110,12 @@ public interface IInvoiceApi
 	/// <param name="invoiceObjectName">Model name, which is &#x27;Invoice&#x27;</param>
 	/// <param name="body">Create invoice (optional)</param>
 	/// <returns>Task of GetInvoicesResponse</returns>
-	Task<GetInvoicesResponse> CreateInvoiceReminderAsync(int? invoiceId, string invoiceObjectName,
-		FactoryCreateInvoiceReminderBody body = null);
+	[Post("/Invoice/Factory/createInvoiceReminder")]
+	Task<GetInvoicesResponse> CreateInvoiceReminderAsync(
+		int invoiceId,
+		string invoiceObjectName,
+		FactoryCreateInvoiceReminderBody body
+	);
 
 	/// <summary>
 	///     Find invoice by ID
@@ -115,6 +126,7 @@ public interface IInvoiceApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to return</param>
 	/// <returns>Task of GetInvoicesResponse</returns>
+	[Get("/Invoice/{invoiceId}")]
 	Task<GetInvoicesResponse> GetInvoiceByIdAsync(int? invoiceId);
 
 	/// <summary>
@@ -131,9 +143,14 @@ public interface IInvoiceApi
 	///     Get some additional information. Embed can handle multiple values, they must be separated by comma.
 	///     (optional)
 	/// </param>
-	/// <returns>Task of InlineResponse20022</returns>
-	Task<InlineResponse20022> GetInvoicePositionsByIdAsync(int? invoiceId, int? limit = null, int? offset = null,
-		List<string> embed = null);
+	/// <returns>Task of GetInvoicesPositionsREsponse</returns>
+	[Get("/Invoice/{invoiceId}/getPositions")]
+	Task<GetInvoicesPositionsResponse> GetInvoicePositionsByIdAsync(
+		int invoiceId,
+		int limit = 100,
+		int offset = 0,
+		List<string> embed = null
+	);
 
 	/// <summary>
 	///     Retrieve invoices
@@ -154,8 +171,15 @@ public interface IInvoiceApi
 	///     (optional)
 	/// </param>
 	/// <returns>Task of GetInvoicesResponse</returns>
-	Task<GetInvoicesResponse> GetInvoicesAsync(decimal? status = null, string invoiceNumber = null,
-		int? startDate = null, int? endDate = null, int? contactId = null, string contactObjectName = null);
+	[Get("/Invoice")]
+	Task<GetInvoicesResponse> GetInvoicesAsync(
+		decimal? status = null,
+		string? invoiceNumber = null,
+		int? startDate = null,
+		int? endDate = null,
+		int? contactId = null,
+		string? contactObjectName = null
+	);
 
 	/// <summary>
 	///     Check if an invoice is already partially paid
@@ -167,7 +191,8 @@ public interface IInvoiceApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to return</param>
 	/// <returns>Task of InlineResponse20011</returns>
-	Task<InlineResponse20011> GetIsInvoicePartiallyPaidAsync(int? invoiceId);
+	[Get("/Invoice/{invoiceId}/getIsPartiallyPaid")]
+	Task<GetIsInvoicePartiallyPaidResponse> GetIsInvoicePartiallyPaidAsync(int? invoiceId);
 
 	/// <summary>
 	///     Retrieve pdf document of an invoice
@@ -180,7 +205,9 @@ public interface IInvoiceApi
 	/// <param name="download">If u want to download the pdf of the invoice. (optional)</param>
 	/// <param name="preventSendBy">Defines if u want to send the invoice. (optional)</param>
 	/// <returns>Task of CreditNoteGetPdfResponse</returns>
-	Task<CreditNoteGetPdfResponse> InvoiceGetPdfAsync(int? invoiceId, bool? download = null, bool? preventSendBy = null);
+	[Get("/Invoice/{invoiceId}/getPdf")]
+	Task<Base64EncodedFileResponse> InvoiceGetPdfAsync(int? invoiceId, bool? download = null,
+		bool? preventSendBy = null);
 
 	/// <summary>
 	///     Render the pdf document of an invoice
@@ -193,8 +220,9 @@ public interface IInvoiceApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to render</param>
 	/// <param name="body">Define if the document should be forcefully re-rendered. (optional)</param>
-	/// <returns>Task of InlineResponse2011</returns>
-	Task<InlineResponse2011> InvoiceRenderAsync(int? invoiceId, InvoiceIdRenderBody body = null);
+	/// <returns>Task of InvoiceRenderResponse</returns>
+	[Post("/Invoice/{invoiceId}/render")]
+	Task<InvoiceRenderResponse> InvoiceRenderAsync(int invoiceId, InvoiceIdRenderBody body);
 
 
 	/// <summary>
@@ -207,7 +235,8 @@ public interface IInvoiceApi
 	/// <param name="invoiceId">ID of invoice to mark as sent</param>
 	/// <param name="body">Specify the send type (optional)</param>
 	/// <returns>Task of InlineResponse20029</returns>
-	Task<InlineResponse20029> InvoiceSendByAsync(int? invoiceId, InvoiceIdSendByBody body = null);
+	[Put("/Invoice/{invoiceId}/sendBy")]
+	Task<InvoiceSendByResponse> InvoiceSendByAsync(int invoiceId, InvoiceIdSendByBody body);
 
 	/// <summary>
 	///     Send invoice via email
@@ -221,5 +250,6 @@ public interface IInvoiceApi
 	/// <param name="invoiceId">ID of invoice to be sent via email</param>
 	/// <param name="body">Mail data (optional)</param>
 	/// <returns>Task of InlineResponse201</returns>
-	Task<InlineResponse201> SendInvoiceViaEMailAsync(int? invoiceId, InvoiceIdSendViaEmailBody body = null);
+	[Post("/Invoice/{invoiceId}/sendViaEmail")]
+	Task<SendInvoiceViaEMailResponse> SendInvoiceViaEMailAsync(int? invoiceId, InvoiceIdSendViaEmailBody body = null);
 }

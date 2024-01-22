@@ -24,5 +24,6 @@ public interface ICreditNotePosApi
 	///     as value. (optional)
 	/// </param>
 	/// <returns>Task of InlineResponse20033</returns>
-	Task<InlineResponse20033> GetcreditNotePositionsAsync(int? creditNoteId = null, string creditNoteObjectName = null);
+	[Get("/creditNotePos")]
+	Task<InlineResponse20033> GetCreditNotePositionsAsync(int? creditNoteId = null, string creditNoteObjectName = null);
 }

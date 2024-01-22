@@ -29,7 +29,7 @@ public interface IAccountingContactApi
 	/// <param name="accountingContactId">Id of accounting contact resource to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
 	[Delete("/AccountingContact/{accountingContactId}")]
-	Task<InlineResponse2003> DeleteAccountingContactAsync(int? accountingContactId);
+	Task<DeleteResponse> DeleteAccountingContactAsync(int? accountingContactId);
 
 	/// <summary>
 	///     Retrieve accounting contact
