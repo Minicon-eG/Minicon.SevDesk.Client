@@ -1,4 +1,10 @@
 ### Simple Request
 GET https://my.sevdesk.de/api/v1/Contact?limit=100&offset=0
 Authorization: {{ApiKey}}
+Conent-Type: application/json
 
+
+### Get Vouchers
+GET https://my.sevdesk.de/api/v1/Voucher
+Authorization: {{ApiKey}}
+Content-Type: application/json

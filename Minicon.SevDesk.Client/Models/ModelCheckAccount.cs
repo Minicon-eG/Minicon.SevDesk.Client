@@ -291,7 +291,7 @@ public class ModelCheckAccount : IEquatable<ModelCheckAccount>, IValidatableObje
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccount to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccount input)
+	public bool Equals(ModelCheckAccount? input)
 	{
 		if (input == null)
 		{
@@ -384,19 +384,19 @@ public class ModelCheckAccount : IEquatable<ModelCheckAccount>, IValidatableObje
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccount {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  Type: ").Append(Type).Append("\n");
-		sb.Append("  ImportType: ").Append(ImportType).Append("\n");
-		sb.Append("  Currency: ").Append(Currency).Append("\n");
-		sb.Append("  DefaultAccount: ").Append(DefaultAccount).Append("\n");
-		sb.Append("  Status: ").Append(Status).Append("\n");
-		sb.Append("  BankServer: ").Append(BankServer).Append("\n");
-		sb.Append("  AutoMapTransactions: ").Append(AutoMapTransactions).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  Type: ").Append(Type).Append('\n');
+		sb.Append("  ImportType: ").Append(ImportType).Append('\n');
+		sb.Append("  Currency: ").Append(Currency).Append('\n');
+		sb.Append("  DefaultAccount: ").Append(DefaultAccount).Append('\n');
+		sb.Append("  Status: ").Append(Status).Append('\n');
+		sb.Append("  BankServer: ").Append(BankServer).Append('\n');
+		sb.Append("  AutoMapTransactions: ").Append(AutoMapTransactions).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

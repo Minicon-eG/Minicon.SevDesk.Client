@@ -70,7 +70,7 @@ public class ModelCheckAccountTransactionSourceTransaction : IEquatable<ModelChe
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccountTransactionSourceTransaction to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccountTransactionSourceTransaction input)
+	public bool Equals(ModelCheckAccountTransactionSourceTransaction? input)
 	{
 		if (input == null)
 		{
@@ -108,8 +108,8 @@ public class ModelCheckAccountTransactionSourceTransaction : IEquatable<ModelChe
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccountTransactionSourceTransaction {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

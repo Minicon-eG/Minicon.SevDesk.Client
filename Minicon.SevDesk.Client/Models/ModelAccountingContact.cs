@@ -67,7 +67,7 @@ public class ModelAccountingContact : IEquatable<ModelAccountingContact>, IValid
 	/// </summary>
 	/// <param name="input">Instance of ModelAccountingContact to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelAccountingContact input)
+	public bool Equals(ModelAccountingContact? input)
 	{
 		if (input == null)
 		{
@@ -110,9 +110,9 @@ public class ModelAccountingContact : IEquatable<ModelAccountingContact>, IValid
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelAccountingContact {\n");
-		sb.Append("  Contact: ").Append(Contact).Append("\n");
-		sb.Append("  DebitorNumber: ").Append(DebitorNumber).Append("\n");
-		sb.Append("  CreditorNumber: ").Append(CreditorNumber).Append("\n");
+		sb.Append("  Contact: ").Append(Contact).Append('\n');
+		sb.Append("  DebitorNumber: ").Append(DebitorNumber).Append('\n');
+		sb.Append("  CreditorNumber: ").Append(CreditorNumber).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

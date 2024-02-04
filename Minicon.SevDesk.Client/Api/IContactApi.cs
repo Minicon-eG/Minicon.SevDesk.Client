@@ -42,7 +42,7 @@ public interface IContactApi
 	/// <param name="contactId">Id of contact resource to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
 	[Delete("/Contact/{contactId}")]
-	Task<DeleteResponse> DeleteContactAsync(int? contactId);
+	Task<DeleteResponse> DeleteContactAsync(int contactId);
 
 	/// <summary>
 	///     Find contact by ID
@@ -52,9 +52,11 @@ public interface IContactApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactId">ID of contact to return</param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
 	/// <returns>Task of GetContactResponse</returns>
 	[Get("/Contact/{contactId}")]
-	Task<GetContactResponse> GetContactByIdAsync(int? contactId);
+	Task<GetContactResponse> GetContactByIdAsync(int? contactId, int limit = 10000, int offset = 0);
 
 	/// <summary>
 	///     Get number of all items
@@ -84,13 +86,15 @@ public interface IContactApi
 	/// <param name="customerNumber">Retrieve all contacts with this customer number (optional)</param>
 	/// <param name="limit"></param>
 	/// <param name="offset"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetContactResponse</returns>
 	[Get("/Contact")]
 	Task<GetContactResponse> GetContactsAsync(
 		string? depth = null,
 		string? customerNumber = null,
-		int limit = 100,
-		int offset = 0
+		int limit = 1000,
+		int offset = 0,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -102,7 +106,8 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20035</returns>
 	[Get("/Contact/Factory/getNextCustomerNumber")]
-	Task<GetNextCustomerNumberResponse> GetNextCustomerNumberAsync();
+	Task<GetNextCustomerNumberResponse> GetNextCustomerNumberAsync(
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Update a existing contact
@@ -113,8 +118,9 @@ public interface IContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactId">ID of contact to update</param>
 	/// <param name="body">Update data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetContactResponse</returns>
 	[Put("/Contact/{contactId}")]
-	Task<GetContactResponse> UpdateContactAsync(int contactId, ModelContactUpdate body);
-
+	Task<GetContactResponse> UpdateContactAsync(int contactId, ModelContactUpdate body,
+		CancellationToken cancellationToken = default);
 }

@@ -48,7 +48,7 @@ public class FactoryCreateInvoiceReminderBody : IEquatable<FactoryCreateInvoiceR
 	/// </summary>
 	/// <param name="input">Instance of FactoryCreateInvoiceReminderBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(FactoryCreateInvoiceReminderBody input)
+	public bool Equals(FactoryCreateInvoiceReminderBody? input)
 	{
 		if (input == null)
 		{
@@ -79,7 +79,7 @@ public class FactoryCreateInvoiceReminderBody : IEquatable<FactoryCreateInvoiceR
 	{
 		var sb = new StringBuilder();
 		sb.Append("class FactoryCreateInvoiceReminderBody {\n");
-		sb.Append("  Invoice: ").Append(Invoice).Append("\n");
+		sb.Append("  Invoice: ").Append(Invoice).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

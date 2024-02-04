@@ -22,7 +22,7 @@ namespace Minicon.SevDesk.Client.Models;
 [DataContract]
 public class
 	CreditNotecreditNoteIdbookAmountCheckAccountTransaction :
-		IEquatable<CreditNotecreditNoteIdbookAmountCheckAccountTransaction>, IValidatableObject
+	IEquatable<CreditNotecreditNoteIdbookAmountCheckAccountTransaction>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="CreditNotecreditNoteIdbookAmountCheckAccountTransaction" /> class.
@@ -68,7 +68,7 @@ public class
 	/// </summary>
 	/// <param name="input">Instance of CreditNotecreditNoteIdbookAmountCheckAccountTransaction to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(CreditNotecreditNoteIdbookAmountCheckAccountTransaction input)
+	public bool Equals(CreditNotecreditNoteIdbookAmountCheckAccountTransaction? input)
 	{
 		if (input == null)
 		{
@@ -106,8 +106,8 @@ public class
 	{
 		var sb = new StringBuilder();
 		sb.Append("class CreditNotecreditNoteIdbookAmountCheckAccountTransaction {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

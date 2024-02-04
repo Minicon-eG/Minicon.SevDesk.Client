@@ -109,7 +109,7 @@ public class InvoiceIdSendByBody : IEquatable<InvoiceIdSendByBody>, IValidatable
 	/// </summary>
 	/// <param name="input">Instance of InvoiceIdSendByBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InvoiceIdSendByBody input)
+	public bool Equals(InvoiceIdSendByBody? input)
 	{
 		if (input == null)
 		{
@@ -147,8 +147,8 @@ public class InvoiceIdSendByBody : IEquatable<InvoiceIdSendByBody>, IValidatable
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InvoiceIdSendByBody {\n");
-		sb.Append("  SendType: ").Append(SendType).Append("\n");
-		sb.Append("  SendDraft: ").Append(SendDraft).Append("\n");
+		sb.Append("  SendType: ").Append(SendType).Append('\n');
+		sb.Append("  SendDraft: ").Append(SendDraft).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

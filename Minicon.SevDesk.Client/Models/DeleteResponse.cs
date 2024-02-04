@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse2003
 /// </summary>
 [DataContract]
-public class DeleteResponse : IEquatable<DeleteResponse>, IValidatableObject
+public class DeleteResponse : Pageable, IEquatable<DeleteResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="DeleteResponse" /> class.
@@ -41,7 +41,7 @@ public class DeleteResponse : IEquatable<DeleteResponse>, IValidatableObject
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse2003 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(DeleteResponse input)
+	public bool Equals(DeleteResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class DeleteResponse : IEquatable<DeleteResponse>, IValidatableObject
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse2003 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

@@ -49,7 +49,7 @@ public class InlineResponse20028Value : IEquatable<InlineResponse20028Value>, IV
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20028Value to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InlineResponse20028Value input)
+	public bool Equals(InlineResponse20028Value? input)
 	{
 		if (input == null)
 		{
@@ -87,8 +87,8 @@ public class InlineResponse20028Value : IEquatable<InlineResponse20028Value>, IV
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20028Value {\n");
-		sb.Append("  Key: ").Append(Key).Append("\n");
-		sb.Append("  Value: ").Append(Value).Append("\n");
+		sb.Append("  Key: ").Append(Key).Append('\n');
+		sb.Append("  Value: ").Append(Value).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

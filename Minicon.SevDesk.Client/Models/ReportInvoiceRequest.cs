@@ -83,7 +83,7 @@ public class ReportInvoiceRequest : IEquatable<ReportInvoiceRequest>, IValidatab
 	/// </summary>
 	/// <param name="input">Instance of ReportInvoiceRequest to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ReportInvoiceRequest input)
+	public bool Equals(ReportInvoiceRequest? input)
 	{
 		if (input == null)
 		{
@@ -131,10 +131,10 @@ public class ReportInvoiceRequest : IEquatable<ReportInvoiceRequest>, IValidatab
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ReportInvoiceRequest {\n");
-		sb.Append("  Limit: ").Append(Limit).Append("\n");
-		sb.Append("  ModelName: ").Append(ModelName).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Filter: ").Append(Filter).Append("\n");
+		sb.Append("  Limit: ").Append(Limit).Append('\n');
+		sb.Append("  ModelName: ").Append(ModelName).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Filter: ").Append(Filter).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

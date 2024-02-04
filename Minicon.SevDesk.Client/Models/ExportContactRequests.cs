@@ -81,7 +81,7 @@ public class ExportContactRequests : IEquatable<ExportContactRequests>, IValidat
 	/// </summary>
 	/// <param name="input">Instance of SevQuery9 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ExportContactRequests input)
+	public bool Equals(ExportContactRequests? input)
 	{
 		if (input == null)
 		{
@@ -129,10 +129,10 @@ public class ExportContactRequests : IEquatable<ExportContactRequests>, IValidat
 	{
 		var sb = new StringBuilder();
 		sb.Append("class SevQuery9 {\n");
-		sb.Append("  Limit: ").Append(Limit).Append("\n");
-		sb.Append("  ModelName: ").Append(ModelName).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Filter: ").Append(Filter).Append("\n");
+		sb.Append("  Limit: ").Append(Limit).Append('\n');
+		sb.Append("  ModelName: ").Append(ModelName).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Filter: ").Append(Filter).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

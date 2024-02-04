@@ -65,7 +65,7 @@ public class ExportinvoiceCsvFilterContact : IEquatable<ExportinvoiceCsvFilterCo
 	/// </summary>
 	/// <param name="input">Instance of ExportinvoiceCsvFilterContact to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ExportinvoiceCsvFilterContact input)
+	public bool Equals(ExportinvoiceCsvFilterContact? input)
 	{
 		if (input == null)
 		{
@@ -103,8 +103,8 @@ public class ExportinvoiceCsvFilterContact : IEquatable<ExportinvoiceCsvFilterCo
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ExportinvoiceCsvFilterContact {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

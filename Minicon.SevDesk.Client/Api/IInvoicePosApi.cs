@@ -29,6 +29,10 @@ public interface IInvoicePosApi
 	///     Only required if part[id] was provided. &#x27;Part&#x27; should be used as value.
 	///     (optional)
 	/// </param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetInvoicesPositionsResponse</returns>
 	[Get("/InvoicePos")]
 	Task<GetInvoicesPositionsResponse> GetInvoicePosAsync(
@@ -36,6 +40,10 @@ public interface IInvoicePosApi
 		decimal? invoiceId = null,
 		string? invoiceObjectName = null,
 		decimal? partId = null,
-		string? partObjectName = null
+		string? partObjectName = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true,
+		CancellationToken cancellationToken = default
 	);
 }

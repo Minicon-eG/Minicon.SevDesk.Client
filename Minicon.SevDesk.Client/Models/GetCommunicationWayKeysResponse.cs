@@ -20,7 +20,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20016
 /// </summary>
 [DataContract]
-public class GetCommunicationWayKeysResponse : IEquatable<GetCommunicationWayKeysResponse>, IValidatableObject
+public class GetCommunicationWayKeysResponse : Pageable, IEquatable<GetCommunicationWayKeysResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Name of the communication way key
@@ -145,7 +145,7 @@ public class GetCommunicationWayKeysResponse : IEquatable<GetCommunicationWayKey
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20016 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetCommunicationWayKeysResponse input)
+	public bool Equals(GetCommunicationWayKeysResponse? input)
 	{
 		if (input == null)
 		{
@@ -203,12 +203,12 @@ public class GetCommunicationWayKeysResponse : IEquatable<GetCommunicationWayKey
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20016 {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Upadate: ").Append(Upadate).Append("\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  TranslationCode: ").Append(TranslationCode).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Upadate: ").Append(Upadate).Append('\n');
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  TranslationCode: ").Append(TranslationCode).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

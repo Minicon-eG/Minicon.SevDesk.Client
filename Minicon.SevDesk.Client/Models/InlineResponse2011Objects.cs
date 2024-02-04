@@ -60,7 +60,7 @@ public class InlineResponse2011Objects : IEquatable<InlineResponse2011Objects>, 
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse2011Objects to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InlineResponse2011Objects input)
+	public bool Equals(InlineResponse2011Objects? input)
 	{
 		if (input == null)
 		{
@@ -103,9 +103,9 @@ public class InlineResponse2011Objects : IEquatable<InlineResponse2011Objects>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse2011Objects {\n");
-		sb.Append("  DocId: ").Append(DocId).Append("\n");
-		sb.Append("  PdfUrl: ").Append(PdfUrl).Append("\n");
-		sb.Append("  Pages: ").Append(Pages).Append("\n");
+		sb.Append("  DocId: ").Append(DocId).Append('\n');
+		sb.Append("  PdfUrl: ").Append(PdfUrl).Append('\n');
+		sb.Append("  Pages: ").Append(Pages).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

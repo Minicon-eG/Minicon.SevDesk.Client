@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20025
 /// </summary>
 [DataContract]
-public class GetCommunicationWaysResponse : IEquatable<GetCommunicationWaysResponse>, IValidatableObject
+public class GetCommunicationWaysResponse : Pageable, IEquatable<GetCommunicationWaysResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetCommunicationWaysResponse" /> class.
@@ -41,7 +41,7 @@ public class GetCommunicationWaysResponse : IEquatable<GetCommunicationWaysRespo
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20025 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetCommunicationWaysResponse input)
+	public bool Equals(GetCommunicationWaysResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class GetCommunicationWaysResponse : IEquatable<GetCommunicationWaysRespo
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20025 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

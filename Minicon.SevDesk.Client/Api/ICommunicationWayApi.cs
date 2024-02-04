@@ -16,9 +16,11 @@ public interface ICommunicationWayApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body">Creation data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20025</returns>
 	[Post("/CommunicationWay")]
-	Task<GetCommunicationWaysResponse> CreateCommunicationWayAsync(ModelCommunicationWay body);
+	Task<GetCommunicationWaysResponse> CreateCommunicationWayAsync(ModelCommunicationWay body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Deletes a communication way
@@ -27,9 +29,11 @@ public interface ICommunicationWayApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="communicationWayId">Id of communication way resource to delete</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2003</returns>
 	[Delete("/CommunicationWay/{communicationWayId}")]
-	Task<DeleteResponse> DeleteCommunicationWayAsync(int communicationWayId);
+	Task<DeleteResponse> DeleteCommunicationWayAsync(int communicationWayId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Find communication way by ID
@@ -39,9 +43,11 @@ public interface ICommunicationWayApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="communicationWayId">ID of communication way to return</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20025</returns>
 	[Get("/CommunicationWay/{communicationWayId}")]
-	Task<GetCommunicationWaysResponse> GetCommunicationWayByIdAsync(int communicationWayId);
+	Task<GetCommunicationWaysResponse> GetCommunicationWayByIdAsync(int communicationWayId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve communication way keys
@@ -52,7 +58,7 @@ public interface ICommunicationWayApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20016</returns>
 	[Get("/CommunicationWayKey")]
-	Task<GetCommunicationWayKeysResponse> GetCommunicationWayKeysAsync();
+	Task<GetCommunicationWayKeysResponse> GetCommunicationWayKeysAsync(CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve communication ways
@@ -65,13 +71,15 @@ public interface ICommunicationWayApi
 	/// <param name="contactObjectName">Object name. Only needed if you also defined the ID of a contact. (optional)</param>
 	/// <param name="type">Type of the communication ways you want to get. (optional)</param>
 	/// <param name="main">Define if you only want the main communication way. (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20025</returns>
 	[Get("/CommunicationWay")]
 	Task<GetCommunicationWaysResponse> GetCommunicationWaysAsync(
 		string? contactId = null,
 		string? contactObjectName = null,
 		string? type = null,
-		string? main = null
+		string? main = null,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -83,10 +91,12 @@ public interface ICommunicationWayApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="communicationWayId">ID of CommunicationWay to update</param>
 	/// <param name="body">Update data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20025</returns>
 	[Put("/CommunicationWay/{communicationWayId}")]
 	Task<GetCommunicationWaysResponse> UpdateCommunicationWayAsync(
 		int communicationWayId,
-		ModelCommunicationWayUpdate body
+		ModelCommunicationWayUpdate body,
+		CancellationToken cancellationToken = default
 	);
 }

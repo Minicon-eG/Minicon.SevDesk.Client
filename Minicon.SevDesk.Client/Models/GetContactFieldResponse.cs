@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20014
 /// </summary>
 [DataContract]
-public class GetContactFieldResponse : IEquatable<GetContactFieldResponse>, IValidatableObject
+public class GetContactFieldResponse : Pageable, IEquatable<GetContactFieldResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetContactFieldResponse" /> class.
@@ -41,7 +41,7 @@ public class GetContactFieldResponse : IEquatable<GetContactFieldResponse>, IVal
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20014 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetContactFieldResponse input)
+	public bool Equals(GetContactFieldResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class GetContactFieldResponse : IEquatable<GetContactFieldResponse>, IVal
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20014 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

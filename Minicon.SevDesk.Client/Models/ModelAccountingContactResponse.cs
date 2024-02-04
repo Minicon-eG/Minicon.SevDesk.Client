@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     Accounting contact model
 /// </summary>
 [DataContract]
-public class ModelAccountingContactResponse : IEquatable<ModelAccountingContactResponse>, IValidatableObject
+public class ModelAccountingContactResponse : Pageable, IEquatable<ModelAccountingContactResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelAccountingContactResponse" /> class.
@@ -92,7 +92,7 @@ public class ModelAccountingContactResponse : IEquatable<ModelAccountingContactR
 	/// </summary>
 	/// <param name="input">Instance of ModelAccountingContactResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelAccountingContactResponse input)
+	public bool Equals(ModelAccountingContactResponse? input)
 	{
 		if (input == null)
 		{
@@ -160,14 +160,14 @@ public class ModelAccountingContactResponse : IEquatable<ModelAccountingContactR
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelAccountingContactResponse {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  Contact: ").Append(Contact).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  DebitorNumber: ").Append(DebitorNumber).Append("\n");
-		sb.Append("  CreditorNumber: ").Append(CreditorNumber).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  Contact: ").Append(Contact).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  DebitorNumber: ").Append(DebitorNumber).Append('\n');
+		sb.Append("  CreditorNumber: ").Append(CreditorNumber).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

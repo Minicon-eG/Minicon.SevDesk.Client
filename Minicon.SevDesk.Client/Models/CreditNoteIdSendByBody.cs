@@ -109,7 +109,7 @@ public class CreditNoteIdSendByBody : IEquatable<CreditNoteIdSendByBody>, IValid
 	/// </summary>
 	/// <param name="input">Instance of CreditNoteIdSendByBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(CreditNoteIdSendByBody input)
+	public bool Equals(CreditNoteIdSendByBody? input)
 	{
 		if (input == null)
 		{
@@ -147,8 +147,8 @@ public class CreditNoteIdSendByBody : IEquatable<CreditNoteIdSendByBody>, IValid
 	{
 		var sb = new StringBuilder();
 		sb.Append("class CreditNoteIdSendByBody {\n");
-		sb.Append("  SendType: ").Append(SendType).Append("\n");
-		sb.Append("  SendDraft: ").Append(SendDraft).Append("\n");
+		sb.Append("  SendType: ").Append(SendType).Append('\n');
+		sb.Append("  SendDraft: ").Append(SendDraft).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

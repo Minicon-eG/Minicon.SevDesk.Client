@@ -20,7 +20,8 @@ namespace Minicon.SevDesk.Client.Models;
 ///     CheckAccountTransaction model. Responsible for the transactions on payment accounts.
 /// </summary>
 [DataContract]
-public class ModelCheckAccountTransactionResponse : IEquatable<ModelCheckAccountTransactionResponse>, IValidatableObject
+public class ModelCheckAccountTransactionResponse : Pageable, IEquatable<ModelCheckAccountTransactionResponse>,
+	IValidatableObject
 {
 	/// <summary>
 	///     Status of the check account transaction.&lt;br&gt;       100 &lt;-&gt; Created&lt;br&gt;       200 &lt;-&gt; Linked
@@ -183,7 +184,7 @@ public class ModelCheckAccountTransactionResponse : IEquatable<ModelCheckAccount
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccountTransactionResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccountTransactionResponse input)
+	public bool Equals(ModelCheckAccountTransactionResponse? input)
 	{
 		if (input == null)
 		{
@@ -286,21 +287,21 @@ public class ModelCheckAccountTransactionResponse : IEquatable<ModelCheckAccount
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccountTransactionResponse {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  ValueDate: ").Append(ValueDate).Append("\n");
-		sb.Append("  EntryDate: ").Append(EntryDate).Append("\n");
-		sb.Append("  PaymtPurpose: ").Append(PaymtPurpose).Append("\n");
-		sb.Append("  Amount: ").Append(Amount).Append("\n");
-		sb.Append("  PayeePayerName: ").Append(PayeePayerName).Append("\n");
-		sb.Append("  CheckAccount: ").Append(CheckAccount).Append("\n");
-		sb.Append("  Status: ").Append(Status).Append("\n");
-		sb.Append("  Enshrined: ").Append(Enshrined).Append("\n");
-		sb.Append("  SourceTransaction: ").Append(SourceTransaction).Append("\n");
-		sb.Append("  TargetTransaction: ").Append(TargetTransaction).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  ValueDate: ").Append(ValueDate).Append('\n');
+		sb.Append("  EntryDate: ").Append(EntryDate).Append('\n');
+		sb.Append("  PaymtPurpose: ").Append(PaymtPurpose).Append('\n');
+		sb.Append("  Amount: ").Append(Amount).Append('\n');
+		sb.Append("  PayeePayerName: ").Append(PayeePayerName).Append('\n');
+		sb.Append("  CheckAccount: ").Append(CheckAccount).Append('\n');
+		sb.Append("  Status: ").Append(Status).Append('\n');
+		sb.Append("  Enshrined: ").Append(Enshrined).Append('\n');
+		sb.Append("  SourceTransaction: ").Append(SourceTransaction).Append('\n');
+		sb.Append("  TargetTransaction: ").Append(TargetTransaction).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

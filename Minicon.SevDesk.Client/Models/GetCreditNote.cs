@@ -42,7 +42,7 @@ public class GetCreditNote : IEquatable<GetCreditNote>, IValidatableObject
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse2008 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetCreditNote input)
+	public bool Equals(GetCreditNote? input)
 	{
 		if (input == null)
 		{
@@ -74,7 +74,7 @@ public class GetCreditNote : IEquatable<GetCreditNote>, IValidatableObject
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse2008 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

@@ -18,7 +18,7 @@ public interface IReportApi
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
 	/// <returns>Task of Object</returns>
-	Task<object> ReportContactAsync(SevQuery7 sevQuery, bool? download = null);
+	Task<object> ReportContactAsync(ReportContactRequest sevQuery, bool? download = null);
 
 	/// <summary>
 	///     Export invoice list

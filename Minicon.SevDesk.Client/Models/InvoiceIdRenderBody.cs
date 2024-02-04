@@ -44,7 +44,7 @@ public class InvoiceIdRenderBody : IEquatable<InvoiceIdRenderBody>, IValidatable
 	/// </summary>
 	/// <param name="input">Instance of InvoiceIdRenderBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InvoiceIdRenderBody input)
+	public bool Equals(InvoiceIdRenderBody? input)
 	{
 		if (input == null)
 		{
@@ -75,7 +75,7 @@ public class InvoiceIdRenderBody : IEquatable<InvoiceIdRenderBody>, IValidatable
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InvoiceIdRenderBody {\n");
-		sb.Append("  ForceReload: ").Append(ForceReload).Append("\n");
+		sb.Append("  ForceReload: ").Append(ForceReload).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

@@ -23,7 +23,15 @@ public interface IVoucherPosApi
 	///     Only required if voucher[id] was provided. &#x27;Voucher&#x27; should be used as value.
 	///     (optional)
 	/// </param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of GetVoucherPositionsResponse</returns>
 	[Get("/VoucherPos")]
-	Task<GetVoucherPositionsResponse> GetVoucherPositionsAsync(int voucherId, string voucherObjectName = "Voucher");
+	Task<GetVoucherPositionsResponse> GetVoucherPositionsAsync(
+		int voucherId,
+		string voucherObjectName = "Voucher",
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true);
 }

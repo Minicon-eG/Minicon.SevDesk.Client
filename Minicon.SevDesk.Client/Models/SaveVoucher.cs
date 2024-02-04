@@ -73,7 +73,7 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	/// </summary>
 	/// <param name="input">Instance of SaveVoucher to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(SaveVoucher input)
+	public bool Equals(SaveVoucher? input)
 	{
 		if (input == null)
 		{
@@ -121,10 +121,10 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	{
 		var sb = new StringBuilder();
 		sb.Append("class SaveVoucher {\n");
-		sb.Append("  Voucher: ").Append(Voucher).Append("\n");
-		sb.Append("  VoucherPosSave: ").Append(VoucherPosSave).Append("\n");
-		sb.Append("  VoucherPosDelete: ").Append(VoucherPosDelete).Append("\n");
-		sb.Append("  Filename: ").Append(Filename).Append("\n");
+		sb.Append("  Voucher: ").Append(Voucher).Append('\n');
+		sb.Append("  VoucherPosSave: ").Append(VoucherPosSave).Append('\n');
+		sb.Append("  VoucherPosDelete: ").Append(VoucherPosDelete).Append('\n');
+		sb.Append("  Filename: ").Append(Filename).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

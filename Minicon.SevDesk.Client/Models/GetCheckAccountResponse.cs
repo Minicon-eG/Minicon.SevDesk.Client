@@ -16,16 +16,16 @@ using Newtonsoft.Json;
 namespace Minicon.SevDesk.Client.Models;
 
 /// <summary>
-///     InlineResponse20036
+///     InlineResponse20024
 /// </summary>
 [DataContract]
-public class InlineResponse20036 : IEquatable<InlineResponse20036>, IValidatableObject
+public class GetCheckAccountResponse : Pageable, IEquatable<GetCheckAccountResponse>, IValidatableObject
 {
 	/// <summary>
-	///     Initializes a new instance of the <see cref="InlineResponse20036" /> class.
+	///     Initializes a new instance of the <see cref="GetCheckAccountResponse" /> class.
 	/// </summary>
 	/// <param name="objects">objects.</param>
-	public InlineResponse20036(string objects = default)
+	public GetCheckAccountResponse(List<ModelCheckAccountResponse> objects = default)
 	{
 		Objects = objects;
 	}
@@ -34,14 +34,14 @@ public class InlineResponse20036 : IEquatable<InlineResponse20036>, IValidatable
 	///     Gets or Sets Objects
 	/// </summary>
 	[DataMember(Name = "objects", EmitDefaultValue = false)]
-	public string Objects { get; set; }
+	public List<ModelCheckAccountResponse> Objects { get; set; }
 
 	/// <summary>
-	///     Returns true if InlineResponse20036 instances are equal
+	///     Returns true if InlineResponse20024 instances are equal
 	/// </summary>
-	/// <param name="input">Instance of InlineResponse20036 to be compared</param>
+	/// <param name="input">Instance of InlineResponse20024 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InlineResponse20036 input)
+	public bool Equals(GetCheckAccountResponse? input)
 	{
 		if (input == null)
 		{
@@ -51,7 +51,8 @@ public class InlineResponse20036 : IEquatable<InlineResponse20036>, IValidatable
 		return
 			Objects == input.Objects ||
 			(Objects != null &&
-			 Objects.Equals(input.Objects));
+			 input.Objects != null &&
+			 Objects.SequenceEqual(input.Objects));
 	}
 
 	/// <summary>
@@ -71,8 +72,8 @@ public class InlineResponse20036 : IEquatable<InlineResponse20036>, IValidatable
 	public override string ToString()
 	{
 		var sb = new StringBuilder();
-		sb.Append("class InlineResponse20036 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("class InlineResponse20024 {\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -93,7 +94,7 @@ public class InlineResponse20036 : IEquatable<InlineResponse20036>, IValidatable
 	/// <returns>Boolean</returns>
 	public override bool Equals(object input)
 	{
-		return Equals(input as InlineResponse20036);
+		return Equals(input as GetCheckAccountResponse);
 	}
 
 	/// <summary>

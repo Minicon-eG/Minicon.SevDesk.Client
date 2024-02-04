@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20034
 /// </summary>
 [DataContract]
-public class GetReferenceCountResponse : IEquatable<GetReferenceCountResponse>, IValidatableObject
+public class GetReferenceCountResponse : Pageable, IEquatable<GetReferenceCountResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetReferenceCountResponse" /> class.
@@ -42,7 +42,7 @@ public class GetReferenceCountResponse : IEquatable<GetReferenceCountResponse>, 
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20034 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetReferenceCountResponse input)
+	public bool Equals(GetReferenceCountResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class GetReferenceCountResponse : IEquatable<GetReferenceCountResponse>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20034 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

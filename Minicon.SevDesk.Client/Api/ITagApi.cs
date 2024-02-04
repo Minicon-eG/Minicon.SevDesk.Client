@@ -63,9 +63,18 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="id">ID of the Tag (optional)</param>
 	/// <param name="name">Name of the Tag (optional)</param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of InlineResponse20019</returns>
 	[Get("/Tag")]
-	Task<GetTagResponse> GetTagsAsync(decimal? id = null, string name = null);
+	Task<GetTagResponse> GetTagsAsync(
+		int? id = null,
+		string? name = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
+	);
 
 	/// <summary>
 	///     Update tag

@@ -58,7 +58,7 @@ public class ModelChangeLayoutResponseMetadaten : IEquatable<ModelChangeLayoutRe
 	/// </summary>
 	/// <param name="input">Instance of ModelChangeLayoutResponseMetadaten to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelChangeLayoutResponseMetadaten input)
+	public bool Equals(ModelChangeLayoutResponseMetadaten? input)
 	{
 		if (input == null)
 		{
@@ -101,9 +101,9 @@ public class ModelChangeLayoutResponseMetadaten : IEquatable<ModelChangeLayoutRe
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelChangeLayoutResponseMetadaten {\n");
-		sb.Append("  Thumbs: ").Append(Thumbs).Append("\n");
-		sb.Append("  Pages: ").Append(Pages).Append("\n");
-		sb.Append("  DocId: ").Append(DocId).Append("\n");
+		sb.Append("  Thumbs: ").Append(Thumbs).Append('\n');
+		sb.Append("  Pages: ").Append(Pages).Append('\n');
+		sb.Append("  DocId: ").Append(DocId).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

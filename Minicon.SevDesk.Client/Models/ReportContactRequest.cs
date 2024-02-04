@@ -16,32 +16,74 @@ using Newtonsoft.Json;
 namespace Minicon.SevDesk.Client.Models;
 
 /// <summary>
-///     InlineResponse20024
+///     ReportContactRequest
 /// </summary>
 [DataContract]
-public class CreateCheckAccountResponse : IEquatable<CreateCheckAccountResponse>, IValidatableObject
+public class ReportContactRequest : IEquatable<ReportContactRequest>, IValidatableObject
 {
 	/// <summary>
-	///     Initializes a new instance of the <see cref="CreateCheckAccountResponse" /> class.
+	///     Initializes a new instance of the <see cref="ReportContactRequest" /> class.
 	/// </summary>
-	/// <param name="objects">objects.</param>
-	public CreateCheckAccountResponse(List<ModelCheckAccountResponse> objects = default)
+	/// <param name="limit">Limit export.</param>
+	/// <param name="modelName">Model name which is exported (required).</param>
+	/// <param name="objectName">SevQuery object name (required).</param>
+	/// <param name="filter">filter.</param>
+	public ReportContactRequest(int? limit = default, object modelName = default, object objectName = default,
+		ReportcontactlistFilter filter = default)
 	{
-		Objects = objects;
+		// to ensure "modelName" is required (not null)
+		if (modelName == null)
+		{
+			throw new InvalidDataException(
+				"modelName is a required property for ReportContactRequest and cannot be null");
+		}
+
+		ModelName = modelName;
+		// to ensure "objectName" is required (not null)
+		if (objectName == null)
+		{
+			throw new InvalidDataException(
+				"objectName is a required property for ReportContactRequest and cannot be null");
+		}
+
+		ObjectName = objectName;
+		Limit = limit;
+		Filter = filter;
 	}
 
 	/// <summary>
-	///     Gets or Sets Objects
+	///     Limit export
 	/// </summary>
-	[DataMember(Name = "objects", EmitDefaultValue = false)]
-	public List<ModelCheckAccountResponse> Objects { get; set; }
+	/// <value>Limit export</value>
+	[DataMember(Name = "limit", EmitDefaultValue = false)]
+	public int? Limit { get; set; }
 
 	/// <summary>
-	///     Returns true if InlineResponse20024 instances are equal
+	///     Model name which is exported
 	/// </summary>
-	/// <param name="input">Instance of InlineResponse20024 to be compared</param>
+	/// <value>Model name which is exported</value>
+	[DataMember(Name = "modelName", EmitDefaultValue = false)]
+	public object ModelName { get; set; }
+
+	/// <summary>
+	///     SevQuery object name
+	/// </summary>
+	/// <value>SevQuery object name</value>
+	[DataMember(Name = "objectName", EmitDefaultValue = false)]
+	public object ObjectName { get; set; }
+
+	/// <summary>
+	///     Gets or Sets Filter
+	/// </summary>
+	[DataMember(Name = "filter", EmitDefaultValue = false)]
+	public ReportcontactlistFilter Filter { get; set; }
+
+	/// <summary>
+	///     Returns true if ReportContactRequest instances are equal
+	/// </summary>
+	/// <param name="input">Instance of ReportContactRequest to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(CreateCheckAccountResponse input)
+	public bool Equals(ReportContactRequest? input)
 	{
 		if (input == null)
 		{
@@ -49,10 +91,26 @@ public class CreateCheckAccountResponse : IEquatable<CreateCheckAccountResponse>
 		}
 
 		return
-			Objects == input.Objects ||
-			(Objects != null &&
-			 input.Objects != null &&
-			 Objects.SequenceEqual(input.Objects));
+			(
+				Limit == input.Limit ||
+				(Limit != null &&
+				 Limit.Equals(input.Limit))
+			) &&
+			(
+				ModelName == input.ModelName ||
+				(ModelName != null &&
+				 ModelName.Equals(input.ModelName))
+			) &&
+			(
+				ObjectName == input.ObjectName ||
+				(ObjectName != null &&
+				 ObjectName.Equals(input.ObjectName))
+			) &&
+			(
+				Filter == input.Filter ||
+				(Filter != null &&
+				 Filter.Equals(input.Filter))
+			);
 	}
 
 	/// <summary>
@@ -72,8 +130,11 @@ public class CreateCheckAccountResponse : IEquatable<CreateCheckAccountResponse>
 	public override string ToString()
 	{
 		var sb = new StringBuilder();
-		sb.Append("class InlineResponse20024 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("class ReportContactRequest {\n");
+		sb.Append("  Limit: ").Append(Limit).Append('\n');
+		sb.Append("  ModelName: ").Append(ModelName).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Filter: ").Append(Filter).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -94,7 +155,7 @@ public class CreateCheckAccountResponse : IEquatable<CreateCheckAccountResponse>
 	/// <returns>Boolean</returns>
 	public override bool Equals(object input)
 	{
-		return Equals(input as CreateCheckAccountResponse);
+		return Equals(input as ReportContactRequest);
 	}
 
 	/// <summary>
@@ -106,9 +167,24 @@ public class CreateCheckAccountResponse : IEquatable<CreateCheckAccountResponse>
 		unchecked // Overflow is fine, just wrap
 		{
 			int hashCode = 41;
-			if (Objects != null)
+			if (Limit != null)
 			{
-				hashCode = hashCode * 59 + Objects.GetHashCode();
+				hashCode = hashCode * 59 + Limit.GetHashCode();
+			}
+
+			if (ModelName != null)
+			{
+				hashCode = hashCode * 59 + ModelName.GetHashCode();
+			}
+
+			if (ObjectName != null)
+			{
+				hashCode = hashCode * 59 + ObjectName.GetHashCode();
+			}
+
+			if (Filter != null)
+			{
+				hashCode = hashCode * 59 + Filter.GetHashCode();
 			}
 
 			return hashCode;

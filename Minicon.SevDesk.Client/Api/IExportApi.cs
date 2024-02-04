@@ -17,9 +17,11 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/contactListCsv")]
-	Task<object> ExportContactAsync(ExportContactRequests sevQuery, bool? download = null);
+	Task<object> ExportContactAsync(ExportContactRequests sevQuery, bool? download = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Export creditNote
@@ -30,9 +32,11 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/creditNoteCsv")]
-	Task<object> ExportCreditNoteAsync(ExportCreditNoteRequest sevQuery, bool? download = null);
+	Task<object> ExportCreditNoteAsync(ExportCreditNoteRequest sevQuery, bool? download = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Export datev
@@ -53,6 +57,7 @@ public interface IExportApi
 	/// <param name="withUnpaidDocuments">include unpaid documents (optional)</param>
 	/// <param name="withEnshrinedDocuments">include enshrined documents (optional)</param>
 	/// <param name="enshrine">Specify if you want to enshrine all models which were included in the export (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/datevCSV")]
 	Task<object> ExportDatevAsync(
@@ -62,7 +67,8 @@ public interface IExportApi
 		bool? download = null,
 		bool? withUnpaidDocuments = null,
 		bool? withEnshrinedDocuments = null,
-		bool? enshrine = null
+		bool? enshrine = null,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -74,9 +80,11 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="exportInvoiceRequest"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/invoiceCsv")]
-	Task<object> ExportInvoiceAsync(ExportInvoiceRequest exportInvoiceRequest, bool? download = null);
+	Task<object> ExportInvoiceAsync(ExportInvoiceRequest exportInvoiceRequest, bool? download = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Export Invoice as zip
@@ -87,9 +95,11 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/invoiceZip")]
-	Task<object> ExportInvoiceZipAsync(ExportInvoiceZipRequest sevQuery, bool? download = null);
+	Task<object> ExportInvoiceZipAsync(ExportInvoiceZipRequest sevQuery, bool? download = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Export transaction
@@ -100,9 +110,11 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/transactionsCsv")]
-	Task<object> ExportTransactionsAsync(ExportTransactionsRequest sevQuery, bool? download = null);
+	Task<object> ExportTransactionsAsync(ExportTransactionsRequest sevQuery, bool? download = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Export voucher as zip
@@ -113,9 +125,11 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/voucherListCsv")]
-	Task<object> ExportVoucherAsync(ExportVoucherRequest sevQuery, bool? download = null);
+	Task<object> ExportVoucherAsync(ExportVoucherRequest sevQuery, bool? download = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Export voucher zip
@@ -126,7 +140,9 @@ public interface IExportApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="sevQuery"></param>
 	/// <param name="download"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of Object</returns>
 	[Get("/Export/voucherZip")]
-	Task<object> ExportVoucherZipAsync(ExportVoucherZipRequsts sevQuery, bool? download = null);
+	Task<object> ExportVoucherZipAsync(ExportVoucherZipRequsts sevQuery, bool? download = null,
+		CancellationToken cancellationToken = default);
 }

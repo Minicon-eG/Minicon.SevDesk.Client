@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20028
 /// </summary>
 [DataContract]
-public class GetPlaceholderResponse : IEquatable<GetPlaceholderResponse>, IValidatableObject
+public class GetPlaceholderResponse : Pageable, IEquatable<GetPlaceholderResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetPlaceholderResponse" /> class.
@@ -49,7 +49,7 @@ public class GetPlaceholderResponse : IEquatable<GetPlaceholderResponse>, IValid
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20028 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetPlaceholderResponse input)
+	public bool Equals(GetPlaceholderResponse? input)
 	{
 		if (input == null)
 		{
@@ -88,8 +88,8 @@ public class GetPlaceholderResponse : IEquatable<GetPlaceholderResponse>, IValid
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20028 {\n");
-		sb.Append("  Key: ").Append(Key).Append("\n");
-		sb.Append("  Value: ").Append(Value).Append("\n");
+		sb.Append("  Key: ").Append(Key).Append('\n');
+		sb.Append("  Value: ").Append(Value).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

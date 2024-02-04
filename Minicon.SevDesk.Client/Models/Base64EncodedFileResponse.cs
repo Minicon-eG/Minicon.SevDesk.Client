@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     CreditNoteGetPdfResponse
 /// </summary>
 [DataContract]
-public class Base64EncodedFileResponse : IEquatable<Base64EncodedFileResponse>, IValidatableObject
+public class Base64EncodedFileResponse : Pageable, IEquatable<Base64EncodedFileResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="Base64EncodedFileResponse" /> class.
@@ -70,7 +70,7 @@ public class Base64EncodedFileResponse : IEquatable<Base64EncodedFileResponse>, 
 	/// </summary>
 	/// <param name="input">Instance of CreditNoteGetPdfResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(Base64EncodedFileResponse input)
+	public bool Equals(Base64EncodedFileResponse? input)
 	{
 		if (input == null)
 		{
@@ -118,10 +118,10 @@ public class Base64EncodedFileResponse : IEquatable<Base64EncodedFileResponse>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class CreditNoteGetPdfResponse {\n");
-		sb.Append("  Filename: ").Append(Filename).Append("\n");
-		sb.Append("  MimeType: ").Append(MimeType).Append("\n");
-		sb.Append("  Content: ").Append(Content).Append("\n");
-		sb.Append("  Base64encoded: ").Append(Base64encoded).Append("\n");
+		sb.Append("  Filename: ").Append(Filename).Append('\n');
+		sb.Append("  MimeType: ").Append(MimeType).Append('\n');
+		sb.Append("  Content: ").Append(Content).Append('\n');
+		sb.Append("  Base64encoded: ").Append(Base64encoded).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

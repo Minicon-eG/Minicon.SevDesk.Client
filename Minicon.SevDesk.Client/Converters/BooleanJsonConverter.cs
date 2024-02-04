@@ -7,7 +7,10 @@ namespace Minicon.SevDesk.Client.Converters;
 /// </summary>
 public class BooleanJsonConverter : JsonConverter
 {
-	#region Overrides of JsonConverter
+	/// <summary>
+	///     Specifies that this converter will not participate in writing results.
+	/// </summary>
+	public override bool CanWrite => false;
 
 	/// <summary>
 	///     Determines whether this instance can convert the specified object type.
@@ -53,11 +56,6 @@ public class BooleanJsonConverter : JsonConverter
 	}
 
 	/// <summary>
-	///     Specifies that this converter will not participate in writing results.
-	/// </summary>
-	public override bool CanWrite => false;
-
-	/// <summary>
 	///     Writes the JSON representation of the object.
 	/// </summary>
 	/// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
@@ -66,6 +64,4 @@ public class BooleanJsonConverter : JsonConverter
 	public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 	{
 	}
-
-	#endregion Overrides of JsonConverter
 }

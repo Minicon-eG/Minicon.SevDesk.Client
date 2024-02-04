@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     Layout model
 /// </summary>
 [DataContract]
-public class ModelChangeLayoutResponse : IEquatable<ModelChangeLayoutResponse>, IValidatableObject
+public class ModelChangeLayoutResponse : Pageable, IEquatable<ModelChangeLayoutResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelChangeLayoutResponse" /> class.
@@ -49,7 +49,7 @@ public class ModelChangeLayoutResponse : IEquatable<ModelChangeLayoutResponse>, 
 	/// </summary>
 	/// <param name="input">Instance of ModelChangeLayoutResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelChangeLayoutResponse input)
+	public bool Equals(ModelChangeLayoutResponse? input)
 	{
 		if (input == null)
 		{
@@ -87,8 +87,8 @@ public class ModelChangeLayoutResponse : IEquatable<ModelChangeLayoutResponse>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelChangeLayoutResponse {\n");
-		sb.Append("  Result: ").Append(Result).Append("\n");
-		sb.Append("  Metadaten: ").Append(Metadaten).Append("\n");
+		sb.Append("  Result: ").Append(Result).Append('\n');
+		sb.Append("  Metadaten: ").Append(Metadaten).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

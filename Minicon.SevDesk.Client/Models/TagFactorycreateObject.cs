@@ -93,7 +93,7 @@ public class TagFactorycreateObject : IEquatable<TagFactorycreateObject>, IValid
 	/// </summary>
 	/// <param name="input">Instance of TagFactorycreateObject to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(TagFactorycreateObject input)
+	public bool Equals(TagFactorycreateObject? input)
 	{
 		if (input == null)
 		{
@@ -132,8 +132,8 @@ public class TagFactorycreateObject : IEquatable<TagFactorycreateObject>, IValid
 	{
 		var sb = new StringBuilder();
 		sb.Append("class TagFactorycreateObject {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

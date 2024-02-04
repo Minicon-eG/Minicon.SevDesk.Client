@@ -19,7 +19,8 @@ namespace Minicon.SevDesk.Client.Models;
 ///     GetLetterpapersWithThumbResponse
 /// </summary>
 [DataContract]
-public class GetLetterpapersWithThumbResponse : IEquatable<GetLetterpapersWithThumbResponse>, IValidatableObject
+public class GetLetterpapersWithThumbResponse : Pageable, IEquatable<GetLetterpapersWithThumbResponse>,
+	IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetLetterpapersWithThumbResponse" /> class.
@@ -50,7 +51,7 @@ public class GetLetterpapersWithThumbResponse : IEquatable<GetLetterpapersWithTh
 	/// </summary>
 	/// <param name="input">Instance of GetLetterpapersWithThumbResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetLetterpapersWithThumbResponse input)
+	public bool Equals(GetLetterpapersWithThumbResponse? input)
 	{
 		if (input == null)
 		{
@@ -88,8 +89,8 @@ public class GetLetterpapersWithThumbResponse : IEquatable<GetLetterpapersWithTh
 	{
 		var sb = new StringBuilder();
 		sb.Append("class GetLetterpapersWithThumbResponse {\n");
-		sb.Append("  Result: ").Append(Result).Append("\n");
-		sb.Append("  Letterpapers: ").Append(Letterpapers).Append("\n");
+		sb.Append("  Result: ").Append(Result).Append('\n');
+		sb.Append("  Letterpapers: ").Append(Letterpapers).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

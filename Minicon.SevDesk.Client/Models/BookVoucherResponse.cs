@@ -16,16 +16,16 @@ using Newtonsoft.Json;
 namespace Minicon.SevDesk.Client.Models;
 
 /// <summary>
-///     InlineResponse200
+///     BookVoucherResponse
 /// </summary>
 [DataContract]
-public class InlineResponse200 : IEquatable<InlineResponse200>, IValidatableObject
+public class BookVoucherResponse : IEquatable<BookVoucherResponse>, IValidatableObject
 {
 	/// <summary>
-	///     Initializes a new instance of the <see cref="InlineResponse200" /> class.
+	///     Initializes a new instance of the <see cref="BookVoucherResponse" /> class.
 	/// </summary>
 	/// <param name="objects">TODO: Document VoucherLog and enter scheme here.</param>
-	public InlineResponse200(List<object> objects = default)
+	public BookVoucherResponse(List<object> objects = default)
 	{
 		Objects = objects;
 	}
@@ -38,11 +38,11 @@ public class InlineResponse200 : IEquatable<InlineResponse200>, IValidatableObje
 	public List<object> Objects { get; set; }
 
 	/// <summary>
-	///     Returns true if InlineResponse200 instances are equal
+	///     Returns true if BookVoucherResponse instances are equal
 	/// </summary>
-	/// <param name="input">Instance of InlineResponse200 to be compared</param>
+	/// <param name="input">Instance of BookVoucherResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InlineResponse200 input)
+	public bool Equals(BookVoucherResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,8 +73,8 @@ public class InlineResponse200 : IEquatable<InlineResponse200>, IValidatableObje
 	public override string ToString()
 	{
 		var sb = new StringBuilder();
-		sb.Append("class InlineResponse200 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("class BookVoucherResponse {\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -95,7 +95,7 @@ public class InlineResponse200 : IEquatable<InlineResponse200>, IValidatableObje
 	/// <returns>Boolean</returns>
 	public override bool Equals(object input)
 	{
-		return Equals(input as InlineResponse200);
+		return Equals(input as BookVoucherResponse);
 	}
 
 	/// <summary>

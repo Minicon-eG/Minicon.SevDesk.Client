@@ -188,7 +188,7 @@ public class VoucherIdBookAmountBody : IEquatable<VoucherIdBookAmountBody>, IVal
 	/// </summary>
 	/// <param name="input">Instance of VoucherIdBookAmountBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(VoucherIdBookAmountBody input)
+	public bool Equals(VoucherIdBookAmountBody? input)
 	{
 		if (input == null)
 		{
@@ -246,12 +246,12 @@ public class VoucherIdBookAmountBody : IEquatable<VoucherIdBookAmountBody>, IVal
 	{
 		var sb = new StringBuilder();
 		sb.Append("class VoucherIdBookAmountBody {\n");
-		sb.Append("  Amount: ").Append(Amount).Append("\n");
-		sb.Append("  Date: ").Append(Date).Append("\n");
-		sb.Append("  Type: ").Append(Type).Append("\n");
-		sb.Append("  CheckAccount: ").Append(CheckAccount).Append("\n");
-		sb.Append("  CheckAccountTransaction: ").Append(CheckAccountTransaction).Append("\n");
-		sb.Append("  CreateFeed: ").Append(CreateFeed).Append("\n");
+		sb.Append("  Amount: ").Append(Amount).Append('\n');
+		sb.Append("  Date: ").Append(Date).Append('\n');
+		sb.Append("  Type: ").Append(Type).Append('\n');
+		sb.Append("  CheckAccount: ").Append(CheckAccount).Append('\n');
+		sb.Append("  CheckAccountTransaction: ").Append(CheckAccountTransaction).Append('\n');
+		sb.Append("  CreateFeed: ").Append(CreateFeed).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

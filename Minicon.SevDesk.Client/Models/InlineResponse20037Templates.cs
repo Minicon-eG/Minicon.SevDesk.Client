@@ -101,7 +101,7 @@ public class InlineResponse20037Templates : IEquatable<InlineResponse20037Templa
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20037Templates to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InlineResponse20037Templates input)
+	public bool Equals(InlineResponse20037Templates? input)
 	{
 		if (input == null)
 		{
@@ -169,14 +169,14 @@ public class InlineResponse20037Templates : IEquatable<InlineResponse20037Templa
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20037Templates {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  TranslationCode: ").Append(TranslationCode).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  Type: ").Append(Type).Append("\n");
-		sb.Append("  Html: ").Append(Html).Append("\n");
-		sb.Append("  _Default: ").Append(_Default).Append("\n");
-		sb.Append("  Premium: ").Append(Premium).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  TranslationCode: ").Append(TranslationCode).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  Type: ").Append(Type).Append('\n');
+		sb.Append("  Html: ").Append(Html).Append('\n');
+		sb.Append("  _Default: ").Append(_Default).Append('\n');
+		sb.Append("  Premium: ").Append(Premium).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

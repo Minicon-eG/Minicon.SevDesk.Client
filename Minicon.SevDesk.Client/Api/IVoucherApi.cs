@@ -21,9 +21,9 @@ public interface IVoucherApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="voucherId">ID of voucher to book</param>
 	/// <param name="body">Booking data (optional)</param>
-	/// <returns>Task of InlineResponse200</returns>
+	/// <returns>Task of BookVoucherResponse</returns>
 	[Put("/Voucher/{voucherId}/bookAmount")]
-	Task<InlineResponse200> BookVoucherAsync(int voucherId, VoucherIdBookAmountBody body);
+	Task<BookVoucherResponse> BookVoucherAsync(int voucherId, VoucherIdBookAmountBody body);
 
 	/// <summary>
 	///     Create a new voucher
@@ -67,7 +67,7 @@ public interface IVoucherApi
 	/// <param name="voucherId">ID of voucher to return</param>
 	/// <returns>Task of GetVoucherResponse</returns>
 	[Put("/Voucher/{voucherId}")]
-	Task<GetVoucherResponse> GetVoucherByIdAsync(int? voucherId);
+	Task<GetVoucherResponse> GetVoucherByIdAsync(int voucherId);
 
 	/// <summary>
 	///     Retrieve vouchers
@@ -81,23 +81,25 @@ public interface IVoucherApi
 	/// <param name="status">Status of the vouchers to retrieve. (optional)</param>
 	/// <param name="creditDebit">Define if you only want credit or debit vouchers. (optional)</param>
 	/// <param name="descriptionLike">Retrieve all vouchers with a description like this. (optional)</param>
-	/// <param name="startDate">Retrieve all vouchers with a date equal or higher (optional)</param>
-	/// <param name="endDate">Retrieve all vouchers with a date equal or lower (optional)</param>
 	/// <param name="contactId">Retrieve all vouchers with this contact. Must be provided with contact[objectName] (optional)</param>
 	/// <param name="contactObjectName">
 	///     Only required if contact[id] was provided. &#x27;Contact&#x27; should be used as value.
 	///     (optional)
 	/// </param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of GetVoucherResponse</returns>
 	[Get("/Voucher")]
 	Task<GetVoucherResponse> GetVouchersAsync(
 		decimal? status = null,
 		string? creditDebit = null,
 		string? descriptionLike = null,
-		int? startDate = null,
-		int? endDate = null,
 		int? contactId = null,
-		string? contactObjectName = null
+		string? contactObjectName = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
 	);
 
 	/// <summary>

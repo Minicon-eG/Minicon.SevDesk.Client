@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20032
 /// </summary>
 [DataContract]
-public class CreditNotesResponse : IEquatable<CreditNotesResponse>, IValidatableObject
+public class CreditNotesResponse : Pageable, IEquatable<CreditNotesResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="CreditNotesResponse" /> class.
@@ -42,7 +42,7 @@ public class CreditNotesResponse : IEquatable<CreditNotesResponse>, IValidatable
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20032 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(CreditNotesResponse input)
+	public bool Equals(CreditNotesResponse? input)
 	{
 		if (input == null)
 		{
@@ -74,7 +74,7 @@ public class CreditNotesResponse : IEquatable<CreditNotesResponse>, IValidatable
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20032 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

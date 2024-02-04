@@ -44,9 +44,18 @@ public interface IPartApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="partNumber">Retrieve all parts with this part number (optional)</param>
 	/// <param name="name">Retrieve all parts with this name (optional)</param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of GetPartResponse</returns>
 	[Get("/Part")]
-	Task<GetPartResponse> GetPartsAsync(string partNumber = null, string name = null);
+	Task<GetPartResponse> GetPartsAsync(
+		string? partNumber = null,
+		string? name = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
+	);
 
 	/// <summary>
 	///     Get stock of a part
@@ -72,5 +81,4 @@ public interface IPartApi
 	/// <returns>Task of GetPartResponse</returns>
 	[Put("/Part/{partId}")]
 	Task<GetPartResponse> UpdatePartAsync(int partId, ModelPartUpdate body);
-
 }

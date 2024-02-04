@@ -21,7 +21,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     Invoice model
 /// </summary>
 [DataContract]
-public class ModelInvoiceResponse : IEquatable<ModelInvoiceResponse>, IValidatableObject
+public class ModelInvoiceResponse : Pageable, IEquatable<ModelInvoiceResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Type of the invoice. For more information on the different types, check       &lt;a href&#x3D;&#x27;
@@ -645,7 +645,7 @@ public class ModelInvoiceResponse : IEquatable<ModelInvoiceResponse>, IValidatab
 	/// </summary>
 	/// <param name="input">Instance of ModelInvoiceResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelInvoiceResponse input)
+	public bool Equals(ModelInvoiceResponse? input)
 	{
 		if (input == null)
 		{
@@ -963,64 +963,64 @@ public class ModelInvoiceResponse : IEquatable<ModelInvoiceResponse>, IValidatab
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelInvoiceResponse {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  InvoiceNumber: ").Append(InvoiceNumber).Append("\n");
-		sb.Append("  Contact: ").Append(Contact).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  InvoiceDate: ").Append(InvoiceDate).Append("\n");
-		sb.Append("  Header: ").Append(Header).Append("\n");
-		sb.Append("  HeadText: ").Append(HeadText).Append("\n");
-		sb.Append("  FootText: ").Append(FootText).Append("\n");
-		sb.Append("  TimeToPay: ").Append(TimeToPay).Append("\n");
-		sb.Append("  DiscountTime: ").Append(DiscountTime).Append("\n");
-		sb.Append("  Discount: ").Append(Discount).Append("\n");
-		sb.Append("  AddressCountry: ").Append(AddressCountry).Append("\n");
-		sb.Append("  PayDate: ").Append(PayDate).Append("\n");
-		sb.Append("  CreateUser: ").Append(CreateUser).Append("\n");
-		sb.Append("  DeliveryDate: ").Append(DeliveryDate).Append("\n");
-		sb.Append("  Status: ").Append(Status).Append("\n");
-		sb.Append("  SmallSettlement: ").Append(SmallSettlement).Append("\n");
-		sb.Append("  ContactPerson: ").Append(ContactPerson).Append("\n");
-		sb.Append("  TaxRate: ").Append(TaxRate).Append("\n");
-		sb.Append("  TaxText: ").Append(TaxText).Append("\n");
-		sb.Append("  DunningLevel: ").Append(DunningLevel).Append("\n");
-		sb.Append("  TaxType: ").Append(TaxType).Append("\n");
-		sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
-		sb.Append("  CostCentreResponse: ").Append(CostCentre).Append("\n");
-		sb.Append("  SendDate: ").Append(SendDate).Append("\n");
-		sb.Append("  Origin: ").Append(Origin).Append("\n");
-		sb.Append("  InvoiceType: ").Append(InvoiceType).Append("\n");
-		sb.Append("  AccountIntervall: ").Append(AccountIntervall).Append("\n");
-		sb.Append("  AccountNextInvoice: ").Append(AccountNextInvoice).Append("\n");
-		sb.Append("  ReminderTotal: ").Append(ReminderTotal).Append("\n");
-		sb.Append("  ReminderDebit: ").Append(ReminderDebit).Append("\n");
-		sb.Append("  ReminderDeadline: ").Append(ReminderDeadline).Append("\n");
-		sb.Append("  ReminderCharge: ").Append(ReminderCharge).Append("\n");
-		sb.Append("  TaxSet: ").Append(TaxSet).Append("\n");
-		sb.Append("  Address: ").Append(Address).Append("\n");
-		sb.Append("  Currency: ").Append(Currency).Append("\n");
-		sb.Append("  SumNet: ").Append(SumNet).Append("\n");
-		sb.Append("  SumTax: ").Append(SumTax).Append("\n");
-		sb.Append("  SumGross: ").Append(SumGross).Append("\n");
-		sb.Append("  SumDiscounts: ").Append(SumDiscounts).Append("\n");
-		sb.Append("  SumNetForeignCurrency: ").Append(SumNetForeignCurrency).Append("\n");
-		sb.Append("  SumTaxForeignCurrency: ").Append(SumTaxForeignCurrency).Append("\n");
-		sb.Append("  SumGrossForeignCurrency: ").Append(SumGrossForeignCurrency).Append("\n");
-		sb.Append("  SumDiscountsForeignCurrency: ").Append(SumDiscountsForeignCurrency).Append("\n");
-		sb.Append("  SumNetAccounting: ").Append(SumNetAccounting).Append("\n");
-		sb.Append("  SumTaxAccounting: ").Append(SumTaxAccounting).Append("\n");
-		sb.Append("  SumGrossAccounting: ").Append(SumGrossAccounting).Append("\n");
-		sb.Append("  PaidAmount: ").Append(PaidAmount).Append("\n");
-		sb.Append("  CustomerInternalNote: ").Append(CustomerInternalNote).Append("\n");
-		sb.Append("  ShowNet: ").Append(ShowNet).Append("\n");
-		sb.Append("  Enshrined: ").Append(Enshrined).Append("\n");
-		sb.Append("  SendType: ").Append(SendType).Append("\n");
-		sb.Append("  DeliveryDateUntil: ").Append(DeliveryDateUntil).Append("\n");
-		sb.Append("  DatevConnectOnline: ").Append(DatevConnectOnline).Append("\n");
-		sb.Append("  SendPaymentReceivedNotificationDate: ").Append(SendPaymentReceivedNotificationDate).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  InvoiceNumber: ").Append(InvoiceNumber).Append('\n');
+		sb.Append("  Contact: ").Append(Contact).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  InvoiceDate: ").Append(InvoiceDate).Append('\n');
+		sb.Append("  Header: ").Append(Header).Append('\n');
+		sb.Append("  HeadText: ").Append(HeadText).Append('\n');
+		sb.Append("  FootText: ").Append(FootText).Append('\n');
+		sb.Append("  TimeToPay: ").Append(TimeToPay).Append('\n');
+		sb.Append("  DiscountTime: ").Append(DiscountTime).Append('\n');
+		sb.Append("  Discount: ").Append(Discount).Append('\n');
+		sb.Append("  AddressCountry: ").Append(AddressCountry).Append('\n');
+		sb.Append("  PayDate: ").Append(PayDate).Append('\n');
+		sb.Append("  CreateUser: ").Append(CreateUser).Append('\n');
+		sb.Append("  DeliveryDate: ").Append(DeliveryDate).Append('\n');
+		sb.Append("  Status: ").Append(Status).Append('\n');
+		sb.Append("  SmallSettlement: ").Append(SmallSettlement).Append('\n');
+		sb.Append("  ContactPerson: ").Append(ContactPerson).Append('\n');
+		sb.Append("  TaxRate: ").Append(TaxRate).Append('\n');
+		sb.Append("  TaxText: ").Append(TaxText).Append('\n');
+		sb.Append("  DunningLevel: ").Append(DunningLevel).Append('\n');
+		sb.Append("  TaxType: ").Append(TaxType).Append('\n');
+		sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append('\n');
+		sb.Append("  CostCentreResponse: ").Append(CostCentre).Append('\n');
+		sb.Append("  SendDate: ").Append(SendDate).Append('\n');
+		sb.Append("  Origin: ").Append(Origin).Append('\n');
+		sb.Append("  InvoiceType: ").Append(InvoiceType).Append('\n');
+		sb.Append("  AccountIntervall: ").Append(AccountIntervall).Append('\n');
+		sb.Append("  AccountNextInvoice: ").Append(AccountNextInvoice).Append('\n');
+		sb.Append("  ReminderTotal: ").Append(ReminderTotal).Append('\n');
+		sb.Append("  ReminderDebit: ").Append(ReminderDebit).Append('\n');
+		sb.Append("  ReminderDeadline: ").Append(ReminderDeadline).Append('\n');
+		sb.Append("  ReminderCharge: ").Append(ReminderCharge).Append('\n');
+		sb.Append("  TaxSet: ").Append(TaxSet).Append('\n');
+		sb.Append("  Address: ").Append(Address).Append('\n');
+		sb.Append("  Currency: ").Append(Currency).Append('\n');
+		sb.Append("  SumNet: ").Append(SumNet).Append('\n');
+		sb.Append("  SumTax: ").Append(SumTax).Append('\n');
+		sb.Append("  SumGross: ").Append(SumGross).Append('\n');
+		sb.Append("  SumDiscounts: ").Append(SumDiscounts).Append('\n');
+		sb.Append("  SumNetForeignCurrency: ").Append(SumNetForeignCurrency).Append('\n');
+		sb.Append("  SumTaxForeignCurrency: ").Append(SumTaxForeignCurrency).Append('\n');
+		sb.Append("  SumGrossForeignCurrency: ").Append(SumGrossForeignCurrency).Append('\n');
+		sb.Append("  SumDiscountsForeignCurrency: ").Append(SumDiscountsForeignCurrency).Append('\n');
+		sb.Append("  SumNetAccounting: ").Append(SumNetAccounting).Append('\n');
+		sb.Append("  SumTaxAccounting: ").Append(SumTaxAccounting).Append('\n');
+		sb.Append("  SumGrossAccounting: ").Append(SumGrossAccounting).Append('\n');
+		sb.Append("  PaidAmount: ").Append(PaidAmount).Append('\n');
+		sb.Append("  CustomerInternalNote: ").Append(CustomerInternalNote).Append('\n');
+		sb.Append("  ShowNet: ").Append(ShowNet).Append('\n');
+		sb.Append("  Enshrined: ").Append(Enshrined).Append('\n');
+		sb.Append("  SendType: ").Append(SendType).Append('\n');
+		sb.Append("  DeliveryDateUntil: ").Append(DeliveryDateUntil).Append('\n');
+		sb.Append("  DatevConnectOnline: ").Append(DatevConnectOnline).Append('\n');
+		sb.Append("  SendPaymentReceivedNotificationDate: ").Append(SendPaymentReceivedNotificationDate).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

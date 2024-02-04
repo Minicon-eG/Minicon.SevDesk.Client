@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse2012Objects
 /// </summary>
 [DataContract]
-public class FileResponse : IEquatable<FileResponse>, IValidatableObject
+public class FileResponse : Pageable, IEquatable<FileResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="FileResponse" /> class.
@@ -49,7 +49,7 @@ public class FileResponse : IEquatable<FileResponse>, IValidatableObject
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse2012Objects to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(FileResponse input)
+	public bool Equals(FileResponse? input)
 	{
 		if (input == null)
 		{
@@ -87,8 +87,8 @@ public class FileResponse : IEquatable<FileResponse>, IValidatableObject
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse2012Objects {\n");
-		sb.Append("  Filename: ").Append(Filename).Append("\n");
-		sb.Append("  MimeType: ").Append(MimeType).Append("\n");
+		sb.Append("  Filename: ").Append(Filename).Append('\n');
+		sb.Append("  MimeType: ").Append(MimeType).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

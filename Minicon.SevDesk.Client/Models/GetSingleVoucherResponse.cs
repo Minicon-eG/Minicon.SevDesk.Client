@@ -43,7 +43,7 @@ public class GetSingleVoucherResponse
 	{
 		var sb = new StringBuilder();
 		sb.Append("class GetVoucherResponse {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

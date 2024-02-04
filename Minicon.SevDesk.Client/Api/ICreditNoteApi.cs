@@ -22,9 +22,11 @@ public interface ICreditNoteApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of credit note to book</param>
 	/// <param name="body">Booking data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2008</returns>
 	[Post("/CreditNote/{creditNoteId}/bookAmount")]
-	Task<GetCreditNote> BookCreditNoteAsync(int creditNoteId, CreditNoteIdBookAmountBody body);
+	Task<GetCreditNote> BookCreditNoteAsync(int creditNoteId, CreditNoteIdBookAmountBody body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Create a new creditNote
@@ -58,9 +60,11 @@ public interface ICreditNoteApi
 	///     Creation data. Please be aware, that you need to provide at least all required parameter
 	///     of the credit note model! (optional)
 	/// </param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of SaveCreditNoteResponse</returns>
 	[Post("/CreditNote/Factory/saveCreditNote")]
-	Task<SaveCreditNoteResponse> CreateCreditNoteAsync(SaveCreditNote body);
+	Task<SaveCreditNoteResponse> CreateCreditNoteAsync(SaveCreditNote body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve pdf document of a credit note
@@ -72,12 +76,14 @@ public interface ICreditNoteApi
 	/// <param name="creditNoteId">ID of credit note from which you want the pdf</param>
 	/// <param name="download">If u want to download the pdf of the credit note. (optional)</param>
 	/// <param name="preventSendBy">Defines if u want to send the credit note. (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of CreditNoteGetPdfResponse</returns>
 	[Post("/CreditNote/{creditNoteId}/getPdf")]
 	Task<Base64EncodedFileResponse> CreditNoteGetPdfAsync(
 		int creditNoteId,
 		bool? download = null,
-		bool? preventSendBy = null
+		bool? preventSendBy = null,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -89,9 +95,11 @@ public interface ICreditNoteApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of credit note to mark as sent</param>
 	/// <param name="body">Specify the send type (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20032</returns>
 	[Put("/CreditNote/{creditNoteId}/sendBy")]
-	Task<CreditNotesResponse> CreditNoteSendByAsync(int creditNoteId, CreditNoteIdSendByBody body);
+	Task<CreditNotesResponse> CreditNoteSendByAsync(int creditNoteId, CreditNoteIdSendByBody body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Deletes an creditNote
@@ -100,9 +108,11 @@ public interface ICreditNoteApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">Id of creditNote resource to delete</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2005</returns>
 	[Delete("/CreditNote/{creditNoteId}")]
-	Task<GetCreditNoteResponse> DeleteCreditNoteAsync(int creditNoteId);
+	Task<GetCreditNoteResponse> DeleteCreditNoteAsync(int creditNoteId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve CreditNote
@@ -123,6 +133,7 @@ public interface ICreditNoteApi
 	///     Only required if contact[id] was provided. &#x27;Contact&#x27; should be used as value.
 	///     (optional)
 	/// </param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetCreditNoteResponse</returns>
 	[Get("/CreditNote")]
 	Task<GetCreditNoteResponse> GetCreditNotesAsync(
@@ -131,7 +142,8 @@ public interface ICreditNoteApi
 		int? startDate = null,
 		int? endDate = null,
 		int? contactId = null,
-		string? contactObjectName = null
+		string? contactObjectName = null,
+		CancellationToken cancellationToken = default
 	);
 
 
@@ -143,9 +155,11 @@ public interface ICreditNoteApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of creditNote to return</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2005</returns>
 	[Get("/CreditNote/{creditNoteId}")]
-	Task<GetCreditNoteResponse> GetCreditNoteByIdAsync(int creditNoteId);
+	Task<GetCreditNoteResponse> GetCreditNoteByIdAsync(int creditNoteId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Send credit note by printing
@@ -158,9 +172,11 @@ public interface ICreditNoteApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of creditNote to return</param>
 	/// <param name="sendType">the type you want to print.</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetCreditNoteResponse</returns>
 	[Get("/creditNote/{creditNoteId}/sendByWithRender")]
-	Task<GetCreditNoteResponse> SendCreditNoteByPrintingAsync(int creditNoteId, string sendType);
+	Task<GetCreditNoteResponse> SendCreditNoteByPrintingAsync(int creditNoteId, string sendType,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Send credit note via email
@@ -173,11 +189,13 @@ public interface ICreditNoteApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of credit note to be sent via email</param>
 	/// <param name="body">Mail data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2005</returns>
 	[Post("/CreditNote/{creditNoteId}/sendViaEmail")]
 	Task<GetCreditNoteResponse> SendCreditNoteViaEMailAsync(
 		int creditNoteId,
-		CreditNoteIdSendViaEmailBody body
+		CreditNoteIdSendViaEmailBody body,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -189,7 +207,9 @@ public interface ICreditNoteApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="creditNoteId">ID of creditNote to update</param>
 	/// <param name="body">Update data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2005</returns>
 	[Put("/CreditNote/{creditNoteId")]
-	Task<GetCreditNoteResponse> UpdatecreditNoteAsync(int creditNoteId, ModelCreditNoteUpdate body);
+	Task<GetCreditNoteResponse> UpdateCreditNoteAsync(int creditNoteId, ModelCreditNoteUpdate body,
+		CancellationToken cancellationToken = default);
 }

@@ -19,7 +19,8 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse20018
 /// </summary>
 [DataContract]
-public class GetContactTabsItemCountByIdResponse : IEquatable<GetContactTabsItemCountByIdResponse>, IValidatableObject
+public class GetContactTabsItemCountByIdResponse : Pageable, IEquatable<GetContactTabsItemCountByIdResponse>,
+	IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetContactTabsItemCountByIdResponse" /> class.
@@ -108,7 +109,7 @@ public class GetContactTabsItemCountByIdResponse : IEquatable<GetContactTabsItem
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20018 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetContactTabsItemCountByIdResponse input)
+	public bool Equals(GetContactTabsItemCountByIdResponse? input)
 	{
 		if (input == null)
 		{
@@ -181,15 +182,15 @@ public class GetContactTabsItemCountByIdResponse : IEquatable<GetContactTabsItem
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20018 {\n");
-		sb.Append("  Orders: ").Append(Orders).Append("\n");
-		sb.Append("  Invoices: ").Append(Invoices).Append("\n");
-		sb.Append("  CreditNotes: ").Append(CreditNotes).Append("\n");
-		sb.Append("  Documents: ").Append(Documents).Append("\n");
-		sb.Append("  Persons: ").Append(Persons).Append("\n");
-		sb.Append("  Vouchers: ").Append(Vouchers).Append("\n");
-		sb.Append("  Letters: ").Append(Letters).Append("\n");
-		sb.Append("  Parts: ").Append(Parts).Append("\n");
-		sb.Append("  InvoicePos: ").Append(InvoicePos).Append("\n");
+		sb.Append("  Orders: ").Append(Orders).Append('\n');
+		sb.Append("  Invoices: ").Append(Invoices).Append('\n');
+		sb.Append("  CreditNotes: ").Append(CreditNotes).Append('\n');
+		sb.Append("  Documents: ").Append(Documents).Append('\n');
+		sb.Append("  Persons: ").Append(Persons).Append('\n');
+		sb.Append("  Vouchers: ").Append(Vouchers).Append('\n');
+		sb.Append("  Letters: ").Append(Letters).Append('\n');
+		sb.Append("  Parts: ").Append(Parts).Append('\n');
+		sb.Append("  InvoicePos: ").Append(InvoicePos).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

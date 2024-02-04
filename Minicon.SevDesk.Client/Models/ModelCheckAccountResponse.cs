@@ -20,7 +20,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     CheckAccount model. Responsible for the payment accounts.
 /// </summary>
 [DataContract]
-public class ModelCheckAccountResponse : IEquatable<ModelCheckAccountResponse>, IValidatableObject
+public class ModelCheckAccountResponse : Pageable, IEquatable<ModelCheckAccountResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Import type. Transactions can be imported by this method on the check account.
@@ -110,7 +110,7 @@ public class ModelCheckAccountResponse : IEquatable<ModelCheckAccountResponse>, 
 	/// </param>
 	public ModelCheckAccountResponse(ModelCheckAccountResponseSevClient sevClient = default, string name = default,
 		TypeEnum? type = default, ImportTypeEnum? importType = default, string currency = default,
-		string defaultAccount = "0", StatusEnum? status = StatusEnum._100, string autoMapTransactions = "1")
+		string? defaultAccount = "0", StatusEnum? status = StatusEnum._100, string? autoMapTransactions = "1")
 	{
 		SevClient = sevClient;
 		Name = name;
@@ -254,7 +254,7 @@ public class ModelCheckAccountResponse : IEquatable<ModelCheckAccountResponse>, 
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccountResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccountResponse input)
+	public bool Equals(ModelCheckAccountResponse? input)
 	{
 		if (input == null)
 		{
@@ -347,19 +347,19 @@ public class ModelCheckAccountResponse : IEquatable<ModelCheckAccountResponse>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccountResponse {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  Type: ").Append(Type).Append("\n");
-		sb.Append("  ImportType: ").Append(ImportType).Append("\n");
-		sb.Append("  Currency: ").Append(Currency).Append("\n");
-		sb.Append("  DefaultAccount: ").Append(DefaultAccount).Append("\n");
-		sb.Append("  Status: ").Append(Status).Append("\n");
-		sb.Append("  BankServer: ").Append(BankServer).Append("\n");
-		sb.Append("  AutoMapTransactions: ").Append(AutoMapTransactions).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  Type: ").Append(Type).Append('\n');
+		sb.Append("  ImportType: ").Append(ImportType).Append('\n');
+		sb.Append("  Currency: ").Append(Currency).Append('\n');
+		sb.Append("  DefaultAccount: ").Append(DefaultAccount).Append('\n');
+		sb.Append("  Status: ").Append(Status).Append('\n');
+		sb.Append("  BankServer: ").Append(BankServer).Append('\n');
+		sb.Append("  AutoMapTransactions: ").Append(AutoMapTransactions).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

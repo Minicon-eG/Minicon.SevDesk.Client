@@ -42,7 +42,7 @@ public class TagTagIdBody : IEquatable<TagTagIdBody>, IValidatableObject
 	/// </summary>
 	/// <param name="input">Instance of TagTagIdBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(TagTagIdBody input)
+	public bool Equals(TagTagIdBody? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class TagTagIdBody : IEquatable<TagTagIdBody>, IValidatableObject
 	{
 		var sb = new StringBuilder();
 		sb.Append("class TagTagIdBody {\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
+		sb.Append("  Name: ").Append(Name).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

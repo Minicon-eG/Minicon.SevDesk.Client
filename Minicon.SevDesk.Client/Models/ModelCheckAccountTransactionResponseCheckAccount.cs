@@ -21,7 +21,7 @@ namespace Minicon.SevDesk.Client.Models;
 [DataContract]
 public class
 	ModelCheckAccountTransactionResponseCheckAccount : IEquatable<ModelCheckAccountTransactionResponseCheckAccount>,
-		IValidatableObject
+	IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelCheckAccountTransactionResponseCheckAccount" /> class.
@@ -67,7 +67,7 @@ public class
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccountTransactionResponseCheckAccount to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccountTransactionResponseCheckAccount input)
+	public bool Equals(ModelCheckAccountTransactionResponseCheckAccount? input)
 	{
 		if (input == null)
 		{
@@ -105,8 +105,8 @@ public class
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccountTransactionResponseCheckAccount {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

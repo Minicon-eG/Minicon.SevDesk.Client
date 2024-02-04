@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     UpdateTemplateResponse
 /// </summary>
 [DataContract]
-public class UpdateTemplateResponse : IEquatable<UpdateTemplateResponse>, IValidatableObject
+public class UpdateTemplateResponse : Pageable, IEquatable<UpdateTemplateResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="UpdateTemplateResponse" /> class.
@@ -41,7 +41,7 @@ public class UpdateTemplateResponse : IEquatable<UpdateTemplateResponse>, IValid
 	/// </summary>
 	/// <param name="input">Instance of UpdateTemplateResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(UpdateTemplateResponse input)
+	public bool Equals(UpdateTemplateResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class UpdateTemplateResponse : IEquatable<UpdateTemplateResponse>, IValid
 	{
 		var sb = new StringBuilder();
 		sb.Append("class UpdateTemplateResponse {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

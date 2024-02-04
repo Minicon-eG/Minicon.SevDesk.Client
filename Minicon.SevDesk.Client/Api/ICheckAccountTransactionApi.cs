@@ -19,9 +19,9 @@ public interface ICheckAccountTransactionApi
 	///     Creation data. Please be aware, that you need to provide at least all required parameter
 	///     of the CheckAccountTransaction model! (optional)
 	/// </param>
-	/// <returns>Task of CreateTransactionResponse</returns>
+	/// <returns>Task of GetTransactionResponse</returns>
 	[Post("/CheckAccountTransaction")]
-	Task<CreateTransactionResponse> CreateTransactionAsync(ModelCheckAccountTransaction body);
+	Task<GetTransactionResponse> CreateTransactionAsync(ModelCheckAccountTransaction body);
 
 	/// <summary>
 	///     Deletes a check account transaction
@@ -42,9 +42,9 @@ public interface ICheckAccountTransactionApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="checkAccountTransactionId">ID of check account transaction</param>
-	/// <returns>Task of CreateTransactionResponse</returns>
+	/// <returns>Task of GetTransactionResponse</returns>
 	[Post("/CheckAccountTransaction/{checkAccountTransactionId}")]
-	Task<CreateTransactionResponse> GetCheckAccountTransactionByIdAsync(int checkAccountTransactionId);
+	Task<GetTransactionResponse> GetCheckAccountTransactionByIdAsync(int checkAccountTransactionId);
 
 	/// <summary>
 	///     Retrieve transactions
@@ -68,9 +68,13 @@ public interface ICheckAccountTransactionApi
 	/// <param name="payeePayerName">Only retrieve transactions with this payee / payer (optional)</param>
 	/// <param name="onlyCredit">Only retrieve credit transactions (optional)</param>
 	/// <param name="onlyDebit">Only retrieve debit transactions (optional)</param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of CheckAccountTransaction</returns>
 	[Get("/CheckAccountTransaction")]
-	Task<CreateTransactionResponse> GetTransactionsAsync(
+	Task<GetTransactionResponse> GetTransactionsAsync(
 		int? checkAccountId = null,
 		string? checkAccountObjectName = null,
 		bool? isBooked = null,
@@ -79,7 +83,11 @@ public interface ICheckAccountTransactionApi
 		DateTime? endDate = null,
 		string? payeePayerName = null,
 		bool? onlyCredit = null,
-		bool? onlyDebit = null
+		bool? onlyDebit = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -91,10 +99,12 @@ public interface ICheckAccountTransactionApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="checkAccountTransactionId">ID of check account to update transaction</param>
 	/// <param name="body">Update data (optional)</param>
-	/// <returns>Task of CreateTransactionResponse</returns>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of GetTransactionResponse</returns>
 	[Put("/CheckAccountTransaction/{checkAccountTransactionId}")]
-	Task<CreateTransactionResponse> UpdateCheckAccountTransactionAsync(
+	Task<GetTransactionResponse> UpdateCheckAccountTransactionAsync(
 		int checkAccountTransactionId,
-		ModelCheckAccountTransactionUpdate body
+		ModelCheckAccountTransactionUpdate body,
+		CancellationToken cancellationToken = default
 	);
 }

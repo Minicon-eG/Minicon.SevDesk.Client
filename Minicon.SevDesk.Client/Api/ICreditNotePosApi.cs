@@ -23,7 +23,9 @@ public interface ICreditNotePosApi
 	///     Only required if creditNote[id] was provided. &#x27;creditNote&#x27; should be used
 	///     as value. (optional)
 	/// </param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20033</returns>
 	[Get("/creditNotePos")]
-	Task<InlineResponse20033> GetCreditNotePositionsAsync(int? creditNoteId = null, string creditNoteObjectName = null);
+	Task<InlineResponse20033> GetCreditNotePositionsAsync(int? creditNoteId = null, string? creditNoteObjectName = null,
+		CancellationToken cancellationToken = default);
 }

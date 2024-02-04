@@ -93,7 +93,7 @@ public class ModelChangeLayout : IEquatable<ModelChangeLayout>, IValidatableObje
 	/// </summary>
 	/// <param name="input">Instance of ModelChangeLayout to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelChangeLayout input)
+	public bool Equals(ModelChangeLayout? input)
 	{
 		if (input == null)
 		{
@@ -131,8 +131,8 @@ public class ModelChangeLayout : IEquatable<ModelChangeLayout>, IValidatableObje
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelChangeLayout {\n");
-		sb.Append("  Key: ").Append(Key).Append("\n");
-		sb.Append("  Value: ").Append(Value).Append("\n");
+		sb.Append("  Key: ").Append(Key).Append('\n');
+		sb.Append("  Value: ").Append(Value).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

@@ -146,6 +146,9 @@ public interface IOrderApi
 	///     Only required if contact[id] was provided. &#x27;Contact&#x27; should be used as value.
 	///     (optional)
 	/// </param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of GetOrderResponse</returns>
 	[Get("/Order")]
 	Task<GetOrderResponse> GetOrdersAsync(
@@ -154,7 +157,10 @@ public interface IOrderApi
 		int? startDate = null,
 		int? endDate = null,
 		int? contactId = null,
-		string? contactObjectName = null
+		string? contactObjectName = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
 	);
 
 	/// <summary>
@@ -171,12 +177,18 @@ public interface IOrderApi
 	///     Get some additional information. Embed can handle multiple values, they must be separated by comma.
 	///     (optional)
 	/// </param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of GetRelatedObjectsResponse</returns>
 	[Get("/Order/{orderId}/getRelatedObjects")]
 	Task<GetRelatedObjectsResponse> GetRelatedObjectsAsync(int orderId,
 		bool? includeItself = null,
 		bool? sortByType = null,
-		List<string>? embed = null
+		List<string>? embed = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
 	);
 
 	/// <summary>

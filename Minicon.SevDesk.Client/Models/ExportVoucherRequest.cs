@@ -81,7 +81,7 @@ public class ExportVoucherRequest : IEquatable<ExportVoucherRequest>, IValidatab
 	/// </summary>
 	/// <param name="input">Instance of SevQuery1 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ExportVoucherRequest input)
+	public bool Equals(ExportVoucherRequest? input)
 	{
 		if (input == null)
 		{
@@ -129,10 +129,10 @@ public class ExportVoucherRequest : IEquatable<ExportVoucherRequest>, IValidatab
 	{
 		var sb = new StringBuilder();
 		sb.Append("class SevQuery1 {\n");
-		sb.Append("  Limit: ").Append(Limit).Append("\n");
-		sb.Append("  ModelName: ").Append(ModelName).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Filter: ").Append(Filter).Append("\n");
+		sb.Append("  Limit: ").Append(Limit).Append('\n');
+		sb.Append("  ModelName: ").Append(ModelName).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Filter: ").Append(Filter).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     SaveVoucherResponse
 /// </summary>
 [DataContract]
-public class SaveVoucherResponse : IEquatable<SaveVoucherResponse>, IValidatableObject
+public class SaveVoucherResponse : Pageable, IEquatable<SaveVoucherResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="SaveVoucherResponse" /> class.
@@ -59,7 +59,7 @@ public class SaveVoucherResponse : IEquatable<SaveVoucherResponse>, IValidatable
 	/// </summary>
 	/// <param name="input">Instance of SaveVoucherResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(SaveVoucherResponse input)
+	public bool Equals(SaveVoucherResponse? input)
 	{
 		if (input == null)
 		{
@@ -102,9 +102,9 @@ public class SaveVoucherResponse : IEquatable<SaveVoucherResponse>, IValidatable
 	{
 		var sb = new StringBuilder();
 		sb.Append("class SaveVoucherResponse {\n");
-		sb.Append("  Voucher: ").Append(Voucher).Append("\n");
-		sb.Append("  VoucherPos: ").Append(VoucherPos).Append("\n");
-		sb.Append("  Filename: ").Append(Filename).Append("\n");
+		sb.Append("  Voucher: ").Append(Voucher).Append('\n');
+		sb.Append("  VoucherPos: ").Append(VoucherPos).Append('\n');
+		sb.Append("  Filename: ").Append(Filename).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

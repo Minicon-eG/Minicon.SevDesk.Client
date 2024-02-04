@@ -19,13 +19,13 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse2004
 /// </summary>
 [DataContract]
-public class CreateTransactionResponse : IEquatable<CreateTransactionResponse>, IValidatableObject
+public class GetTransactionResponse : Pageable, IEquatable<GetTransactionResponse>, IValidatableObject
 {
 	/// <summary>
-	///     Initializes a new instance of the <see cref="CreateTransactionResponse" /> class.
+	///     Initializes a new instance of the <see cref="GetTransactionResponse" /> class.
 	/// </summary>
 	/// <param name="objects">objects.</param>
-	public CreateTransactionResponse(List<ModelCheckAccountTransactionResponse> objects = default)
+	public GetTransactionResponse(List<ModelCheckAccountTransactionResponse> objects = default)
 	{
 		Objects = objects;
 	}
@@ -41,7 +41,7 @@ public class CreateTransactionResponse : IEquatable<CreateTransactionResponse>, 
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse2004 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(CreateTransactionResponse input)
+	public bool Equals(GetTransactionResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class CreateTransactionResponse : IEquatable<CreateTransactionResponse>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse2004 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -94,7 +94,7 @@ public class CreateTransactionResponse : IEquatable<CreateTransactionResponse>, 
 	/// <returns>Boolean</returns>
 	public override bool Equals(object input)
 	{
-		return Equals(input as CreateTransactionResponse);
+		return Equals(input as GetTransactionResponse);
 	}
 
 	/// <summary>

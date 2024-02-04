@@ -22,7 +22,7 @@ namespace Minicon.SevDesk.Client.Models;
 [DataContract]
 public class
 	VouchervoucherIdbookAmountCheckAccountTransaction : IEquatable<VouchervoucherIdbookAmountCheckAccountTransaction>,
-		IValidatableObject
+	IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="VouchervoucherIdbookAmountCheckAccountTransaction" /> class.
@@ -68,7 +68,7 @@ public class
 	/// </summary>
 	/// <param name="input">Instance of VouchervoucherIdbookAmountCheckAccountTransaction to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(VouchervoucherIdbookAmountCheckAccountTransaction input)
+	public bool Equals(VouchervoucherIdbookAmountCheckAccountTransaction? input)
 	{
 		if (input == null)
 		{
@@ -106,8 +106,8 @@ public class
 	{
 		var sb = new StringBuilder();
 		sb.Append("class VouchervoucherIdbookAmountCheckAccountTransaction {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

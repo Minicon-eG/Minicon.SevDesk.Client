@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     GetVoucherPositionsResponse
 /// </summary>
 [DataContract]
-public class GetVoucherPositionsResponse : IEquatable<GetVoucherPositionsResponse>, IValidatableObject
+public class GetVoucherPositionsResponse : Pageable, IEquatable<GetVoucherPositionsResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetVoucherPositionsResponse" /> class.
@@ -41,7 +41,7 @@ public class GetVoucherPositionsResponse : IEquatable<GetVoucherPositionsRespons
 	/// </summary>
 	/// <param name="input">Instance of GetVoucherPositionsResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetVoucherPositionsResponse input)
+	public bool Equals(GetVoucherPositionsResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class GetVoucherPositionsResponse : IEquatable<GetVoucherPositionsRespons
 	{
 		var sb = new StringBuilder();
 		sb.Append("class GetVoucherPositionsResponse {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

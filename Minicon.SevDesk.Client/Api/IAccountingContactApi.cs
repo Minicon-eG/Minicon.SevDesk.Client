@@ -27,9 +27,11 @@ public interface IAccountingContactApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="accountingContactId">Id of accounting contact resource to delete</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2003</returns>
 	[Delete("/AccountingContact/{accountingContactId}")]
-	Task<DeleteResponse> DeleteAccountingContactAsync(int? accountingContactId);
+	Task<DeleteResponse> DeleteAccountingContactAsync(int accountingContactId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve accounting contact
@@ -40,21 +42,34 @@ public interface IAccountingContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactId">ID of contact for which you want the accounting contact. (optional)</param>
 	/// <param name="contactObjectName">Object name. Only needed if you also defined the ID of a contact. (optional)</param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetAccountContactResponse</returns>
 	[Get("/AccountingContact")]
-	Task<GetAccountContactResponse> GetAccountingContactAsync(string? contactId = null, string? contactObjectName = null);
+	Task<GetAccountContactResponse> GetAccountingContactAsync(
+		string? contactId = null,
+		string? contactObjectName = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true,
+		CancellationToken cancellationToken = default
+	);
 
 	/// <summary>
 	///     Find accounting contact by ID
 	/// </summary>
 	/// <remarks>
-	///     Returns a single accounting contac
+	///     Returns a single accounting contact
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="accountingContactId">ID of accounting contact to return</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetAccountContactResponse</returns>
 	[Get("/AccountingContact/{accountingContactId}")]
-	Task<GetAccountContactResponse> GetAccountingContactByIdAsync(int accountingContactId);
+	Task<GetAccountContactResponse> GetAccountingContactByIdAsync(int accountingContactId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Update an existing accounting contact
@@ -65,10 +80,12 @@ public interface IAccountingContactApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="accountingContactId">ID of accounting contact to update</param>
 	/// <param name="body">Update data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetAccountContactResponse</returns>
 	[Put("/AccountingContact/{accountingContactId}")]
 	Task<GetAccountContactResponse> UpdateAccountingContactAsync(
 		int accountingContactId,
-		ModelAccountingContactUpdate body
+		ModelAccountingContactUpdate body,
+		CancellationToken cancellationToken = default
 	);
 }

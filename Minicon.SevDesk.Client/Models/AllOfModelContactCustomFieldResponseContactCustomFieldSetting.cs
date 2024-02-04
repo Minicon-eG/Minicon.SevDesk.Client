@@ -36,7 +36,7 @@ public class AllOfModelContactCustomFieldResponseContactCustomFieldSetting : Mod
 	/// </summary>
 	/// <param name="input">Instance of AllOfModelContactCustomFieldResponseContactCustomFieldSetting to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(AllOfModelContactCustomFieldResponseContactCustomFieldSetting input)
+	public bool Equals(AllOfModelContactCustomFieldResponseContactCustomFieldSetting? input)
 	{
 		if (input == null)
 		{
@@ -64,7 +64,7 @@ public class AllOfModelContactCustomFieldResponseContactCustomFieldSetting : Mod
 	{
 		var sb = new StringBuilder();
 		sb.Append("class AllOfModelContactCustomFieldResponseContactCustomFieldSetting {\n");
-		sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+		sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

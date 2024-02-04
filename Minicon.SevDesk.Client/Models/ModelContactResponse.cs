@@ -21,7 +21,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     Contact model
 /// </summary>
 [DataContract]
-public class ModelContactResponse : IEquatable<ModelContactResponse>, IValidatableObject
+public class ModelContactResponse : Pageable, IEquatable<ModelContactResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Defines which tax regulation the contact is using.
@@ -326,7 +326,7 @@ public class ModelContactResponse : IEquatable<ModelContactResponse>, IValidatab
 	/// </summary>
 	/// <param name="input">Instance of ModelContactResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelContactResponse input)
+	public bool Equals(ModelContactResponse? input)
 	{
 		if (input == null)
 		{
@@ -524,40 +524,40 @@ public class ModelContactResponse : IEquatable<ModelContactResponse>, IValidatab
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelContactResponse {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  Status: ").Append(Status).Append("\n");
-		sb.Append("  CustomerNumber: ").Append(CustomerNumber).Append("\n");
-		sb.Append("  Parent: ").Append(Parent).Append("\n");
-		sb.Append("  Surename: ").Append(Surename).Append("\n");
-		sb.Append("  Familyname: ").Append(Familyname).Append("\n");
-		sb.Append("  Titel: ").Append(Titel).Append("\n");
-		sb.Append("  Category: ").Append(Category).Append("\n");
-		sb.Append("  Description: ").Append(Description).Append("\n");
-		sb.Append("  AcademicTitle: ").Append(AcademicTitle).Append("\n");
-		sb.Append("  Gender: ").Append(Gender).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  Name2: ").Append(Name2).Append("\n");
-		sb.Append("  Birthday: ").Append(Birthday).Append("\n");
-		sb.Append("  VatNumber: ").Append(VatNumber).Append("\n");
-		sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
-		sb.Append("  BankNumber: ").Append(BankNumber).Append("\n");
-		sb.Append("  DefaultCashbackTime: ").Append(DefaultCashbackTime).Append("\n");
-		sb.Append("  DefaultCashbackPercent: ").Append(DefaultCashbackPercent).Append("\n");
-		sb.Append("  DefaultTimeToPay: ").Append(DefaultTimeToPay).Append("\n");
-		sb.Append("  TaxNumber: ").Append(TaxNumber).Append("\n");
-		sb.Append("  TaxOffice: ").Append(TaxOffice).Append("\n");
-		sb.Append("  ExemptVat: ").Append(ExemptVat).Append("\n");
-		sb.Append("  TaxType: ").Append(TaxType).Append("\n");
-		sb.Append("  TaxSet: ").Append(TaxSet).Append("\n");
-		sb.Append("  DefaultDiscountAmount: ").Append(DefaultDiscountAmount).Append("\n");
-		sb.Append("  DefaultDiscountPercentage: ").Append(DefaultDiscountPercentage).Append("\n");
-		sb.Append("  BuyerReference: ").Append(BuyerReference).Append("\n");
-		sb.Append("  GovernmentAgency: ").Append(GovernmentAgency).Append("\n");
-		sb.Append("  AdditionalInformation: ").Append(AdditionalInformation).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  Status: ").Append(Status).Append('\n');
+		sb.Append("  CustomerNumber: ").Append(CustomerNumber).Append('\n');
+		sb.Append("  Parent: ").Append(Parent).Append('\n');
+		sb.Append("  Surename: ").Append(Surename).Append('\n');
+		sb.Append("  Familyname: ").Append(Familyname).Append('\n');
+		sb.Append("  Titel: ").Append(Titel).Append('\n');
+		sb.Append("  Category: ").Append(Category).Append('\n');
+		sb.Append("  Description: ").Append(Description).Append('\n');
+		sb.Append("  AcademicTitle: ").Append(AcademicTitle).Append('\n');
+		sb.Append("  Gender: ").Append(Gender).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  Name2: ").Append(Name2).Append('\n');
+		sb.Append("  Birthday: ").Append(Birthday).Append('\n');
+		sb.Append("  VatNumber: ").Append(VatNumber).Append('\n');
+		sb.Append("  BankAccount: ").Append(BankAccount).Append('\n');
+		sb.Append("  BankNumber: ").Append(BankNumber).Append('\n');
+		sb.Append("  DefaultCashbackTime: ").Append(DefaultCashbackTime).Append('\n');
+		sb.Append("  DefaultCashbackPercent: ").Append(DefaultCashbackPercent).Append('\n');
+		sb.Append("  DefaultTimeToPay: ").Append(DefaultTimeToPay).Append('\n');
+		sb.Append("  TaxNumber: ").Append(TaxNumber).Append('\n');
+		sb.Append("  TaxOffice: ").Append(TaxOffice).Append('\n');
+		sb.Append("  ExemptVat: ").Append(ExemptVat).Append('\n');
+		sb.Append("  TaxType: ").Append(TaxType).Append('\n');
+		sb.Append("  TaxSet: ").Append(TaxSet).Append('\n');
+		sb.Append("  DefaultDiscountAmount: ").Append(DefaultDiscountAmount).Append('\n');
+		sb.Append("  DefaultDiscountPercentage: ").Append(DefaultDiscountPercentage).Append('\n');
+		sb.Append("  BuyerReference: ").Append(BuyerReference).Append('\n');
+		sb.Append("  GovernmentAgency: ").Append(GovernmentAgency).Append('\n');
+		sb.Append("  AdditionalInformation: ").Append(AdditionalInformation).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

@@ -17,7 +17,7 @@ public interface IOrderPosApi
 	/// <param name="orderPosId">Id of order position resource to delete</param>
 	/// <returns>Task of InlineResponse2003</returns>
 	[Delete("/OrderPos/{orderPosId}")]
-	Task<DeleteResponse> DeleteOrderPosAsync(int? orderPosId);
+	Task<DeleteResponse> DeleteOrderPosAsync(int orderPosId);
 
 	/// <summary>
 	///     Find order position by ID
@@ -46,9 +46,18 @@ public interface IOrderPosApi
 	///     Only required if order[id] was provided. &#x27;Order&#x27; should be used as value.
 	///     (optional)
 	/// </param>
+	/// <param name="limit"></param>
+	/// <param name="offset"></param>
+	/// <param name="countAll"></param>
 	/// <returns>Task of GetOrderPositionsByIdResponse</returns>
 	[Get("/OrderPos")]
-	Task<GetOrderPositionsByIdResponse> GetOrderPositionsAsync(int? orderId = null, string orderObjectName = null);
+	Task<GetOrderPositionsByIdResponse> GetOrderPositionsAsync(
+		int? orderId = null,
+		string orderObjectName = "Order",
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
+	);
 
 	/// <summary>
 	///     Update an existing order position
@@ -61,5 +70,5 @@ public interface IOrderPosApi
 	/// <param name="body">Update data (optional)</param>
 	/// <returns>Task of GetOrderPositionsByIdResponse</returns>
 	[Put("/OrderPos/{orderPosId}")]
-	Task<GetOrderPositionsByIdResponse> UpdateOrderPositionAsync(int? orderPosId, ModelOrderPosUpdate body = null);
+	Task<GetOrderPositionsByIdResponse> UpdateOrderPositionAsync(int orderPosId, ModelOrderPosUpdate body);
 }

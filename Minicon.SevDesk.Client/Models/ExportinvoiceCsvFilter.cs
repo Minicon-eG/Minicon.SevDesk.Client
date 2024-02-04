@@ -95,7 +95,7 @@ public class ExportinvoiceCsvFilter : IEquatable<ExportinvoiceCsvFilter>, IValid
 	/// </summary>
 	/// <param name="input">Instance of ExportinvoiceCsvFilter to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ExportinvoiceCsvFilter input)
+	public bool Equals(ExportinvoiceCsvFilter? input)
 	{
 		if (input == null)
 		{
@@ -154,12 +154,12 @@ public class ExportinvoiceCsvFilter : IEquatable<ExportinvoiceCsvFilter>, IValid
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ExportinvoiceCsvFilter {\n");
-		sb.Append("  InvoiceType: ").Append(InvoiceType).Append("\n");
-		sb.Append("  StartDate: ").Append(StartDate).Append("\n");
-		sb.Append("  EndDate: ").Append(EndDate).Append("\n");
-		sb.Append("  Contact: ").Append(Contact).Append("\n");
-		sb.Append("  StartAmount: ").Append(StartAmount).Append("\n");
-		sb.Append("  EndAmount: ").Append(EndAmount).Append("\n");
+		sb.Append("  InvoiceType: ").Append(InvoiceType).Append('\n');
+		sb.Append("  StartDate: ").Append(StartDate).Append('\n');
+		sb.Append("  EndDate: ").Append(EndDate).Append('\n');
+		sb.Append("  Contact: ").Append(Contact).Append('\n');
+		sb.Append("  StartAmount: ").Append(StartAmount).Append('\n');
+		sb.Append("  EndAmount: ").Append(EndAmount).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

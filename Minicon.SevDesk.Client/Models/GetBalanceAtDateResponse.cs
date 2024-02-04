@@ -16,72 +16,32 @@ using Newtonsoft.Json;
 namespace Minicon.SevDesk.Client.Models;
 
 /// <summary>
-///     SevQuery7
+///     GetBalanceAtDateResponse
 /// </summary>
 [DataContract]
-public class SevQuery7 : IEquatable<SevQuery7>, IValidatableObject
+public class GetBalanceAtDateResponse : IEquatable<GetBalanceAtDateResponse>, IValidatableObject
 {
 	/// <summary>
-	///     Initializes a new instance of the <see cref="SevQuery7" /> class.
+	///     Initializes a new instance of the <see cref="GetBalanceAtDateResponse" /> class.
 	/// </summary>
-	/// <param name="limit">Limit export.</param>
-	/// <param name="modelName">Model name which is exported (required).</param>
-	/// <param name="objectName">SevQuery object name (required).</param>
-	/// <param name="filter">filter.</param>
-	public SevQuery7(int? limit = default, object modelName = default, object objectName = default,
-		ReportcontactlistFilter filter = default)
+	/// <param name="objects">objects.</param>
+	public GetBalanceAtDateResponse(string objects = default)
 	{
-		// to ensure "modelName" is required (not null)
-		if (modelName == null)
-		{
-			throw new InvalidDataException("modelName is a required property for SevQuery7 and cannot be null");
-		}
-
-		ModelName = modelName;
-		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException("objectName is a required property for SevQuery7 and cannot be null");
-		}
-
-		ObjectName = objectName;
-		Limit = limit;
-		Filter = filter;
+		Objects = objects;
 	}
 
 	/// <summary>
-	///     Limit export
+	///     Gets or Sets Objects
 	/// </summary>
-	/// <value>Limit export</value>
-	[DataMember(Name = "limit", EmitDefaultValue = false)]
-	public int? Limit { get; set; }
+	[DataMember(Name = "objects", EmitDefaultValue = false)]
+	public string Objects { get; set; }
 
 	/// <summary>
-	///     Model name which is exported
+	///     Returns true if GetBalanceAtDateResponse instances are equal
 	/// </summary>
-	/// <value>Model name which is exported</value>
-	[DataMember(Name = "modelName", EmitDefaultValue = false)]
-	public object ModelName { get; set; }
-
-	/// <summary>
-	///     SevQuery object name
-	/// </summary>
-	/// <value>SevQuery object name</value>
-	[DataMember(Name = "objectName", EmitDefaultValue = false)]
-	public object ObjectName { get; set; }
-
-	/// <summary>
-	///     Gets or Sets Filter
-	/// </summary>
-	[DataMember(Name = "filter", EmitDefaultValue = false)]
-	public ReportcontactlistFilter Filter { get; set; }
-
-	/// <summary>
-	///     Returns true if SevQuery7 instances are equal
-	/// </summary>
-	/// <param name="input">Instance of SevQuery7 to be compared</param>
+	/// <param name="input">Instance of GetBalanceAtDateResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(SevQuery7 input)
+	public bool Equals(GetBalanceAtDateResponse? input)
 	{
 		if (input == null)
 		{
@@ -89,26 +49,9 @@ public class SevQuery7 : IEquatable<SevQuery7>, IValidatableObject
 		}
 
 		return
-			(
-				Limit == input.Limit ||
-				(Limit != null &&
-				 Limit.Equals(input.Limit))
-			) &&
-			(
-				ModelName == input.ModelName ||
-				(ModelName != null &&
-				 ModelName.Equals(input.ModelName))
-			) &&
-			(
-				ObjectName == input.ObjectName ||
-				(ObjectName != null &&
-				 ObjectName.Equals(input.ObjectName))
-			) &&
-			(
-				Filter == input.Filter ||
-				(Filter != null &&
-				 Filter.Equals(input.Filter))
-			);
+			Objects == input.Objects ||
+			(Objects != null &&
+			 Objects.Equals(input.Objects));
 	}
 
 	/// <summary>
@@ -128,11 +71,8 @@ public class SevQuery7 : IEquatable<SevQuery7>, IValidatableObject
 	public override string ToString()
 	{
 		var sb = new StringBuilder();
-		sb.Append("class SevQuery7 {\n");
-		sb.Append("  Limit: ").Append(Limit).Append("\n");
-		sb.Append("  ModelName: ").Append(ModelName).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Filter: ").Append(Filter).Append("\n");
+		sb.Append("class GetBalanceAtDateResponse {\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -153,7 +93,7 @@ public class SevQuery7 : IEquatable<SevQuery7>, IValidatableObject
 	/// <returns>Boolean</returns>
 	public override bool Equals(object input)
 	{
-		return Equals(input as SevQuery7);
+		return Equals(input as GetBalanceAtDateResponse);
 	}
 
 	/// <summary>
@@ -165,24 +105,9 @@ public class SevQuery7 : IEquatable<SevQuery7>, IValidatableObject
 		unchecked // Overflow is fine, just wrap
 		{
 			int hashCode = 41;
-			if (Limit != null)
+			if (Objects != null)
 			{
-				hashCode = hashCode * 59 + Limit.GetHashCode();
-			}
-
-			if (ModelName != null)
-			{
-				hashCode = hashCode * 59 + ModelName.GetHashCode();
-			}
-
-			if (ObjectName != null)
-			{
-				hashCode = hashCode * 59 + ObjectName.GetHashCode();
-			}
-
-			if (Filter != null)
-			{
-				hashCode = hashCode * 59 + Filter.GetHashCode();
+				hashCode = hashCode * 59 + Objects.GetHashCode();
 			}
 
 			return hashCode;

@@ -237,7 +237,7 @@ public class ModelCheckAccountTransaction : IEquatable<ModelCheckAccountTransact
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccountTransaction to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccountTransaction input)
+	public bool Equals(ModelCheckAccountTransaction? input)
 	{
 		if (input == null)
 		{
@@ -340,21 +340,21 @@ public class ModelCheckAccountTransaction : IEquatable<ModelCheckAccountTransact
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccountTransaction {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Create: ").Append(Create).Append("\n");
-		sb.Append("  Update: ").Append(Update).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  ValueDate: ").Append(ValueDate).Append("\n");
-		sb.Append("  EntryDate: ").Append(EntryDate).Append("\n");
-		sb.Append("  PaymtPurpose: ").Append(PaymtPurpose).Append("\n");
-		sb.Append("  Amount: ").Append(Amount).Append("\n");
-		sb.Append("  PayeePayerName: ").Append(PayeePayerName).Append("\n");
-		sb.Append("  CheckAccount: ").Append(CheckAccount).Append("\n");
-		sb.Append("  Status: ").Append(Status).Append("\n");
-		sb.Append("  Enshrined: ").Append(Enshrined).Append("\n");
-		sb.Append("  SourceTransaction: ").Append(SourceTransaction).Append("\n");
-		sb.Append("  TargetTransaction: ").Append(TargetTransaction).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Create: ").Append(Create).Append('\n');
+		sb.Append("  Update: ").Append(Update).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  ValueDate: ").Append(ValueDate).Append('\n');
+		sb.Append("  EntryDate: ").Append(EntryDate).Append('\n');
+		sb.Append("  PaymtPurpose: ").Append(PaymtPurpose).Append('\n');
+		sb.Append("  Amount: ").Append(Amount).Append('\n');
+		sb.Append("  PayeePayerName: ").Append(PayeePayerName).Append('\n');
+		sb.Append("  CheckAccount: ").Append(CheckAccount).Append('\n');
+		sb.Append("  Status: ").Append(Status).Append('\n');
+		sb.Append("  Enshrined: ").Append(Enshrined).Append('\n');
+		sb.Append("  SourceTransaction: ").Append(SourceTransaction).Append('\n');
+		sb.Append("  TargetTransaction: ").Append(TargetTransaction).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

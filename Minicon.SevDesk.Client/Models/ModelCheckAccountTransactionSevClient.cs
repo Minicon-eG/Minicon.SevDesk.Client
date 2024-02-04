@@ -66,7 +66,7 @@ public class ModelCheckAccountTransactionSevClient : IEquatable<ModelCheckAccoun
 	/// </summary>
 	/// <param name="input">Instance of ModelCheckAccountTransactionSevClient to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ModelCheckAccountTransactionSevClient input)
+	public bool Equals(ModelCheckAccountTransactionSevClient? input)
 	{
 		if (input == null)
 		{
@@ -104,8 +104,8 @@ public class ModelCheckAccountTransactionSevClient : IEquatable<ModelCheckAccoun
 	{
 		var sb = new StringBuilder();
 		sb.Append("class ModelCheckAccountTransactionSevClient {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

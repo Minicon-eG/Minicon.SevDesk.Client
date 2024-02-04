@@ -11,21 +11,21 @@
 		<RepositoryUrl>https://github.com/Minicon-eG/Minicon.SevDesk.Client</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>sevdesk api client</PackageTags>
-		<Version>0.0.1</Version>
-		<AssemblyVersion>0.0.1</AssemblyVersion>
-		<FileVersion>0.0.1</FileVersion>
+		<Version>0.1.0</Version>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
+		<FileVersion>0.1.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Options" Version="8.0.1"/>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-		<PackageReference Include="Refit" Version="7.0.0"/>
-		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0"/>
-		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="8.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0"/>
+		<PackageReference Include="Refit" Version="7.0.0"/>
+		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0"/>
+		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0"/>
 	</ItemGroup>
 
 </Project>

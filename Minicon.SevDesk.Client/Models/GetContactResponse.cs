@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     GetContactResponse
 /// </summary>
 [DataContract]
-public class GetContactResponse : IEquatable<GetContactResponse>, IValidatableObject
+public class GetContactResponse : Pageable, IEquatable<GetContactResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="GetContactResponse" /> class.
@@ -41,7 +41,7 @@ public class GetContactResponse : IEquatable<GetContactResponse>, IValidatableOb
 	/// </summary>
 	/// <param name="input">Instance of GetContactResponse to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(GetContactResponse input)
+	public bool Equals(GetContactResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class GetContactResponse : IEquatable<GetContactResponse>, IValidatableOb
 	{
 		var sb = new StringBuilder();
 		sb.Append("class GetContactResponse {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

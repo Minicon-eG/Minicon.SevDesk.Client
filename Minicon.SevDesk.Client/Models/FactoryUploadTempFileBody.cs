@@ -42,7 +42,7 @@ public class FactoryUploadTempFileBody : IEquatable<FactoryUploadTempFileBody>, 
 	/// </summary>
 	/// <param name="input">Instance of FactoryUploadTempFileBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(FactoryUploadTempFileBody input)
+	public bool Equals(FactoryUploadTempFileBody? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class FactoryUploadTempFileBody : IEquatable<FactoryUploadTempFileBody>, 
 	{
 		var sb = new StringBuilder();
 		sb.Append("class FactoryUploadTempFileBody {\n");
-		sb.Append("  File: ").Append(File).Append("\n");
+		sb.Append("  File: ").Append(File).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

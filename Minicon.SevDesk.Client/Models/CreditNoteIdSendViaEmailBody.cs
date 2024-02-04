@@ -128,7 +128,7 @@ public class CreditNoteIdSendViaEmailBody : IEquatable<CreditNoteIdSendViaEmailB
 	/// </summary>
 	/// <param name="input">Instance of CreditNoteIdSendViaEmailBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(CreditNoteIdSendViaEmailBody input)
+	public bool Equals(CreditNoteIdSendViaEmailBody? input)
 	{
 		if (input == null)
 		{
@@ -191,13 +191,13 @@ public class CreditNoteIdSendViaEmailBody : IEquatable<CreditNoteIdSendViaEmailB
 	{
 		var sb = new StringBuilder();
 		sb.Append("class CreditNoteIdSendViaEmailBody {\n");
-		sb.Append("  ToEmail: ").Append(ToEmail).Append("\n");
-		sb.Append("  Subject: ").Append(Subject).Append("\n");
-		sb.Append("  Text: ").Append(Text).Append("\n");
-		sb.Append("  Copy: ").Append(Copy).Append("\n");
-		sb.Append("  AdditionalAttachments: ").Append(AdditionalAttachments).Append("\n");
-		sb.Append("  CcEmail: ").Append(CcEmail).Append("\n");
-		sb.Append("  BccEmail: ").Append(BccEmail).Append("\n");
+		sb.Append("  ToEmail: ").Append(ToEmail).Append('\n');
+		sb.Append("  Subject: ").Append(Subject).Append('\n');
+		sb.Append("  Text: ").Append(Text).Append('\n');
+		sb.Append("  Copy: ").Append(Copy).Append('\n');
+		sb.Append("  AdditionalAttachments: ").Append(AdditionalAttachments).Append('\n');
+		sb.Append("  CcEmail: ").Append(CcEmail).Append('\n');
+		sb.Append("  BccEmail: ").Append(BccEmail).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

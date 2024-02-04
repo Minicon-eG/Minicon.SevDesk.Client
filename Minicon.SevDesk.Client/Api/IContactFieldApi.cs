@@ -16,9 +16,11 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse20014</returns>
 	[Post("/ContactCustomField")]
-	Task<GetContactFieldResponse> CreateContactFieldAsync(ModelContactCustomField body);
+	Task<GetContactFieldResponse> CreateContactFieldAsync(ModelContactCustomField body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Create contact field setting
@@ -28,9 +30,11 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2006</returns>
 	[Post("/ContactCustomFieldSetting")]
-	Task<GetContactFieldSettingByIdResponse> CreateContactFieldSettingAsync(ModelContactCustomFieldSetting body);
+	Task<GetContactFieldSettingByIdResponse> CreateContactFieldSettingAsync(ModelContactCustomFieldSetting body,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     delete a contact field
@@ -39,9 +43,11 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldId">Id of contact field</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of DeleteResponse</returns>
 	[Delete("/ContactCustomField/{contactCustomFieldId}")]
-	Task<DeleteResponse> DeleteContactCustomFieldIdAsync(int contactCustomFieldId);
+	Task<DeleteResponse> DeleteContactCustomFieldIdAsync(int contactCustomFieldId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Deletes a contact field setting
@@ -50,9 +56,11 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldSettingId">Id of contact field to delete</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2003</returns>
 	[Delete("/ContactCustomFieldSetting/{contactCustomFieldSettingId}")]
-	Task<DeleteResponse> DeleteContactFieldSettingAsync(int contactCustomFieldSettingId);
+	Task<DeleteResponse> DeleteContactFieldSettingAsync(int contactCustomFieldSettingId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Find contact field setting by ID
@@ -62,9 +70,13 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldSettingId">ID of contact field to return</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2006</returns>
 	[Get("/ContactCustomFieldSetting/{contactCustomFieldSettingId}")]
-	Task<GetContactFieldSettingByIdResponse> GetContactFieldSettingByIdAsync(int contactCustomFieldSettingId);
+	Task<GetContactFieldSettingByIdResponse> GetContactFieldSettingByIdAsync(
+		int contactCustomFieldSettingId,
+		CancellationToken cancellationToken = default
+	);
 
 	/// <summary>
 	///     Retrieve contact field settings
@@ -75,7 +87,8 @@ public interface IContactFieldApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of GetContactFieldSettingByIdResponse</returns>
 	[Get("/ContactCustomFieldSetting")]
-	Task<GetContactFieldSettingByIdResponse> GetContactFieldSettingsAsync();
+	Task<GetContactFieldSettingByIdResponse> GetContactFieldSettingsAsync(
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve contact fields
@@ -86,7 +99,7 @@ public interface IContactFieldApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of CreateContactFieldResponse</returns>
 	[Post("/ContactCustomField")]
-	Task<GetContactFieldResponse> GetContactFieldsAsync();
+	Task<GetContactFieldResponse> GetContactFieldsAsync(CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve contact fields
@@ -96,9 +109,11 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldId">id of the contact field</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of CreateContactFieldResponse</returns>
 	[Get("/ContactCustomField/{contactCustomFieldId}")]
-	Task<GetContactFieldResponse> GetContactFieldsByIdAsync(int contactCustomFieldId);
+	Task<GetContactFieldResponse> GetContactFieldsByIdAsync(int contactCustomFieldId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Retrieve Placeholders
@@ -109,9 +124,11 @@ public interface IContactFieldApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="objectName">Model name</param>
 	/// <param name="subObjectName">Sub model name, required if you have \&quot;Email\&quot; at objectName (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetPlaceholderResponse</returns>
 	[Get("/Textparser/fetchDictionaryEntriesByType")]
-	Task<GetPlaceholderResponse> GetPlaceholderAsync(string objectName, string? subObjectName = null);
+	Task<GetPlaceholderResponse> GetPlaceholderAsync(string objectName, string? subObjectName = null,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Receive count reference
@@ -121,9 +138,11 @@ public interface IContactFieldApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldSettingId">ID of contact field you want to get the reference count</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetReferenceCountResponse</returns>
 	[Get("/ContactCustomFieldSetting/{contactCustomFieldSettingId}/getReferenceCount")]
-	Task<GetReferenceCountResponse> GetReferenceCountAsync(int contactCustomFieldSettingId);
+	Task<GetReferenceCountResponse> GetReferenceCountAsync(int contactCustomFieldSettingId,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	///     Update contact field setting
@@ -134,11 +153,13 @@ public interface IContactFieldApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldSettingId">ID of contact field setting you want to update</param>
 	/// <param name="body"> (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetContactFieldSettingByIdResponse</returns>
 	[Put("/ContactCustomFieldSetting/{contactCustomFieldSettingId}")]
 	Task<GetContactFieldSettingByIdResponse> UpdateContactFieldSettingAsync(
 		int contactCustomFieldSettingId,
-		ModelContactCustomFieldSettingUpdate body
+		ModelContactCustomFieldSettingUpdate body,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
@@ -150,9 +171,11 @@ public interface IContactFieldApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="contactCustomFieldId">id of the contact field</param>
 	/// <param name="body">Update data (optional)</param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of CreateContactFieldResponse</returns>
 	[Put("/ContactCustomField/{contactCustomFieldId}")]
 	Task<GetContactFieldResponse> UpdateContactfieldAsync(int contactCustomFieldId,
-		ModelContactCustomFieldUpdate body
+		ModelContactCustomFieldUpdate body,
+		CancellationToken cancellationToken = default
 	);
 }

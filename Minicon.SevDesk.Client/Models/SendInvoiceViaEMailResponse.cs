@@ -19,7 +19,7 @@ namespace Minicon.SevDesk.Client.Models;
 ///     InlineResponse201
 /// </summary>
 [DataContract]
-public class SendInvoiceViaEMailResponse : IEquatable<SendInvoiceViaEMailResponse>, IValidatableObject
+public class SendInvoiceViaEMailResponse : Pageable, IEquatable<SendInvoiceViaEMailResponse>, IValidatableObject
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="SendInvoiceViaEMailResponse" /> class.
@@ -41,7 +41,7 @@ public class SendInvoiceViaEMailResponse : IEquatable<SendInvoiceViaEMailRespons
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse201 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(SendInvoiceViaEMailResponse input)
+	public bool Equals(SendInvoiceViaEMailResponse? input)
 	{
 		if (input == null)
 		{
@@ -73,7 +73,7 @@ public class SendInvoiceViaEMailResponse : IEquatable<SendInvoiceViaEMailRespons
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse201 {\n");
-		sb.Append("  Objects: ").Append(Objects).Append("\n");
+		sb.Append("  Objects: ").Append(Objects).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

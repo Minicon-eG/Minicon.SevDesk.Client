@@ -81,7 +81,7 @@ public class ExportCreditNoteRequest : IEquatable<ExportCreditNoteRequest>, IVal
 	/// </summary>
 	/// <param name="input">Instance of SevQuery6 to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(ExportCreditNoteRequest input)
+	public bool Equals(ExportCreditNoteRequest? input)
 	{
 		if (input == null)
 		{
@@ -129,10 +129,10 @@ public class ExportCreditNoteRequest : IEquatable<ExportCreditNoteRequest>, IVal
 	{
 		var sb = new StringBuilder();
 		sb.Append("class SevQuery6 {\n");
-		sb.Append("  Limit: ").Append(Limit).Append("\n");
-		sb.Append("  ModelName: ").Append(ModelName).Append("\n");
-		sb.Append("  ObjectName: ").Append(ObjectName).Append("\n");
-		sb.Append("  Filter: ").Append(Filter).Append("\n");
+		sb.Append("  Limit: ").Append(Limit).Append('\n');
+		sb.Append("  ModelName: ").Append(ModelName).Append('\n');
+		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
+		sb.Append("  Filter: ").Append(Filter).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

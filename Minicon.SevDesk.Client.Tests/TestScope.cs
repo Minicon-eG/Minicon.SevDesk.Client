@@ -5,10 +5,8 @@ using Minicon.SevDesk.Client.Extensions.DependencyInjection;
 
 namespace Minicon.SevDesk.Client.Tests;
 
-public sealed class TestScope : ITestScope
+public sealed class TestScope<T> : ITestScope
 {
-	public IServiceScope ServiceScope { get; }
-
 	public TestScope()
 	{
 		var services = new ServiceCollection();
@@ -19,7 +17,26 @@ public sealed class TestScope : ITestScope
 		ServiceScope = CreateScope(services, configuration);
 	}
 
+	public async Task TestAsync(Func<Task<T>> func, Action<T> assert)
+	{
+		T result = await func();
+		assert(result);
+	}
+
+	public void Test(Func<T> func, Action<T> assert)
+	{
+		T result = func();
+		assert(result);
+	}
+
+	public IServiceScope ServiceScope { get; }
+
 	public IServiceCollection Services { get; } = new ServiceCollection();
+
+	public void Dispose()
+	{
+		ServiceScope.Dispose();
+	}
 
 	private static IServiceScope CreateScope(IServiceCollection services, IConfiguration config)
 	{
@@ -31,10 +48,5 @@ public sealed class TestScope : ITestScope
 
 		services.AddLogging(e => e.AddConsole());
 		return services.BuildServiceProvider().CreateScope();
-	}
-
-	public void Dispose()
-	{
-		ServiceScope.Dispose();
 	}
 }

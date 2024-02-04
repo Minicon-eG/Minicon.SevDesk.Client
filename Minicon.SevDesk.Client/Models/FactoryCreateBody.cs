@@ -50,7 +50,7 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 	/// </summary>
 	/// <param name="input">Instance of FactoryCreateBody to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(FactoryCreateBody input)
+	public bool Equals(FactoryCreateBody? input)
 	{
 		if (input == null)
 		{
@@ -88,8 +88,8 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 	{
 		var sb = new StringBuilder();
 		sb.Append("class FactoryCreateBody {\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  _Object: ").Append(_Object).Append("\n");
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  _Object: ").Append(_Object).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}

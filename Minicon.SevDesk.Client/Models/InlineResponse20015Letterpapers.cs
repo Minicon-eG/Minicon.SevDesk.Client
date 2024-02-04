@@ -82,7 +82,7 @@ public class InlineResponse20015Letterpapers : IEquatable<InlineResponse20015Let
 	/// </summary>
 	/// <param name="input">Instance of InlineResponse20015Letterpapers to be compared</param>
 	/// <returns>Boolean</returns>
-	public bool Equals(InlineResponse20015Letterpapers input)
+	public bool Equals(InlineResponse20015Letterpapers? input)
 	{
 		if (input == null)
 		{
@@ -140,12 +140,12 @@ public class InlineResponse20015Letterpapers : IEquatable<InlineResponse20015Let
 	{
 		var sb = new StringBuilder();
 		sb.Append("class InlineResponse20015Letterpapers {\n");
-		sb.Append("  Id: ").Append(Id).Append("\n");
-		sb.Append("  Pdf: ").Append(Pdf).Append("\n");
-		sb.Append("  SevClientReference: ").Append(SevClient).Append("\n");
-		sb.Append("  Name: ").Append(Name).Append("\n");
-		sb.Append("  _Default: ").Append(_Default).Append("\n");
-		sb.Append("  Img: ").Append(Img).Append("\n");
+		sb.Append("  Id: ").Append(Id).Append('\n');
+		sb.Append("  Pdf: ").Append(Pdf).Append('\n');
+		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
+		sb.Append("  Name: ").Append(Name).Append('\n');
+		sb.Append("  _Default: ").Append(_Default).Append('\n');
+		sb.Append("  Img: ").Append(Img).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
