@@ -25,29 +25,19 @@ namespace Minicon.SevDesk.Client.Models;
 public class ModelVoucherPosEstimatedAccountingType : IEquatable<ModelVoucherPosEstimatedAccountingType>,
 	IValidatableObject
 {
+	public ModelVoucherPosEstimatedAccountingType(string id)
+		: this(int.Parse(id))
+	{
+	}
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelVoucherPosEstimatedAccountingType" /> class.
 	/// </summary>
 	/// <param name="id">Unique identifier of the accounting type (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;AccountingTypeReference&#x27; (required).</param>
-	public ModelVoucherPosEstimatedAccountingType(int? id = default, string objectName = default)
+	public ModelVoucherPosEstimatedAccountingType(int id)
 	{
-		// to ensure "id" is required (not null)
-		if (id == null)
-		{
-			throw new InvalidDataException(
-				"id is a required property for ModelVoucherPosEstimatedAccountingType and cannot be null");
-		}
-
 		Id = id;
-		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException(
-				"objectName is a required property for ModelVoucherPosEstimatedAccountingType and cannot be null");
-		}
-
-		ObjectName = objectName;
+		ObjectName = "AccountingType";
 	}
 
 	/// <summary>

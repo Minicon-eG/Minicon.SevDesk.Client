@@ -26,7 +26,7 @@ public class ModelVoucherCreateUser : IEquatable<ModelVoucherCreateUser>, IValid
 	/// </summary>
 	/// <param name="id">Unique identifier of the user (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;SevUser&#x27; (required).</param>
-	public ModelVoucherCreateUser(int? id = default, string objectName = default)
+	public ModelVoucherCreateUser(int? id = default, string objectName = "SevUser")
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)

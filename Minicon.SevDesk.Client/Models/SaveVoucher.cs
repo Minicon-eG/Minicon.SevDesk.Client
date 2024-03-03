@@ -28,15 +28,13 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	/// <param name="voucherPosSave">voucherPosSave.</param>
 	/// <param name="voucherPosDelete">voucherPosDelete.</param>
 	/// <param name="filename">Filename of a previously upload file which should be attached..</param>
-	public SaveVoucher(ModelVoucher voucher = default, ModelVoucherPos voucherPosSave = default,
-		SaveVoucherVoucherPosDelete voucherPosDelete = default, byte[] filename = default)
+	public SaveVoucher(
+		ModelVoucher voucher,
+		ModelVoucherPos[]? voucherPosSave = default,
+		SaveVoucherVoucherPosDelete? voucherPosDelete = default,
+		byte[] filename = default
+	)
 	{
-		// to ensure "voucher" is required (not null)
-		if (voucher == null)
-		{
-			throw new InvalidDataException("voucher is a required property for SaveVoucher and cannot be null");
-		}
-
 		Voucher = voucher;
 		VoucherPosSave = voucherPosSave;
 		VoucherPosDelete = voucherPosDelete;
@@ -53,13 +51,13 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	///     Gets or Sets VoucherPosSave
 	/// </summary>
 	[DataMember(Name = "voucherPosSave", EmitDefaultValue = false)]
-	public ModelVoucherPos VoucherPosSave { get; set; }
+	public ModelVoucherPos[]? VoucherPosSave { get; set; }
 
 	/// <summary>
 	///     Gets or Sets VoucherPosDelete
 	/// </summary>
 	[DataMember(Name = "voucherPosDelete", EmitDefaultValue = false)]
-	public SaveVoucherVoucherPosDelete VoucherPosDelete { get; set; }
+	public SaveVoucherVoucherPosDelete? VoucherPosDelete { get; set; }
 
 	/// <summary>
 	///     Filename of a previously upload file which should be attached.

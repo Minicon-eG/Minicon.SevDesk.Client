@@ -27,8 +27,11 @@ public class SaveVoucherResponse : Pageable, IEquatable<SaveVoucherResponse>, IV
 	/// <param name="voucher">voucher.</param>
 	/// <param name="voucherPos">voucherPos.</param>
 	/// <param name="filename">Filename of a previously upload file which should be attached..</param>
-	public SaveVoucherResponse(ModelVoucherResponse voucher = default, ModelVoucherPosResponse voucherPos = default,
-		byte[] filename = default)
+	public SaveVoucherResponse(
+		ModelVoucherResponse voucher = default,
+		ModelVoucherPosResponse voucherPos = default,
+		byte[] filename = default
+	)
 	{
 		Voucher = voucher;
 		VoucherPos = voucherPos;

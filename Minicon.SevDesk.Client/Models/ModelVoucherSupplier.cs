@@ -27,7 +27,7 @@ public class ModelVoucherSupplier : IEquatable<ModelVoucherSupplier>, IValidatab
 	/// </summary>
 	/// <param name="id">Unique identifier of the contact (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;Contact&#x27; (required).</param>
-	public ModelVoucherSupplier(int? id = default, string objectName = default)
+	public ModelVoucherSupplier(int? id = default, string objectName = "Contact")
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)

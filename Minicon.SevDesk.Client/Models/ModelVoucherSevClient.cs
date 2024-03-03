@@ -26,7 +26,7 @@ public class ModelVoucherSevClient : IEquatable<ModelVoucherSevClient>, IValidat
 	/// </summary>
 	/// <param name="id">Unique identifier of the client (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;SevClientReference&#x27; (required).</param>
-	public ModelVoucherSevClient(int? id = default, string objectName = default)
+	public ModelVoucherSevClient(int? id = default, string objectName = "SevClientReference")
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)

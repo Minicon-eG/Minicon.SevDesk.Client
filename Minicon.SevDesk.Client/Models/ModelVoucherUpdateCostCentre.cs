@@ -26,7 +26,7 @@ public class ModelVoucherUpdateCostCentre : IEquatable<ModelVoucherUpdateCostCen
 	/// </summary>
 	/// <param name="id">Unique identifier of the cost centre (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;CostCentreResponse&#x27; (required).</param>
-	public ModelVoucherUpdateCostCentre(int? id = default, string objectName = default)
+	public ModelVoucherUpdateCostCentre(int? id = default, string objectName = "CostCentre")
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)

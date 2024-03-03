@@ -54,7 +54,7 @@ public interface IVoucherApi
 	///     of the voucher and voucher position model! (optional)
 	/// </param>
 	/// <returns>Task of SaveVoucherResponse</returns>
-	[Post("/Voucher")]
+	[Post("/Voucher/Factory/saveVoucher")]
 	Task<SaveVoucherResponse> CreateVoucherByFactoryAsync(SaveVoucher body);
 
 	/// <summary>
@@ -66,7 +66,7 @@ public interface IVoucherApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="voucherId">ID of voucher to return</param>
 	/// <returns>Task of GetVoucherResponse</returns>
-	[Put("/Voucher/{voucherId}")]
+	[Get("/Voucher/{voucherId}")]
 	Task<GetVoucherResponse> GetVoucherByIdAsync(int voucherId);
 
 	/// <summary>

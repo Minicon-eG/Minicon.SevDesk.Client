@@ -29,7 +29,9 @@ public interface IVoucherPosApi
 	/// <returns>Task of GetVoucherPositionsResponse</returns>
 	[Get("/VoucherPos")]
 	Task<GetVoucherPositionsResponse> GetVoucherPositionsAsync(
+		[AliasAs("voucher[id]")]
 		int voucherId,
+		[AliasAs("voucher[objectName]")]
 		string voucherObjectName = "Voucher",
 		int limit = 10000,
 		int offset = 0,

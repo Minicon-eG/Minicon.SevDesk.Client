@@ -26,7 +26,6 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	///     Initializes a new instance of the <see cref="ModelVoucherPos" /> class.
 	/// </summary>
 	/// <param name="objectName">The voucher position object name (required).</param>
-	/// <param name="mapAll">mapAll (required).</param>
 	/// <param name="sevClient">sevClient.</param>
 	/// <param name="voucher">voucher (required).</param>
 	/// <param name="accountingType">accountingType (required).</param>
@@ -46,27 +45,21 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	///     false&#x27;, otherwise its readOnly. (required).
 	/// </param>
 	/// <param name="comment">Comment for the voucher position..</param>
-	public ModelVoucherPos(string objectName = default, bool? mapAll = default,
-		ModelVoucherPosSevClient sevClient = default, ModelVoucherPosVoucher voucher = default,
+	public ModelVoucherPos(
+		ModelVoucherPosSevClient sevClient = default,
+		ModelVoucherPosVoucher voucher = default,
 		ModelVoucherPosAccountingType accountingType = default,
-		ModelVoucherPosEstimatedAccountingType estimatedAccountingType = default, float? taxRate = default,
-		bool? net = default, bool? isAsset = default, float? sumNet = default, float? sumGross = default,
+		ModelVoucherPosEstimatedAccountingType estimatedAccountingType = default,
+		float? taxRate = default,
+		bool? net = default,
+		bool? isAsset = default,
+		float? sumNet = default,
+		float? sumGross = default,
 		string comment = default)
 	{
-		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException("objectName is a required property for ModelVoucherPos and cannot be null");
-		}
+		ObjectName = "VoucherPos";
+		MapAll = true;
 
-		ObjectName = objectName;
-		// to ensure "mapAll" is required (not null)
-		if (mapAll == null)
-		{
-			throw new InvalidDataException("mapAll is a required property for ModelVoucherPos and cannot be null");
-		}
-
-		MapAll = mapAll;
 		// to ensure "voucher" is required (not null)
 		if (voucher == null)
 		{

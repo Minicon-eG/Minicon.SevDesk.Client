@@ -21,12 +21,16 @@ namespace Minicon.SevDesk.Client.Models;
 [DataContract]
 public class ModelVoucherPosVoucher : IEquatable<ModelVoucherPosVoucher>, IValidatableObject
 {
+	public ModelVoucherPosVoucher(string id)
+		: this(int.Parse(id))
+	{
+	}
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelVoucherPosVoucher" /> class.
 	/// </summary>
 	/// <param name="id">Unique identifier of the voucher (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;Voucher&#x27; (required).</param>
-	public ModelVoucherPosVoucher(int? id = default, string objectName = default)
+	public ModelVoucherPosVoucher(int? id = default)
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)
@@ -36,13 +40,9 @@ public class ModelVoucherPosVoucher : IEquatable<ModelVoucherPosVoucher>, IValid
 
 		Id = id;
 		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException(
-				"objectName is a required property for ModelVoucherPosVoucher and cannot be null");
-		}
 
-		ObjectName = objectName;
+
+		ObjectName = "Voucher";
 	}
 
 	/// <summary>

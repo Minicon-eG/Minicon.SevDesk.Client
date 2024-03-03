@@ -8,3 +8,10 @@ Conent-Type: application/json
 GET https://my.sevdesk.de/api/v1/Voucher
 Authorization: {{ApiKey}}
 Content-Type: application/json
+
+### Get Voucher Positions
+#https://my.sevdesk.de/api/v1/VoucherPos?voucher%5Bid%5D=80659678&voucher%5BobjectName%5D=Voucher&limit=10000&offset=0&countAll=True
+https://my.sevdesk.de/api/v1/VoucherPos?voucher[id]=80659559&voucher%5BobjectName%5D=Voucher&limit=10000&offset=0&
+    countAll=True
+Authorization: {{ApiKey}}
+Content-Type: application/json

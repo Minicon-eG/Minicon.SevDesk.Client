@@ -21,12 +21,16 @@ namespace Minicon.SevDesk.Client.Models;
 [DataContract]
 public class ModelVoucherPosSevClient : IEquatable<ModelVoucherPosSevClient>, IValidatableObject
 {
+	public ModelVoucherPosSevClient(string id)
+		: this(int.Parse(id))
+	{
+	}
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelVoucherPosSevClient" /> class.
 	/// </summary>
 	/// <param name="id">Unique identifier of the client (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;SevClientReference&#x27; (required).</param>
-	public ModelVoucherPosSevClient(int? id = default, string objectName = default)
+	public ModelVoucherPosSevClient(int? id = default)
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)
@@ -35,14 +39,9 @@ public class ModelVoucherPosSevClient : IEquatable<ModelVoucherPosSevClient>, IV
 		}
 
 		Id = id;
-		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException(
-				"objectName is a required property for ModelVoucherPosSevClient and cannot be null");
-		}
 
-		ObjectName = objectName;
+
+		ObjectName = "SevClientReference";
 	}
 
 	/// <summary>

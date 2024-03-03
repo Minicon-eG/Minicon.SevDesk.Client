@@ -13,7 +13,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using Minicon.SevDesk.Client.Converters;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Minicon.SevDesk.Client.Models;
 
@@ -24,140 +23,11 @@ namespace Minicon.SevDesk.Client.Models;
 public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 {
 	/// <summary>
-	///     Defines if your voucher is a credit (C) or debit (D)
-	/// </summary>
-	/// <value>Defines if your voucher is a credit (C) or debit (D)</value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum CreditDebitEnum
-	{
-		/// <summary>
-		///     Enum C for value: C
-		/// </summary>
-		[EnumMember(Value = "C")] C = 1,
-
-		/// <summary>
-		///     Enum D for value: D
-		/// </summary>
-		[EnumMember(Value = "D")] D = 2
-	}
-
-	/// <summary>
-	///     The DateInterval in which recurring vouchers are generated.&lt;br&gt;       Necessary attribute for all recurring
-	///     vouchers.
-	/// </summary>
-	/// <value>
-	///     The DateInterval in which recurring vouchers are generated.&lt;br&gt;       Necessary attribute for all
-	///     recurring vouchers.
-	/// </value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum RecurringIntervalEnum
-	{
-		/// <summary>
-		///     Enum P0Y0M1W for value: P0Y0M1W
-		/// </summary>
-		[EnumMember(Value = "P0Y0M1W")] P0Y0M1W = 1,
-
-		/// <summary>
-		///     Enum P0Y0M2W for value: P0Y0M2W
-		/// </summary>
-		[EnumMember(Value = "P0Y0M2W")] P0Y0M2W = 2,
-
-		/// <summary>
-		///     Enum P0Y1M0W for value: P0Y1M0W
-		/// </summary>
-		[EnumMember(Value = "P0Y1M0W")] P0Y1M0W = 3,
-
-		/// <summary>
-		///     Enum P0Y3M0W for value: P0Y3M0W
-		/// </summary>
-		[EnumMember(Value = "P0Y3M0W")] P0Y3M0W = 4,
-
-		/// <summary>
-		///     Enum P0Y6M0W for value: P0Y6M0W
-		/// </summary>
-		[EnumMember(Value = "P0Y6M0W")] P0Y6M0W = 5,
-
-		/// <summary>
-		///     Enum P1Y0M0W for value: P1Y0M0W
-		/// </summary>
-		[EnumMember(Value = "P1Y0M0W")] P1Y0M0W = 6,
-
-		/// <summary>
-		///     Enum P2Y0M0W for value: P2Y0M0W
-		/// </summary>
-		[EnumMember(Value = "P2Y0M0W")] P2Y0M0W = 7,
-
-		/// <summary>
-		///     Enum P3Y0M0W for value: P3Y0M0W
-		/// </summary>
-		[EnumMember(Value = "P3Y0M0W")] P3Y0M0W = 8,
-
-		/// <summary>
-		///     Enum P4Y0M0W for value: P4Y0M0W
-		/// </summary>
-		[EnumMember(Value = "P4Y0M0W")] P4Y0M0W = 9,
-
-		/// <summary>
-		///     Enum P5Y0M0W for value: P5Y0M0W
-		/// </summary>
-		[EnumMember(Value = "P5Y0M0W")] P5Y0M0W = 10
-	}
-
-
-	/// <summary>
-	///     Please have a look in       &lt;a href&#x3D;&#x27;https://api.sevdesk.de/#section/Types-and-status-of-vouchers
-	///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
-	/// </summary>
-	/// <value>
-	///     Please have a look in       &lt;a href&#x3D;&#x27;https://api.sevdesk.de/#section/Types-and-status-of-vouchers
-	///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
-	/// </value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum StatusEnum
-	{
-		/// <summary>
-		///     Enum _50 for value: 50
-		/// </summary>
-		[EnumMember(Value = "50")] _50 = 1,
-
-		/// <summary>
-		///     Enum _100 for value: 100
-		/// </summary>
-		[EnumMember(Value = "100")] _100 = 2,
-
-		/// <summary>
-		///     Enum _1000 for value: 1000
-		/// </summary>
-		[EnumMember(Value = "1000")] _1000 = 3
-	}
-
-	/// <summary>
-	///     Type of the voucher. For more information on the different types, check       &lt;a href&#x3D;&#x27;
-	///     https://api.sevdesk.de/#section/Types-and-status-of-vouchers&#x27;&gt;this&lt;/a&gt;
-	/// </summary>
-	/// <value>
-	///     Type of the voucher. For more information on the different types, check       &lt;a href&#x3D;&#x27;
-	///     https://api.sevdesk.de/#section/Types-and-status-of-vouchers&#x27;&gt;this&lt;/a&gt;
-	/// </value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum VoucherTypeEnum
-	{
-		/// <summary>
-		///     Enum VOU for value: VOU
-		/// </summary>
-		[EnumMember(Value = "VOU")] VOU = 1,
-
-		/// <summary>
-		///     Enum RV for value: RV
-		/// </summary>
-		[EnumMember(Value = "RV")] RV = 2
-	}
-
-	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelVoucher" /> class.
 	/// </summary>
 	/// <param name="objectName">The voucher object name (required).</param>
 	/// <param name="mapAll">mapAll (required).</param>
+	/// <param name="id"></param>
 	/// <param name="sevClient">sevClient.</param>
 	/// <param name="createUser">createUser.</param>
 	/// <param name="voucherDate">Needs to be provided as timestamp or dd.mm.yyyy.</param>
@@ -201,31 +71,18 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	/// <param name="deliveryDateUntil">Needs to be provided as timestamp or dd.mm.yyyy.</param>
 	/// <param name="document">document.</param>
 	/// <param name="costCentre">costCentre.</param>
-	public ModelVoucher(string objectName = default, bool? mapAll = default, ModelVoucherSevClient sevClient = default,
-		ModelVoucherCreateUser createUser = default, DateTime? voucherDate = default,
-		ModelVoucherSupplier supplier = default, string supplierName = default, string description = default,
+	public ModelVoucher(int? id = default, ModelVoucherSevClient sevClient = default,
+		ModelVoucherCreateUser? createUser = default, DateTime? voucherDate = default,
+		ModelVoucherSupplier? supplier = default, string supplierName = default, string description = default,
 		DateTime? payDate = default, StatusEnum status = default, string taxType = default,
 		CreditDebitEnum creditDebit = default, VoucherTypeEnum voucherType = default, string currency = default,
 		DateTime? propertyForeignCurrencyDeadline = default, float? propertyExchangeRate = default,
-		ModelVoucherUpdateTaxSet taxSet = default, DateTime? paymentDeadline = default,
+		ModelVoucherUpdateTaxSet? taxSet = default, DateTime? paymentDeadline = default,
 		DateTime? deliveryDate = default, DateTime? deliveryDateUntil = default,
-		ModelVoucherUpdateDocument document = default, ModelVoucherUpdateCostCentre costCentre = default)
+		ModelVoucherUpdateDocument document = default, ModelVoucherUpdateCostCentre? costCentre = default)
 	{
-		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException("objectName is a required property for ModelVoucher and cannot be null");
-		}
-
-		ObjectName = objectName;
-		// to ensure "mapAll" is required (not null)
-		if (mapAll == null)
-		{
-			throw new InvalidDataException("mapAll is a required property for ModelVoucher and cannot be null");
-		}
-
-		MapAll = mapAll;
-		// to ensure "status" is required (not null)
+		ObjectName = "Voucher";
+		MapAll = true;
 		if (status == null)
 		{
 			throw new InvalidDataException("status is a required property for ModelVoucher and cannot be null");
@@ -330,7 +187,7 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	/// </summary>
 	[DataMember(Name = "mapAll", EmitDefaultValue = false)]
 	[JsonConverter(typeof(BooleanJsonConverter))]
-	public bool? MapAll { get; set; }
+	public bool MapAll { get; set; }
 
 	/// <summary>
 	///     Date of voucher creation

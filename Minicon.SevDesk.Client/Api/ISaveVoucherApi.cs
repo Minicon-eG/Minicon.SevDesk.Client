@@ -10,6 +10,7 @@ public interface ISaveVoucherApi
 	[Multipart]
 	[Post("/Voucher/Factory/saveVoucher")]
 	Task<SaveVoucherResponse> SaveVoucherAsync(
-		params IEnumerable<KeyValuePair<string, string>>[] request
+		SaveVoucher request
 	);
 }
+

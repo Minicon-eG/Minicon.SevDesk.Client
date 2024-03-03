@@ -26,7 +26,7 @@ public class ModelVoucherUpdateDocument : IEquatable<ModelVoucherUpdateDocument>
 	/// </summary>
 	/// <param name="id">Unique identifier of the document (required).</param>
 	/// <param name="objectName">Model name, which is &#x27;Document&#x27; (required).</param>
-	public ModelVoucherUpdateDocument(int? id = default, string objectName = default)
+	public ModelVoucherUpdateDocument(int? id = default, string objectName = "Document")
 	{
 		// to ensure "id" is required (not null)
 		if (id == null)
