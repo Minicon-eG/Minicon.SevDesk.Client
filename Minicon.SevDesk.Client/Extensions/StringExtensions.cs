@@ -1,9 +1,16 @@
+using System.Globalization;
+
 namespace Minicon.SevDesk.Client.Extensions;
 
 public static class StringExtensions
 {
-	public static float? ToFloatOrNull(this string? origin)
+	public static decimal? ToDecimalOrNull(this string? origin)
 	{
-		return string.IsNullOrWhiteSpace(origin) ? null : float.Parse(origin);
+		return string.IsNullOrWhiteSpace(origin) ? null : decimal.Parse(origin, CultureInfo.InvariantCulture);
+	}
+
+	public static int ToInt32(this string origin)
+	{
+		return int.Parse(origin);
 	}
 }

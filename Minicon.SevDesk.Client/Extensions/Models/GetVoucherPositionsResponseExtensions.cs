@@ -4,11 +4,12 @@ namespace Minicon.SevDesk.Client.Extensions.Models;
 
 public static class GetVoucherPositionsResponseExtensions
 {
-	public static SaveVoucher ToSaveVoucher(this GetVoucherPositionsResponse origin, ModelVoucherResponse modelVoucher)
+	public static async Task<SaveVoucher> ToSaveVoucherAsync(this GetVoucherPositionsResponse origin,
+		ModelVoucherResponse modelVoucher, ISupplierResolver supplierResolver)
 	{
 		return new SaveVoucher
 		(
-			modelVoucher.ToModelVoucher(),
+			await modelVoucher.ToModelVoucherAsync(supplierResolver),
 			origin.ToModelVoucherPosArray(modelVoucher)
 		);
 	}
@@ -28,17 +29,12 @@ public static class GetVoucherPositionsResponseExtensions
 			new ModelVoucherPosVoucher(modelVoucher.Id),
 			new ModelVoucherPosAccountingType(origin.AccountingType.Id),
 			new ModelVoucherPosEstimatedAccountingType(origin.EstimatedAccountingType.Id),
-			TaxRateToFloatOrNull(origin),
+			origin.TaxRate.ToDecimalOrNull(),
 			origin.Net,
 			origin.IsAsset,
-			origin.SumNet.ToFloatOrNull(),
-			origin.SumGross.ToFloatOrNull(),
+			origin.SumNet.ToDecimalOrNull(),
+			origin.SumGross.ToDecimalOrNull(),
 			origin.Comment
 		);
-	}
-
-	private static float? TaxRateToFloatOrNull(ModelVoucherPosResponse origin)
-	{
-		return string.IsNullOrWhiteSpace(origin.TaxRate) ? null : float.Parse(origin.TaxRate);
 	}
 }

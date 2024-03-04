@@ -6,34 +6,25 @@ using Minicon.SevDesk.Client.Models;
 
 namespace Minicon.SevDesk.Client.Tests;
 
-public class VoucherPosApiTests
+public class VoucherApiTests
 {
-	[Fact]
-	public async Task GetVoucherPosAsync_WithNoParameters_ReturnsVoucherPos()
-	{
-		using var scope = new TestScope<GetVoucherPositionsResponse>();
-		IVoucherPosApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherPosApi>();
-		IVoucherApi voucherApi = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
-		GetVoucherResponse firstVoucher = await voucherApi.GetVouchersAsync(limit: 1);
-		await scope.TestAsync(
-			async () => await sut.GetVoucherPositionsAsync(firstVoucher.Objects.Single().Id),
-			result => { result.Objects.Count.Should().BePositive(); }
-		);
-	}
 
 	[Fact]
-	public async Task SaveVoucher()
+	public async Task SaveVoucherAsync()
 	{
 		using var scope = new TestScope<SaveVoucherResponse>();
 		IVoucherPosApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherPosApi>();
 		IVoucherApi voucherApi = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
 		ModelVoucherResponse voucher = (await voucherApi.GetVoucherByIdAsync(80659678)).Objects.Single();
 		GetVoucherPositionsResponse pos = await sut.GetVoucherPositionsAsync(voucher.Id);
+		ISupplierResolver supplierResolver = scope.ServiceScope.ServiceProvider.GetRequiredService<ISupplierResolver>();
+
 		await scope.TestAsync(
 			async () =>
 			{
+				SaveVoucher request = await voucher.ToSaveVoucherAsync(pos, supplierResolver);
 				SaveVoucherResponse response = await voucherApi.CreateVoucherByFactoryAsync(
-					voucher.ToSaveVoucher(pos)
+					request
 				);
 
 				return response;
@@ -41,10 +32,7 @@ public class VoucherPosApiTests
 			result => { result.Should().NotBeNull(); }
 		);
 	}
-}
 
-public class VoucherApiTests
-{
 	[Fact]
 	public async Task GetVouchersAsync_WithNoParameters_ReturnsVouchers()
 	{

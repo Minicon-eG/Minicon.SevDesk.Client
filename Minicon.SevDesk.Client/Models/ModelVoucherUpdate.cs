@@ -12,7 +12,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Minicon.SevDesk.Client.Models;
 
@@ -22,73 +21,6 @@ namespace Minicon.SevDesk.Client.Models;
 [DataContract]
 public class ModelVoucherUpdate : IEquatable<ModelVoucherUpdate>, IValidatableObject
 {
-	/// <summary>
-	///     Defines if your voucher is a credit (C) or debit (D)
-	/// </summary>
-	/// <value>Defines if your voucher is a credit (C) or debit (D)</value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum CreditDebitEnum
-	{
-		/// <summary>
-		///     Enum C for value: C
-		/// </summary>
-		[EnumMember(Value = "C")] C = 1,
-
-		/// <summary>
-		///     Enum D for value: D
-		/// </summary>
-		[EnumMember(Value = "D")] D = 2
-	}
-
-	/// <summary>
-	///     Please have a look in       &lt;a href&#x3D;&#x27;https://api.sevdesk.de/#section/Types-and-status-of-vouchers
-	///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
-	/// </summary>
-	/// <value>
-	///     Please have a look in       &lt;a href&#x3D;&#x27;https://api.sevdesk.de/#section/Types-and-status-of-vouchers
-	///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
-	/// </value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum StatusEnum
-	{
-		/// <summary>
-		///     Enum _50 for value: 50
-		/// </summary>
-		[EnumMember(Value = "50")] Draft = 1,
-
-		/// <summary>
-		///     Enum _100 for value: 100
-		/// </summary>
-		[EnumMember(Value = "100")] UnpdaidOrDue = 2,
-
-		/// <summary>
-		///     Enum _1000 for value: 1000
-		/// </summary>
-		[EnumMember(Value = "1000")] Payed = 3
-	}
-
-	/// <summary>
-	///     Type of the voucher. For more information on the different types, check       &lt;a href&#x3D;&#x27;
-	///     https://api.sevdesk.de/#section/Types-and-status-of-vouchers&#x27;&gt;this&lt;/a&gt;
-	/// </summary>
-	/// <value>
-	///     Type of the voucher. For more information on the different types, check       &lt;a href&#x3D;&#x27;
-	///     https://api.sevdesk.de/#section/Types-and-status-of-vouchers&#x27;&gt;this&lt;/a&gt;
-	/// </value>
-	[JsonConverter(typeof(StringEnumConverter))]
-	public enum VoucherTypeEnum
-	{
-		/// <summary>
-		///     Enum VOU for value: VOU
-		/// </summary>
-		[EnumMember(Value = "VOU")] VOU = 1,
-
-		/// <summary>
-		///     Enum RV for value: RV
-		/// </summary>
-		[EnumMember(Value = "RV")] RV = 2
-	}
-
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelVoucherUpdate" /> class.
 	/// </summary>
@@ -204,7 +136,7 @@ public class ModelVoucherUpdate : IEquatable<ModelVoucherUpdate>, IValidatableOb
 	public DateTime? VoucherDate { get; set; }
 
 	/// <summary>
-	///     Gets or Sets Supplier
+	///     Gets or Sets SupplierAsync
 	/// </summary>
 	[DataMember(Name = "supplier", EmitDefaultValue = false)]
 	public ModelVoucherUpdateSupplier Supplier { get; set; }
@@ -460,7 +392,7 @@ public class ModelVoucherUpdate : IEquatable<ModelVoucherUpdate>, IValidatableOb
 		var sb = new StringBuilder();
 		sb.Append("class ModelVoucherUpdate {\n");
 		sb.Append("  VoucherDate: ").Append(VoucherDate).Append('\n');
-		sb.Append("  Supplier: ").Append(Supplier).Append('\n');
+		sb.Append("  SupplierAsync: ").Append(Supplier).Append('\n');
 		sb.Append("  SupplierName: ").Append(SupplierName).Append('\n');
 		sb.Append("  Description: ").Append(Description).Append('\n');
 		sb.Append("  PayDate: ").Append(PayDate).Append('\n');

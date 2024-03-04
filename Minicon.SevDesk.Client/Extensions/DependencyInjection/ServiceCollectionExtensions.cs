@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Minicon.SevDesk.Client.Api;
+using Minicon.SevDesk.Client.Extensions.Models;
 using Minicon.SevDesk.Client.Logging;
 using Refit;
 
@@ -10,6 +11,7 @@ public static class ServiceCollectionExtensions
 {
 	public static IServiceCollection AddSevdeskClient(this IServiceCollection services)
 	{
+		services.AddTransient<ISupplierResolver, SupplierResolver>();
 		services.AddRefitClient<IAccountingContactApi>(RefitSettings())
 			.ConfigureHttpClient(SetupRefitHttpClient);
 		services.AddRefitClient<IAccountingTypeApi>(RefitSettings())
@@ -27,6 +29,7 @@ public static class ServiceCollectionExtensions
 		services.AddRefitClient<IContactApi>(RefitSettings())
 			.ConfigureHttpClient(SetupRefitHttpClient)
 			.AddHttpMessageHandler<LoggingHttpMessageHandler<IContactApi>>();
+
 
 		services.AddRefitClient<IContactFieldApi>(RefitSettings())
 			.ConfigureHttpClient(SetupRefitHttpClient);

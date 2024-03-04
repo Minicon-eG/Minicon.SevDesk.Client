@@ -46,34 +46,21 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	/// </param>
 	/// <param name="comment">Comment for the voucher position..</param>
 	public ModelVoucherPos(
-		ModelVoucherPosSevClient sevClient = default,
-		ModelVoucherPosVoucher voucher = default,
-		ModelVoucherPosAccountingType accountingType = default,
-		ModelVoucherPosEstimatedAccountingType estimatedAccountingType = default,
-		float? taxRate = default,
+		ModelVoucherPosSevClient sevClient,
+		ModelVoucherPosVoucher voucher,
+		ModelVoucherPosAccountingType accountingType,
+		ModelVoucherPosEstimatedAccountingType estimatedAccountingType,
+		decimal? taxRate = default,
 		bool? net = default,
 		bool? isAsset = default,
-		float? sumNet = default,
-		float? sumGross = default,
-		string comment = default)
+		decimal? sumNet = default,
+		decimal? sumGross = default,
+		string? comment = default
+	)
 	{
 		ObjectName = "VoucherPos";
 		MapAll = true;
-
-		// to ensure "voucher" is required (not null)
-		if (voucher == null)
-		{
-			throw new InvalidDataException("voucher is a required property for ModelVoucherPos and cannot be null");
-		}
-
 		Voucher = voucher;
-		// to ensure "accountingType" is required (not null)
-		if (accountingType == null)
-		{
-			throw new InvalidDataException(
-				"accountingType is a required property for ModelVoucherPos and cannot be null");
-		}
-
 		AccountingType = accountingType;
 		// to ensure "taxRate" is required (not null)
 		if (taxRate == null)
@@ -135,14 +122,14 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	/// </summary>
 	/// <value>Date of voucher position creation</value>
 	[DataMember(Name = "create", EmitDefaultValue = false)]
-	public string Create { get; private set; }
+	public string Create { get; private set; } = null!;
 
 	/// <summary>
 	///     Date of last voucher position update
 	/// </summary>
 	/// <value>Date of last voucher position update</value>
 	[DataMember(Name = "update", EmitDefaultValue = false)]
-	public string Update { get; private set; }
+	public string Update { get; private set; } = null!;
 
 	/// <summary>
 	///     Gets or Sets SevClientReference
@@ -173,7 +160,7 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	/// </summary>
 	/// <value>Tax rate of the voucher position.</value>
 	[DataMember(Name = "taxRate", EmitDefaultValue = false)]
-	public float? TaxRate { get; set; }
+	public decimal? TaxRate { get; set; }
 
 	/// <summary>
 	///     Determines whether &#x27;sumNet&#x27; or &#x27;sumGross&#x27; is regarded.&lt;br&gt;       If both are not given,
@@ -204,14 +191,14 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	///     its readOnly.
 	/// </value>
 	[DataMember(Name = "sumNet", EmitDefaultValue = false)]
-	public float? SumNet { get; set; }
+	public decimal? SumNet { get; set; }
 
 	/// <summary>
 	///     Tax sum of the voucher position.
 	/// </summary>
 	/// <value>Tax sum of the voucher position.</value>
 	[DataMember(Name = "sumTax", EmitDefaultValue = false)]
-	public float? SumTax { get; private set; }
+	public decimal? SumTax { get; private set; }
 
 	/// <summary>
 	///     Gross sum of the voucher position.&lt;br&gt;      Only regarded if &#x27;net&#x27; is &#x27;false&#x27;, otherwise
@@ -222,35 +209,35 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	///     otherwise its readOnly.
 	/// </value>
 	[DataMember(Name = "sumGross", EmitDefaultValue = false)]
-	public float? SumGross { get; set; }
+	public decimal? SumGross { get; set; }
 
 	/// <summary>
 	///     Net accounting sum. Is equal to sumNet.
 	/// </summary>
 	/// <value>Net accounting sum. Is equal to sumNet.</value>
 	[DataMember(Name = "sumNetAccounting", EmitDefaultValue = false)]
-	public float? SumNetAccounting { get; private set; }
+	public decimal? SumNetAccounting { get; private set; }
 
 	/// <summary>
 	///     Tax accounting sum. Is equal to sumTax.
 	/// </summary>
 	/// <value>Tax accounting sum. Is equal to sumTax.</value>
 	[DataMember(Name = "sumTaxAccounting", EmitDefaultValue = false)]
-	public float? SumTaxAccounting { get; private set; }
+	public decimal? SumTaxAccounting { get; private set; }
 
 	/// <summary>
 	///     Gross accounting sum. Is equal to sumGross.
 	/// </summary>
 	/// <value>Gross accounting sum. Is equal to sumGross.</value>
 	[DataMember(Name = "sumGrossAccounting", EmitDefaultValue = false)]
-	public float? SumGrossAccounting { get; private set; }
+	public decimal? SumGrossAccounting { get; private set; }
 
 	/// <summary>
 	///     Comment for the voucher position.
 	/// </summary>
 	/// <value>Comment for the voucher position.</value>
 	[DataMember(Name = "comment", EmitDefaultValue = false)]
-	public string Comment { get; set; }
+	public string Comment { get; set; } = null!;
 
 	/// <summary>
 	///     Returns true if ModelVoucherPos instances are equal

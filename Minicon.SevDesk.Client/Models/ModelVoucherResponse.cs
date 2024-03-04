@@ -127,7 +127,7 @@ public class ModelVoucherResponse : Pageable, IEquatable<ModelVoucherResponse>, 
 	public DateTime? VoucherDate { get; set; }
 
 	/// <summary>
-	///     Gets or Sets Supplier
+	///     Gets or Sets SupplierAsync
 	/// </summary>
 	[DataMember(Name = "supplier", EmitDefaultValue = false)]
 	public ModelVoucherResponseSupplier? Supplier { get; set; }
@@ -598,7 +598,7 @@ public class ModelVoucherResponse : Pageable, IEquatable<ModelVoucherResponse>, 
 		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
 		sb.Append("  CreateUser: ").Append(CreateUser).Append('\n');
 		sb.Append("  VoucherDate: ").Append(VoucherDate).Append('\n');
-		sb.Append("  Supplier: ").Append(Supplier).Append('\n');
+		sb.Append("  SupplierAsync: ").Append(Supplier).Append('\n');
 		sb.Append("  SupplierName: ").Append(SupplierName).Append('\n');
 		sb.Append("  Description: ").Append(Description).Append('\n');
 		sb.Append("  Document: ").Append(Document).Append('\n');

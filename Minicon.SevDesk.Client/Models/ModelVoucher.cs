@@ -71,44 +71,36 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	/// <param name="deliveryDateUntil">Needs to be provided as timestamp or dd.mm.yyyy.</param>
 	/// <param name="document">document.</param>
 	/// <param name="costCentre">costCentre.</param>
-	public ModelVoucher(int? id = default, ModelVoucherSevClient sevClient = default,
-		ModelVoucherCreateUser? createUser = default, DateTime? voucherDate = default,
-		ModelVoucherSupplier? supplier = default, string supplierName = default, string description = default,
-		DateTime? payDate = default, StatusEnum status = default, string taxType = default,
-		CreditDebitEnum creditDebit = default, VoucherTypeEnum voucherType = default, string currency = default,
-		DateTime? propertyForeignCurrencyDeadline = default, float? propertyExchangeRate = default,
-		ModelVoucherUpdateTaxSet? taxSet = default, DateTime? paymentDeadline = default,
-		DateTime? deliveryDate = default, DateTime? deliveryDateUntil = default,
-		ModelVoucherUpdateDocument document = default, ModelVoucherUpdateCostCentre? costCentre = default)
+	public ModelVoucher(
+		ModelVoucherSevClient sevClient,
+		ModelVoucherCreateUser createUser,
+		int? id = null,
+		DateTime? voucherDate = default,
+		ModelVoucherSupplier? supplier = default,
+		string? supplierName = default,
+		DateTime? payDate = default,
+		StatusEnum status = default,
+		string? taxType = default,
+		CreditDebitEnum creditDebit = default,
+		VoucherTypeEnum voucherType = default,
+		string? currency = default,
+		DateTime? propertyForeignCurrencyDeadline = default,
+		float? propertyExchangeRate = default,
+		ModelVoucherUpdateTaxSet? taxSet = default,
+		DateTime? paymentDeadline = default,
+		DateTime? deliveryDate = default,
+		DateTime? deliveryDateUntil = default,
+		ModelVoucherUpdateDocument? document = default,
+		ModelVoucherUpdateCostCentre? costCentre = default,
+		string? description = default
+	)
 	{
+		Id = id;
 		ObjectName = "Voucher";
 		MapAll = true;
-		if (status == null)
-		{
-			throw new InvalidDataException("status is a required property for ModelVoucher and cannot be null");
-		}
-
 		Status = status;
-		// to ensure "taxType" is required (not null)
-		if (taxType == null)
-		{
-			throw new InvalidDataException("taxType is a required property for ModelVoucher and cannot be null");
-		}
-
 		TaxType = taxType;
-		// to ensure "creditDebit" is required (not null)
-		if (creditDebit == null)
-		{
-			throw new InvalidDataException("creditDebit is a required property for ModelVoucher and cannot be null");
-		}
-
 		CreditDebit = creditDebit;
-		// to ensure "voucherType" is required (not null)
-		if (voucherType == null)
-		{
-			throw new InvalidDataException("voucherType is a required property for ModelVoucher and cannot be null");
-		}
-
 		VoucherType = voucherType;
 		SevClient = sevClient;
 		CreateUser = createUser;
@@ -223,10 +215,10 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	public DateTime? VoucherDate { get; set; }
 
 	/// <summary>
-	///     Gets or Sets Supplier
+	///     Gets or Sets SupplierAsync
 	/// </summary>
 	[DataMember(Name = "supplier", EmitDefaultValue = false)]
-	public ModelVoucherSupplier Supplier { get; set; }
+	public ModelVoucherSupplier? Supplier { get; set; }
 
 	/// <summary>
 	///     The supplier name.&lt;br&gt;       The value you provide here will determine what supplier name is shown for the
@@ -237,14 +229,14 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	///     voucher in case you did not provide a supplier.
 	/// </value>
 	[DataMember(Name = "supplierName", EmitDefaultValue = false)]
-	public string SupplierName { get; set; }
+	public string? SupplierName { get; set; }
 
 	/// <summary>
 	///     The description of the voucher. Essentially the voucher number.
 	/// </summary>
 	/// <value>The description of the voucher. Essentially the voucher number.</value>
 	[DataMember(Name = "description", EmitDefaultValue = false)]
-	public string Description { get; set; }
+	public string? Description { get; set; }
 
 	/// <summary>
 	///     Needs to be timestamp or dd.mm.yyyy
@@ -330,7 +322,7 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	///     Tax rates are heavily connected to the tax type used.
 	/// </value>
 	[DataMember(Name = "taxType", EmitDefaultValue = false)]
-	public string TaxType { get; set; }
+	public string? TaxType { get; set; }
 
 
 	/// <summary>
@@ -346,7 +338,7 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	///     propertyForeignCurrencyDeadline\&quot; parameter is preferred
 	/// </value>
 	[DataMember(Name = "currency", EmitDefaultValue = false)]
-	public string Currency { get; set; }
+	public string? Currency { get; set; }
 
 	/// <summary>
 	///     Defines the exchange rate day and and then the exchange rate is set from sevDesk. Needs to be provided as timestamp
@@ -417,7 +409,7 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	///     Gets or Sets TaxSet
 	/// </summary>
 	[DataMember(Name = "taxSet", EmitDefaultValue = false)]
-	public ModelVoucherUpdateTaxSet TaxSet { get; set; }
+	public ModelVoucherUpdateTaxSet? TaxSet { get; set; }
 
 	/// <summary>
 	///     Payment deadline of the voucher.
@@ -444,13 +436,13 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 	///     Gets or Sets Document
 	/// </summary>
 	[DataMember(Name = "document", EmitDefaultValue = false)]
-	public ModelVoucherUpdateDocument Document { get; set; }
+	public ModelVoucherUpdateDocument? Document { get; set; }
 
 	/// <summary>
 	///     Gets or Sets CostCentreResponse
 	/// </summary>
 	[DataMember(Name = "costCentre", EmitDefaultValue = false)]
-	public ModelVoucherUpdateCostCentre CostCentre { get; set; }
+	public ModelVoucherUpdateCostCentre? CostCentre { get; set; }
 
 	/// <summary>
 	///     Returns true if ModelVoucher instances are equal
@@ -693,7 +685,7 @@ public class ModelVoucher : IEquatable<ModelVoucher>, IValidatableObject
 		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
 		sb.Append("  CreateUser: ").Append(CreateUser).Append('\n');
 		sb.Append("  VoucherDate: ").Append(VoucherDate).Append('\n');
-		sb.Append("  Supplier: ").Append(Supplier).Append('\n');
+		sb.Append("  SupplierAsync: ").Append(Supplier).Append('\n');
 		sb.Append("  SupplierName: ").Append(SupplierName).Append('\n');
 		sb.Append("  Description: ").Append(Description).Append('\n');
 		sb.Append("  PayDate: ").Append(PayDate).Append('\n');

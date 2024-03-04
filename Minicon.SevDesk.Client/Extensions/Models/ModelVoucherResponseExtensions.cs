@@ -4,16 +4,19 @@ namespace Minicon.SevDesk.Client.Extensions.Models;
 
 public static class ModelVoucherResponseExtensions
 {
-	public static SaveVoucher ToSaveVoucher(this ModelVoucherResponse origin, GetVoucherPositionsResponse pos)
+	public static async Task<SaveVoucher> ToSaveVoucherAsync(this ModelVoucherResponse origin,
+		GetVoucherPositionsResponse pos,
+		ISupplierResolver supplierResolver)
 	{
 		return new SaveVoucher
 		(
-			origin.ToModelVoucher(),
+			await origin.ToModelVoucherAsync(supplierResolver),
 			pos.ToModelVoucherPosArray(origin)
 		);
 	}
 
-	public static ModelVoucher ToModelVoucher(this ModelVoucherResponse origin)
+	public static async Task<ModelVoucher> ToModelVoucherAsync(this ModelVoucherResponse origin,
+		ISupplierResolver supplierResolver)
 	{
 #pragma warning disable CA2208
 		if (origin.CostCentre is null)
@@ -23,7 +26,10 @@ public static class ModelVoucherResponseExtensions
 
 		if (origin.SupplierName is null)
 		{
-			throw new ArgumentNullException(nameof(origin.SupplierName));
+			if (origin.Supplier is null)
+			{
+				throw new ArgumentNullException(nameof(origin.Supplier) + " and " + nameof(origin.SupplierName));
+			}
 		}
 
 		if (origin.VoucherType is null)
@@ -33,7 +39,7 @@ public static class ModelVoucherResponseExtensions
 #pragma warning restore CA2208
 
 		return new ModelVoucher(
-			origin.Id,
+			id: origin.Id,
 			currency: origin.Currency,
 			description: origin.Description,
 			document: origin.Document.ToModelVoucherUpdateDocument(),
@@ -47,7 +53,7 @@ public static class ModelVoucherResponseExtensions
 			paymentDeadline: origin.PaymentDeadline,
 			sevClient: SevClient(origin),
 			taxSet: TaxSet(origin),
-			supplierName: origin.SupplierName,
+			supplierName: origin.SupplierName ?? await supplierResolver.SupplierAsync(origin.Supplier!),
 			taxType: origin.TaxType,
 			voucherDate: origin.VoucherDate,
 			voucherType: origin.VoucherType ?? VoucherTypeEnum.VOU,
