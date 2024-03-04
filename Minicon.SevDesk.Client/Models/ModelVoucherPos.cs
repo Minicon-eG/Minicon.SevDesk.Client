@@ -48,7 +48,7 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 		ModelVoucherPosSevClient sevClient,
 		ModelVoucherPosVoucher voucher,
 		ModelVoucherPosAccountingType accountingType,
-		ModelVoucherPosEstimatedAccountingType estimatedAccountingType,
+		ModelVoucherPosEstimatedAccountingType? estimatedAccountingType,
 		decimal taxRate,
 		bool? net,
 		decimal sumGross,
@@ -128,7 +128,7 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	///     Gets or Sets EstimatedAccountingType
 	/// </summary>
 	[DataMember(Name = "estimatedAccountingType", EmitDefaultValue = false)]
-	public ModelVoucherPosEstimatedAccountingType EstimatedAccountingType { get; set; }
+	public ModelVoucherPosEstimatedAccountingType? EstimatedAccountingType { get; set; }
 
 	/// <summary>
 	///     Tax rate of the voucher position.

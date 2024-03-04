@@ -28,7 +28,9 @@ public static class GetVoucherPositionsResponseExtensions
 			new ModelVoucherPosSevClient(origin.SevClient.Id),
 			new ModelVoucherPosVoucher(modelVoucher.Id),
 			new ModelVoucherPosAccountingType(origin.AccountingType.Id),
-			new ModelVoucherPosEstimatedAccountingType(origin.EstimatedAccountingType.Id),
+			origin.EstimatedAccountingType is null
+				? null
+				: new ModelVoucherPosEstimatedAccountingType(origin.EstimatedAccountingType.Id),
 			origin.TaxRate.ToDecimal(),
 			origin.Net,
 			origin.SumNet.ToDecimal(),

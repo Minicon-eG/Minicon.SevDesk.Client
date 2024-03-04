@@ -154,7 +154,7 @@ public class ModelVoucherPosResponse : Pageable, IEquatable<ModelVoucherPosRespo
 	///     Gets or Sets EstimatedAccountingType
 	/// </summary>
 	[DataMember(Name = "estimatedAccountingType", EmitDefaultValue = false)]
-	public ModelVoucherPosResponseEstimatedAccountingType EstimatedAccountingType { get; set; }
+	public ModelVoucherPosResponseEstimatedAccountingType? EstimatedAccountingType { get; set; }
 
 	/// <summary>
 	///     Tax rate of the voucher position.
