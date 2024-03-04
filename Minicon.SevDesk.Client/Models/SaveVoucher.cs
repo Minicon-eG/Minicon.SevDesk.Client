@@ -31,7 +31,7 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	public SaveVoucher(
 		ModelVoucher voucher,
 		ModelVoucherPos[]? voucherPosSave = default,
-		SaveVoucherVoucherPosDelete? voucherPosDelete = default,
+		SaveVoucherVoucherPosDelete[]? voucherPosDelete = default,
 		byte[] filename = default
 	)
 	{
@@ -57,7 +57,7 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	///     Gets or Sets VoucherPosDelete
 	/// </summary>
 	[DataMember(Name = "voucherPosDelete", EmitDefaultValue = false)]
-	public SaveVoucherVoucherPosDelete? VoucherPosDelete { get; set; }
+	public SaveVoucherVoucherPosDelete[]? VoucherPosDelete { get; set; }
 
 	/// <summary>
 	///     Filename of a previously upload file which should be attached.
