@@ -19,11 +19,6 @@ public static class ModelVoucherResponseExtensions
 		ISupplierResolver supplierResolver)
 	{
 #pragma warning disable CA2208
-		if (origin.CostCentre is null)
-		{
-			throw new ArgumentNullException(nameof(origin.CostCentre));
-		}
-
 		if (origin.SupplierName is null)
 		{
 			if (origin.Supplier is null)
