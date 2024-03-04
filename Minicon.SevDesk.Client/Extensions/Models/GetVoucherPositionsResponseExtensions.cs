@@ -29,12 +29,12 @@ public static class GetVoucherPositionsResponseExtensions
 			new ModelVoucherPosVoucher(modelVoucher.Id),
 			new ModelVoucherPosAccountingType(origin.AccountingType.Id),
 			new ModelVoucherPosEstimatedAccountingType(origin.EstimatedAccountingType.Id),
-			origin.TaxRate.ToDecimalOrNull(),
+			origin.TaxRate.ToDecimal(),
 			origin.Net,
+			origin.SumNet.ToDecimal(),
 			origin.IsAsset,
-			origin.SumNet.ToDecimalOrNull(),
-			origin.SumGross.ToDecimalOrNull(),
-			origin.Comment
+			origin.Comment,
+			origin.SumGross.ToDecimal()
 		);
 	}
 }

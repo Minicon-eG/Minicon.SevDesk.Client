@@ -15,7 +15,7 @@ public class VoucherApiTests
 		using var scope = new TestScope<SaveVoucherResponse>();
 		IVoucherPosApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherPosApi>();
 		IVoucherApi voucherApi = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
-		ModelVoucherResponse voucher = (await voucherApi.GetVoucherByIdAsync(80659678)).Objects.Single();
+		ModelVoucherResponse voucher = (await voucherApi.GetVoucherByIdAsync(80659580)).Objects.Single();
 		GetVoucherPositionsResponse pos = await sut.GetVoucherPositionsAsync(voucher.Id);
 		ISupplierResolver supplierResolver = scope.ServiceScope.ServiceProvider.GetRequiredService<ISupplierResolver>();
 

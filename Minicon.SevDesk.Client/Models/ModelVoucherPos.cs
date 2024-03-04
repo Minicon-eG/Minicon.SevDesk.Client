@@ -25,7 +25,6 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelVoucherPos" /> class.
 	/// </summary>
-	/// <param name="objectName">The voucher position object name (required).</param>
 	/// <param name="sevClient">sevClient.</param>
 	/// <param name="voucher">voucher (required).</param>
 	/// <param name="accountingType">accountingType (required).</param>
@@ -50,45 +49,21 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 		ModelVoucherPosVoucher voucher,
 		ModelVoucherPosAccountingType accountingType,
 		ModelVoucherPosEstimatedAccountingType estimatedAccountingType,
-		decimal? taxRate = default,
-		bool? net = default,
-		bool? isAsset = default,
-		decimal? sumNet = default,
-		decimal? sumGross = default,
-		string? comment = default
+		decimal taxRate,
+		bool? net,
+		decimal sumGross,
+		bool? isAsset,
+		string? comment,
+		decimal sumNet
 	)
 	{
 		ObjectName = "VoucherPos";
 		MapAll = true;
 		Voucher = voucher;
 		AccountingType = accountingType;
-		// to ensure "taxRate" is required (not null)
-		if (taxRate == null)
-		{
-			throw new InvalidDataException("taxRate is a required property for ModelVoucherPos and cannot be null");
-		}
-
 		TaxRate = taxRate;
-		// to ensure "net" is required (not null)
-		if (net == null)
-		{
-			throw new InvalidDataException("net is a required property for ModelVoucherPos and cannot be null");
-		}
-
 		Net = net;
-		// to ensure "sumNet" is required (not null)
-		if (sumNet == null)
-		{
-			throw new InvalidDataException("sumNet is a required property for ModelVoucherPos and cannot be null");
-		}
-
 		SumNet = sumNet;
-		// to ensure "sumGross" is required (not null)
-		if (sumGross == null)
-		{
-			throw new InvalidDataException("sumGross is a required property for ModelVoucherPos and cannot be null");
-		}
-
 		SumGross = sumGross;
 		SevClient = sevClient;
 		EstimatedAccountingType = estimatedAccountingType;
@@ -237,7 +212,7 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	/// </summary>
 	/// <value>Comment for the voucher position.</value>
 	[DataMember(Name = "comment", EmitDefaultValue = false)]
-	public string Comment { get; set; } = null!;
+	public string? Comment { get; set; }
 
 	/// <summary>
 	///     Returns true if ModelVoucherPos instances are equal

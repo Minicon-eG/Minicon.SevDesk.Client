@@ -9,6 +9,11 @@ public static class StringExtensions
 		return string.IsNullOrWhiteSpace(origin) ? null : decimal.Parse(origin, CultureInfo.InvariantCulture);
 	}
 
+	public static decimal ToDecimal(this string origin)
+	{
+		return decimal.Parse(origin, CultureInfo.InvariantCulture);
+	}
+
 	public static int ToInt32(this string origin)
 	{
 		return int.Parse(origin);
