@@ -25,25 +25,10 @@ public class SaveVoucherVoucherPosDelete : IEquatable<SaveVoucherVoucherPosDelet
 	///     Initializes a new instance of the <see cref="SaveVoucherVoucherPosDelete" /> class.
 	/// </summary>
 	/// <param name="id">Id of voucher position (required).</param>
-	/// <param name="objectName">Object name of voucher position (required).</param>
-	public SaveVoucherVoucherPosDelete(int? id = default, string objectName = default)
+	public SaveVoucherVoucherPosDelete(int id)
 	{
-		// to ensure "id" is required (not null)
-		if (id == null)
-		{
-			throw new InvalidDataException(
-				"id is a required property for SaveVoucherVoucherPosDelete and cannot be null");
-		}
-
 		Id = id;
-		// to ensure "objectName" is required (not null)
-		if (objectName == null)
-		{
-			throw new InvalidDataException(
-				"objectName is a required property for SaveVoucherVoucherPosDelete and cannot be null");
-		}
-
-		ObjectName = objectName;
+		ObjectName = "VoucherPos";
 	}
 
 	/// <summary>

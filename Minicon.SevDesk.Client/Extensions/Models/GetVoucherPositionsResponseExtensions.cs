@@ -4,20 +4,29 @@ namespace Minicon.SevDesk.Client.Extensions.Models;
 
 public static class GetVoucherPositionsResponseExtensions
 {
-	public static async Task<SaveVoucher> ToSaveVoucherAsync(this GetVoucherPositionsResponse origin,
-		ModelVoucherResponse modelVoucher, ISupplierResolver supplierResolver)
+	public static async Task<SaveVoucher> ToSaveVoucherAsync(
+		this GetVoucherPositionsResponse origin,
+		ModelVoucherResponse modelVoucher,
+		ISupplierResolver supplierResolver,
+		SaveVoucherVoucherPosDelete[]? voucherPosDeletes = null
+	)
 	{
 		return new SaveVoucher
 		(
 			await modelVoucher.ToModelVoucherAsync(supplierResolver),
-			origin.ToModelVoucherPosArray(modelVoucher)
+			origin.ToModelVoucherPosArray(modelVoucher),
+			voucherPosDeletes
+
 		);
 	}
 
-	public static ModelVoucherPos[]? ToModelVoucherPosArray(this GetVoucherPositionsResponse? origin,
-		ModelVoucherResponse modelVoucher)
+	public static ModelVoucherPos[] ToModelVoucherPosArray
+	(this GetVoucherPositionsResponse origin,
+		ModelVoucherResponse modelVoucher
+	)
 	{
-		return origin?.Objects.Select(x => x.ToModelVoucherPos(modelVoucher)).ToArray();
+		return origin.Objects?.Select(x => x.ToModelVoucherPos(modelVoucher)).ToArray()
+		       ?? Array.Empty<ModelVoucherPos>();
 	}
 
 	public static ModelVoucherPos ToModelVoucherPos(this ModelVoucherPosResponse origin,
@@ -27,7 +36,7 @@ public static class GetVoucherPositionsResponseExtensions
 		(
 			new ModelVoucherPosSevClient(origin.SevClient.Id),
 			new ModelVoucherPosVoucher(modelVoucher.Id),
-			new ModelVoucherPosAccountingType(origin.AccountingType.Id),
+			origin.AccountingType is null ? null : new ModelVoucherPosAccountingType(origin.AccountingType.Id),
 			origin.EstimatedAccountingType is null
 				? null
 				: new ModelVoucherPosEstimatedAccountingType(origin.EstimatedAccountingType.Id),

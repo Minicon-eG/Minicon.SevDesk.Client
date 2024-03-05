@@ -102,7 +102,7 @@ public class ModelCheckAccountResponse : Pageable, IEquatable<ModelCheckAccountR
 	/// <param name="defaultAccount">Defines if this check account is the default account. (default to &quot;0&quot;).</param>
 	/// <param name="status">
 	///     Status of the check account. 0 &lt;-&gt; Archived - 100 &lt;-&gt; Active (default to
-	///     StatusEnum._100).
+	///     VoucherStatusEnum._100).
 	/// </param>
 	/// <param name="autoMapTransactions">
 	///     Defines if transactions on this account are automatically mapped to invoice and

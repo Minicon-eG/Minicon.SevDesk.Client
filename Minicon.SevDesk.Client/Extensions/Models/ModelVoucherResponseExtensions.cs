@@ -4,14 +4,18 @@ namespace Minicon.SevDesk.Client.Extensions.Models;
 
 public static class ModelVoucherResponseExtensions
 {
-	public static async Task<SaveVoucher> ToSaveVoucherAsync(this ModelVoucherResponse origin,
+	public static async Task<SaveVoucher> ToSaveVoucherAsync(
+		this ModelVoucherResponse origin,
 		GetVoucherPositionsResponse pos,
-		ISupplierResolver supplierResolver)
+		ISupplierResolver supplierResolver,
+		SaveVoucherVoucherPosDelete[]? voucherPosDeletes = null
+	)
 	{
 		return new SaveVoucher
 		(
 			await origin.ToModelVoucherAsync(supplierResolver),
-			pos.ToModelVoucherPosArray(origin)
+			pos.ToModelVoucherPosArray(origin),
+			voucherPosDeletes
 		);
 	}
 
@@ -68,9 +72,9 @@ public static class ModelVoucherResponseExtensions
 		return string.IsNullOrWhiteSpace(origin.PropertyExchangeRate) ? null : float.Parse(origin.PropertyExchangeRate);
 	}
 
-	private static StatusEnum OriginStatus(ModelVoucherResponse origin)
+	private static VoucherStatusEnum OriginStatus(ModelVoucherResponse origin)
 	{
-		return origin.Status ?? StatusEnum.Draft;
+		return origin.Status ?? VoucherStatusEnum.Draft;
 	}
 
 	private static ModelVoucherUpdateTaxSet? TaxSet(ModelVoucherResponse origin)

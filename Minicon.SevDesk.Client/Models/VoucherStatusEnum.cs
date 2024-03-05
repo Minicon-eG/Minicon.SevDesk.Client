@@ -21,25 +21,11 @@ namespace Minicon.SevDesk.Client.Models;
 ///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
 /// </value>
 [JsonConverter(typeof(StringEnumConverter))]
-public enum StatusEnum
+public enum VoucherStatusEnum
 {
-	/// <summary>
-	///     Enum _50 for value: 50
-	/// </summary>
-	[EnumMember(Value = "50")] DeactivatedRecurringInvoice = 1,
-
-	/// <summary>
-	///     Enum _100 for value: 100
-	/// </summary>
-	[EnumMember(Value = "100")] Draft = 2,
-
-	/// <summary>
-	///     Enum _100 for value: 100
-	/// </summary>
-	[EnumMember(Value = "200")] OpenOrDue = 3,
-
-	/// <summary>
-	///     Enum _1000 for value: 1000
-	/// </summary>
-	[EnumMember(Value = "1000")] Payed = 4
+	[EnumMember(Value = "50")] Draft = 1,
+	[EnumMember(Value = "100")] UnpaidDue = 2,
+	[EnumMember(Value = "150")] Transferred = 3,
+	[EnumMember(Value = "750")] PartlyPaid = 4,
+	[EnumMember(Value = "1000")] OPaid = 5
 }

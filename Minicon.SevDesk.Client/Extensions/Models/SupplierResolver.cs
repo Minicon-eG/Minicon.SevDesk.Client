@@ -24,7 +24,7 @@ public sealed class SupplierResolver : ISupplierResolver
 	public async Task<string> SupplierAsync(ModelVoucherResponseSupplier supplier)
 	{
 		// Assuming that IContactApi has a GetContactByIdAsync method.
-		GetContactResponse contact = await _contactApi.GetContactByIdAsync(supplier.Id.ToInt32());
+		GetContactResponse contact = await _contactApi.GetContactByIdAsync(supplier.Id.ToInt());
 
 		// Assuming that the Contact object has a Name property.
 		return contact.Objects.Single().Name;

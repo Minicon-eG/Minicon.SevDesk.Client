@@ -46,7 +46,7 @@ public class ModelVoucherPosResponse : Pageable, IEquatable<ModelVoucherPosRespo
 	/// <param name="comment">Comment for the voucher position..</param>
 	public ModelVoucherPosResponse(ModelVoucherPosResponseSevClient sevClient = default,
 		ModelVoucherPosResponseVoucher voucher = default,
-		ModelVoucherPosResponseAccountingType accountingType = default,
+		ModelVoucherPosResponseAccountingType? accountingType = default,
 		ModelVoucherPosResponseEstimatedAccountingType estimatedAccountingType = default, string taxRate = default,
 		bool? net = default, bool? isAsset = default, string sumNet = default, string sumGross = default,
 		string comment = default)
@@ -59,12 +59,7 @@ public class ModelVoucherPosResponse : Pageable, IEquatable<ModelVoucherPosRespo
 		}
 
 		Voucher = voucher;
-		// to ensure "accountingType" is required (not null)
-		if (accountingType == null)
-		{
-			throw new InvalidDataException(
-				"accountingType is a required property for ModelVoucherPosResponse and cannot be null");
-		}
+
 
 		AccountingType = accountingType;
 		// to ensure "taxRate" is required (not null)
@@ -148,7 +143,7 @@ public class ModelVoucherPosResponse : Pageable, IEquatable<ModelVoucherPosRespo
 	///     Gets or Sets AccountingTypeReference
 	/// </summary>
 	[DataMember(Name = "accountingType", EmitDefaultValue = false)]
-	public ModelVoucherPosResponseAccountingType AccountingType { get; set; }
+	public ModelVoucherPosResponseAccountingType? AccountingType { get; set; }
 
 	/// <summary>
 	///     Gets or Sets EstimatedAccountingType

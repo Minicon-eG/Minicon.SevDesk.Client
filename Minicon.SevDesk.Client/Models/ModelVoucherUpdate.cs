@@ -68,7 +68,7 @@ public class ModelVoucherUpdate : IEquatable<ModelVoucherUpdate>, IValidatableOb
 	public ModelVoucherUpdate(DateTime? voucherDate = default,
 		ModelVoucherUpdateSupplier supplier = default,
 		string supplierName = default, string description = default,
-		DateTime? payDate = default, StatusEnum? status = default,
+		DateTime? payDate = default, VoucherStatusEnum? status = default,
 		string taxType = default, CreditDebitEnum? creditDebit = default,
 		VoucherTypeEnum? voucherType = default, string currency = default,
 		DateTime? propertyForeignCurrencyDeadline = default,
@@ -108,7 +108,7 @@ public class ModelVoucherUpdate : IEquatable<ModelVoucherUpdate>, IValidatableOb
 	///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
 	/// </value>
 	[DataMember(Name = "status", EmitDefaultValue = false)]
-	public StatusEnum? Status { get; set; }
+	public VoucherStatusEnum? Status { get; set; }
 
 	/// <summary>
 	///     Defines if your voucher is a credit (C) or debit (D)

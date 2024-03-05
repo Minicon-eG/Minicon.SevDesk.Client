@@ -123,7 +123,7 @@ public class ModelCheckAccount : IEquatable<ModelCheckAccount>, IValidatableObje
 	/// </param>
 	/// <param name="status">
 	///     Status of the check account. 0 &lt;-&gt; Archived - 100 &lt;-&gt; Active (required) (default to
-	///     StatusEnum.NUMBER_100).
+	///     VoucherStatusEnum.NUMBER_100).
 	/// </param>
 	/// <param name="autoMapTransactions">
 	///     Defines if transactions on this account are automatically mapped to invoice and

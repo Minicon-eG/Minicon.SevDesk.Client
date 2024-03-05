@@ -14,7 +14,7 @@ public static class StringExtensions
 		return decimal.Parse(origin, CultureInfo.InvariantCulture);
 	}
 
-	public static int ToInt32(this string origin)
+	public static int ToInt(this string origin)
 	{
 		return int.Parse(origin);
 	}

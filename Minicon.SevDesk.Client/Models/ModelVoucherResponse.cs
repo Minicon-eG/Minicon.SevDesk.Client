@@ -41,7 +41,7 @@ public class ModelVoucherResponse : Pageable, IEquatable<ModelVoucherResponse>, 
 	///     &#x27;&gt;status of vouchers&lt;/a&gt;      to see what the different status codes mean
 	/// </value>
 	[DataMember(Name = "status", EmitDefaultValue = false)]
-	public StatusEnum? Status { get; set; }
+	public VoucherStatusEnum? Status { get; set; }
 
 	/// <summary>
 	///     Defines if your voucher is a credit (C) or debit (D)
