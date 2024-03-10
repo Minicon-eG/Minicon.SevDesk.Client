@@ -35,7 +35,7 @@ public class ModelTagResponse : Pageable, IEquatable<ModelTagResponse>, IValidat
 	/// </summary>
 	/// <value>Id of the tag</value>
 	[DataMember(Name = "id", EmitDefaultValue = false)]
-	public string Id { get; private set; }
+	public int Id { get; private set; }
 
 	/// <summary>
 	///     Internal object name which is &#x27;Tag&#x27;.

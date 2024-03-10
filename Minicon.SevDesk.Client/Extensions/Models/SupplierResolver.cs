@@ -21,6 +21,15 @@ public sealed class SupplierResolver : ISupplierResolver
 		return contact.Objects.Single().Name;
 	}
 
+	public async Task<string> SupplierAsync(int supplierId)
+	{
+		// Assuming that IContactApi has a GetContactByIdAsync method.
+		GetContactResponse contact = await _contactApi.GetContactByIdAsync(supplierId);
+
+		// Assuming that the Contact object has a Name property.
+		return contact.Objects.Single().Name;
+	}
+
 	public async Task<string> SupplierAsync(ModelVoucherResponseSupplier supplier)
 	{
 		// Assuming that IContactApi has a GetContactByIdAsync method.
@@ -44,13 +53,11 @@ public sealed class SupplierResolver : ISupplierResolver
 
 		ModelContactResponse? found = contact.Objects.SingleOrDefault(x => x.Name == supplier);
 
-		if (found is null)
-		{
-			return null;
-		}
-
-		// Assuming that the Contact object has an Id and Name property.
-		return new ModelVoucherResponseSupplier(found.Id, found.Name);
+		return found is null
+			? null
+			:
+			// Assuming that the Contact object has an Id and Name property.
+			new ModelVoucherResponseSupplier(found.Id, found.Name);
 	}
 
 	public Task<ModelVoucherSupplier> ToModelVoucherSupplierAsync(ModelVoucherResponseSupplier supplier)

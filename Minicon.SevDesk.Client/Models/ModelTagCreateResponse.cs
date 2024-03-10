@@ -25,13 +25,16 @@ public class ModelTagCreateResponse : Pageable, IEquatable<ModelTagCreateRespons
 	///     Initializes a new instance of the <see cref="ModelTagCreateResponse" /> class.
 	/// </summary>
 	/// <param name="tag">tag.</param>
-	/// <param name="_object">_object.</param>
+	/// <param name="objectInfo">objectInfo.</param>
 	/// <param name="sevClient">sevClient.</param>
-	public ModelTagCreateResponse(ModelTagCreateResponseTag tag = default,
-		ModelTagCreateResponseObject _object = default, ModelTagCreateResponseSevClient sevClient = default)
+	public ModelTagCreateResponse(
+		ObjectInfo tag = default,
+		ObjectInfo objectInfo = default,
+		ObjectInfo sevClient = default
+	)
 	{
 		Tag = tag;
-		_Object = _object;
+		ObjectInfo = objectInfo;
 		SevClient = sevClient;
 	}
 
@@ -60,19 +63,19 @@ public class ModelTagCreateResponse : Pageable, IEquatable<ModelTagCreateRespons
 	///     Gets or Sets Tag
 	/// </summary>
 	[DataMember(Name = "tag", EmitDefaultValue = false)]
-	public ModelTagCreateResponseTag Tag { get; set; }
+	public ObjectInfo Tag { get; set; }
 
 	/// <summary>
-	///     Gets or Sets _Object
+	///     Gets or Sets ObjectInfo
 	/// </summary>
 	[DataMember(Name = "object", EmitDefaultValue = false)]
-	public ModelTagCreateResponseObject _Object { get; set; }
+	public ObjectInfo ObjectInfo { get; set; }
 
 	/// <summary>
 	///     Gets or Sets SevClientReference
 	/// </summary>
 	[DataMember(Name = "sevClient", EmitDefaultValue = false)]
-	public ModelTagCreateResponseSevClient SevClient { get; set; }
+	public ObjectInfo SevClient { get; set; }
 
 	/// <summary>
 	///     Returns true if ModelTagCreateResponse instances are equal
@@ -108,9 +111,9 @@ public class ModelTagCreateResponse : Pageable, IEquatable<ModelTagCreateRespons
 				 Tag.Equals(input.Tag))
 			) &&
 			(
-				_Object == input._Object ||
-				(_Object != null &&
-				 _Object.Equals(input._Object))
+				ObjectInfo == input.ObjectInfo ||
+				(ObjectInfo != null &&
+				 ObjectInfo.Equals(input.ObjectInfo))
 			) &&
 			(
 				SevClient == input.SevClient ||
@@ -141,7 +144,7 @@ public class ModelTagCreateResponse : Pageable, IEquatable<ModelTagCreateRespons
 		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("  Create: ").Append(Create).Append('\n');
 		sb.Append("  Tag: ").Append(Tag).Append('\n');
-		sb.Append("  _Object: ").Append(_Object).Append('\n');
+		sb.Append("  ObjectInfo: ").Append(ObjectInfo).Append('\n');
 		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
@@ -195,9 +198,9 @@ public class ModelTagCreateResponse : Pageable, IEquatable<ModelTagCreateRespons
 				hashCode = hashCode * 59 + Tag.GetHashCode();
 			}
 
-			if (_Object != null)
+			if (ObjectInfo != null)
 			{
-				hashCode = hashCode * 59 + _Object.GetHashCode();
+				hashCode = hashCode * 59 + ObjectInfo.GetHashCode();
 			}
 
 			if (SevClient != null)

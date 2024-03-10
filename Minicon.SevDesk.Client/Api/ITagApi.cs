@@ -17,8 +17,8 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body"> (optional)</param>
 	/// <returns>Task of InlineResponse20030</returns>
-	[Post("/Tag/{tagId}")]
-	Task<GetTagRelationResponse> CreateTagAsync(FactoryCreateBody body);
+	[Post("/Tag")]
+	Task<ModelTagCreateResponseTag> CreateTagAsync(FactoryCreateBody body);
 
 	/// <summary>
 	///     Deletes a tag
@@ -52,6 +52,7 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20030</returns>
 	[Get("/TagRelation")]
+	//Task<GetTagRelationResponse> GetTagRelationsAsync();
 	Task<GetTagRelationResponse> GetTagRelationsAsync();
 
 	/// <summary>
@@ -88,4 +89,16 @@ public interface ITagApi
 	/// <returns>Task of InlineResponse20019</returns>
 	[Put("/Tag/{tagId}")]
 	Task<GetTagResponse> UpdateTagAsync(int tagId, TagTagIdBody body);
+
+	/// <summary>
+	///     Update tag
+	/// </summary>
+	/// <remarks>
+	///     Update an existing tag
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="body"> (optional)</param>
+	/// <returns>Task of InlineResponse20019</returns>
+	[Post("/Tag/Factory/create")]
+	Task<GetTagResponse> CreateTagByFactoryAsync(TagFactoryCreateObject body);
 }

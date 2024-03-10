@@ -24,7 +24,7 @@ public class ModelEmail : IEquatable<ModelEmail>, IValidatableObject
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelEmail" /> class.
 	/// </summary>
-	/// <param name="_object">_object.</param>
+	/// <param name="_object">objectInfo.</param>
 	/// <param name="from">The sender of the email (required).</param>
 	/// <param name="to">The recipient of the email (required).</param>
 	/// <param name="subject">The subject of the email (required).</param>
@@ -95,7 +95,7 @@ public class ModelEmail : IEquatable<ModelEmail>, IValidatableObject
 	public DateTime? Update { get; private set; }
 
 	/// <summary>
-	///     Gets or Sets _Object
+	///     Gets or Sets ObjectInfo
 	/// </summary>
 	[DataMember(Name = "object", EmitDefaultValue = false)]
 	public ModelEmailOrderObject _Object { get; set; }
@@ -257,7 +257,7 @@ public class ModelEmail : IEquatable<ModelEmail>, IValidatableObject
 		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("  Create: ").Append(Create).Append('\n');
 		sb.Append("  Update: ").Append(Update).Append('\n');
-		sb.Append("  _Object: ").Append(_Object).Append('\n');
+		sb.Append("  ObjectInfo: ").Append(_Object).Append('\n');
 		sb.Append("  From: ").Append(From).Append('\n');
 		sb.Append("  To: ").Append(To).Append('\n');
 		sb.Append("  Subject: ").Append(Subject).Append('\n');

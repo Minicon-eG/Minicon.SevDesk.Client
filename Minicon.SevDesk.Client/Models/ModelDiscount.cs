@@ -24,7 +24,7 @@ public class ModelDiscount : IEquatable<ModelDiscount>, IValidatableObject
 	/// <summary>
 	///     Initializes a new instance of the <see cref="ModelDiscount" /> class.
 	/// </summary>
-	/// <param name="_object">_object.</param>
+	/// <param name="_object">objectInfo.</param>
 	/// <param name="percentage">Defines if this is a percentage or an absolute discount.</param>
 	/// <param name="value">Value of the discount.</param>
 	/// <param name="isNet">Defines is the Discount net or gross 0 - gross 1 - net.</param>
@@ -66,7 +66,7 @@ public class ModelDiscount : IEquatable<ModelDiscount>, IValidatableObject
 	public DateTime? Update { get; private set; }
 
 	/// <summary>
-	///     Gets or Sets _Object
+	///     Gets or Sets ObjectInfo
 	/// </summary>
 	[DataMember(Name = "object", EmitDefaultValue = false)]
 	public ModelDiscountObject _Object { get; set; }
@@ -193,7 +193,7 @@ public class ModelDiscount : IEquatable<ModelDiscount>, IValidatableObject
 		sb.Append("  ObjectName: ").Append(ObjectName).Append('\n');
 		sb.Append("  Create: ").Append(Create).Append('\n');
 		sb.Append("  Update: ").Append(Update).Append('\n');
-		sb.Append("  _Object: ").Append(_Object).Append('\n');
+		sb.Append("  ObjectInfo: ").Append(_Object).Append('\n');
 		sb.Append("  SevClientReference: ").Append(SevClient).Append('\n');
 		sb.Append("  Text: ").Append(Text).Append('\n');
 		sb.Append("  Percentage: ").Append(Percentage).Append('\n');

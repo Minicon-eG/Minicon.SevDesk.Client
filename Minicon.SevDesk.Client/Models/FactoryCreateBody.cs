@@ -25,11 +25,22 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 	///     Initializes a new instance of the <see cref="FactoryCreateBody" /> class.
 	/// </summary>
 	/// <param name="name">Name of the tag.</param>
-	/// <param name="_object">_object.</param>
-	public FactoryCreateBody(string name = default, TagFactorycreateObject _object = default)
+	/// <param name="objectInfo">objectInfo.</param>
+	public FactoryCreateBody(string name, ObjectInfo objectInfo)
 	{
 		Name = name;
-		_Object = _object;
+		ObjectInfo = objectInfo;
+	}
+
+	/// <summary>
+	///     Initializes a new instance of the <see cref="FactoryCreateBody" /> class.
+	/// </summary>
+	/// <param name="name">Name of the tag.</param>
+	/// <param name="_object">objectInfo.</param>
+	public FactoryCreateBody(string name, int id, ObjectNameEnum type)
+		: this(name, new ObjectInfo(id, type))
+	{
+
 	}
 
 	/// <summary>
@@ -40,10 +51,10 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 	public string Name { get; set; }
 
 	/// <summary>
-	///     Gets or Sets _Object
+	///     Gets or Sets ObjectInfo
 	/// </summary>
 	[DataMember(Name = "object", EmitDefaultValue = false)]
-	public TagFactorycreateObject _Object { get; set; }
+	public ObjectInfo ObjectInfo { get; set; }
 
 	/// <summary>
 	///     Returns true if FactoryCreateBody instances are equal
@@ -64,9 +75,9 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 				 Name.Equals(input.Name))
 			) &&
 			(
-				_Object == input._Object ||
-				(_Object != null &&
-				 _Object.Equals(input._Object))
+				ObjectInfo == input.ObjectInfo ||
+				(ObjectInfo != null &&
+				 ObjectInfo.Equals(input.ObjectInfo))
 			);
 	}
 
@@ -89,7 +100,7 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 		var sb = new StringBuilder();
 		sb.Append("class FactoryCreateBody {\n");
 		sb.Append("  Name: ").Append(Name).Append('\n');
-		sb.Append("  _Object: ").Append(_Object).Append('\n');
+		sb.Append("  ObjectInfo: ").Append(ObjectInfo).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -127,9 +138,9 @@ public class FactoryCreateBody : IEquatable<FactoryCreateBody>, IValidatableObje
 				hashCode = hashCode * 59 + Name.GetHashCode();
 			}
 
-			if (_Object != null)
+			if (ObjectInfo != null)
 			{
-				hashCode = hashCode * 59 + _Object.GetHashCode();
+				hashCode = hashCode * 59 + ObjectInfo.GetHashCode();
 			}
 
 			return hashCode;
