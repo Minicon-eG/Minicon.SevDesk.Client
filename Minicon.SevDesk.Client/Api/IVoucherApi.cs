@@ -89,6 +89,7 @@ public interface IVoucherApi
 	/// <param name="limit"></param>
 	/// <param name="offset"></param>
 	/// <param name="countAll"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetVoucherResponse</returns>
 	[Get("/Voucher")]
 	Task<GetVoucherResponse> GetVouchersAsync(
@@ -99,7 +100,8 @@ public interface IVoucherApi
 		string? contactObjectName = null,
 		int limit = 10000,
 		int offset = 0,
-		bool countAll = true
+		bool countAll = true,
+		CancellationToken cancellationToken = default
 	);
 
 	/// <summary>
