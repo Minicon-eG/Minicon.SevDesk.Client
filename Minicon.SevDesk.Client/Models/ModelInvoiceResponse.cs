@@ -110,24 +110,36 @@ public class ModelInvoiceResponse : Pageable, IEquatable<ModelInvoiceResponse>, 
 	public enum StatusEnum
 	{
 		/// <summary>
-		///     Enum _50 for value: 50
+		///     Deactivated recurring invoice. This status code is only relevant for recurring invoices.
 		/// </summary>
-		[EnumMember(Value = "50")] _50 = 1,
+		[EnumMember(Value = "50")]
+		DeactivatedRecurringInvoice = 1,
 
 		/// <summary>
-		///     Enum _100 for value: 100
+		///     Draft. The invoice is still a draft. It has not been sent to the end-customer and can still be changed.
 		/// </summary>
-		[EnumMember(Value = "100")] _100 = 2,
+		[EnumMember(Value = "100")]
+		Draft = 2,
 
 		/// <summary>
-		///     Enum _200 for value: 200
+		///     Open / Due. The invoice has been sent to the end-customer. It is either shown as open if the pay date is not exceeded or due if it is.
 		/// </summary>
-		[EnumMember(Value = "200")] _200 = 3,
+		[EnumMember(Value = "200")]
+		OpenOrDue = 3,
 
 		/// <summary>
-		///     Enum _1000 for value: 1000
+		///     Partially paid. The invoice has been partially paid. This means, that it is linked to a transaction on some payment account in sevdesk.
+		///     This status was introduced with Release 4.181 (June 13, 2024). Invoices that were partially paid before that release will have the status "Open" ("status": "200").
+		///     In that case use Invoice/{invoiceId}/getIsPartiallyPaid instead of checking the status directly.
 		/// </summary>
-		[EnumMember(Value = "1000")] _1000 = 4
+		[EnumMember(Value = "750")]
+		PartiallyPaid = 4,
+
+		/// <summary>
+		///     Paid. The invoice has been paid. This means, that it is linked to a transaction on some payment account in sevdesk.
+		/// </summary>
+		[EnumMember(Value = "1000")]
+		Paid = 5
 	}
 
 	/// <summary>
