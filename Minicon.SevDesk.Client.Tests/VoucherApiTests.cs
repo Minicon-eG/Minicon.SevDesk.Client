@@ -65,6 +65,18 @@ public class VoucherApiTests
 	}
 
 	[Fact]
+	public async Task GetVouchersAsync_WithMax_ReturnsAmountOfLimit()
+	{
+		using var scope = new TestScope<GetVoucherResponse>();
+		int count = 10;
+		IVoucherApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
+		await scope.TestAsync(
+			() => sut.GetVouchersAsync(limit: 10, status: VoucherStatusEnum.Draft),
+			result => result.Objects.Count.Should().Be(count)
+		);
+	}
+
+	[Fact]
 	public async Task GetVoucherByIdAsync_WithExistingId_ReturnsVoucher()
 	{
 		using var scope = new TestScope<GetVoucherResponse>();

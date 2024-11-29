@@ -93,7 +93,7 @@ public interface IVoucherApi
 	/// <returns>Task of GetVoucherResponse</returns>
 	[Get("/Voucher")]
 	Task<GetVoucherResponse> GetVouchersAsync(
-		decimal? status = null,
+		VoucherStatusEnum? status = null,
 		string? creditDebit = null,
 		string? descriptionLike = null,
 		int? contactId = null,

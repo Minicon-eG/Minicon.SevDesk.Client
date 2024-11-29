@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>net9.0;net8.0;net7.0;net6.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -11,25 +11,27 @@
 		<RepositoryUrl>https://github.com/Minicon-eG/Minicon.SevDesk.Client</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>sevdesk api client</PackageTags>
-		<Version>0.2.1</Version>
+		<Version>0.2.3</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
+		<UserSecretsId>42753045-108a-43dc-9ccd-aa3a8fd9d81f</UserSecretsId>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2"/>
+		<PackageReference Include="Microsoft.Extensions.Options" Version="9.0.0"/>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1"/>
-		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="8.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0"/>
-		<PackageReference Include="Refit" Version="7.0.0"/>
-		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0"/>
-		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="9.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0"/>
+		<PackageReference Include="Refit" Version="8.0.0"/>
+		<PackageReference Include="Refit.HttpClientFactory" Version="8.0.0"/>
+		<PackageReference Include="Refit.Newtonsoft.Json" Version="8.0.0"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="bin\Release\net6.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net6.0" />
-		<None Include="bin\Release\net7.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net7.0" />
+		<None Include="bin\Release\net6.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net6.0"/>
+		<None Include="bin\Release\net7.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net7.0"/>
+		<None Include="bin\Release\net8.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net8.0"/>
 	</ItemGroup>
-
 </Project>

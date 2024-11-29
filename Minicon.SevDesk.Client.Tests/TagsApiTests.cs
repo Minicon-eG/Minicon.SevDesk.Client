@@ -13,12 +13,24 @@ public class TagsApiTests
 	{
 		using var scope = new TestScope<GetTagResponse>();
 		ITagApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<ITagApi>();
+		IVoucherApi voucher = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
 		string guid = Guid.NewGuid().ToString();
 
+		var testVoucher = (await voucher.GetVouchersAsync(limit: 1)).Objects.Single();
+		//await sut.CreateTagAsync(
+		//	guid.ToFactoryCreateBody()
+		//
+		//
+		/*
+		tag.ToTagFactoryCreateObject(
+			voucher.Id,
+			ObjectNameEnum.Voucher
+		)
+		*/
 		await scope.TestAsync(
 			async () =>
 			{
-				ModelTagCreateResponseTag createdTag = await sut.CreateTagAsync(guid.ToFactoryCreateBody());
+				ModelTagCreateResponseTag createdTag = await sut.CreateTagAsync(guid.ToFactoryCreateBody(testVoucher.Id, ObjectNameEnum.Voucher));
 				GetTagResponse tags = await sut.GetTagsAsync(name: guid);
 				_ = await sut.DeleteTagAsync(tags.Objects.Single().Id);
 				return tags;

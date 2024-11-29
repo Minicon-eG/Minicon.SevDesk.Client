@@ -11,58 +11,25 @@ public static class ServiceCollectionExtensions
 {
 	public static IServiceCollection AddSevdeskClient(this IServiceCollection services)
 	{
+		var apiInterfaces = new Type[]
+		{
+			typeof(IAccountingContactApi), typeof(IAccountingTypeApi), typeof(ICheckAccountApi),
+			typeof(ICheckAccountTransactionApi), typeof(ICommunicationWayApi), typeof(IContactAddressApi),
+			typeof(IContactFieldApi), typeof(ICostCentreApi), typeof(ICreditNoteApi), typeof(ICreditNotePosApi),
+			typeof(IExportApi), typeof(IInvoiceApi), typeof(IInvoicePosApi), typeof(ILayoutApi), typeof(IOrderApi),
+			typeof(IOrderPosApi), typeof(IPartApi), typeof(IReportApi), typeof(ISaveVoucherApi), typeof(ITagApi),
+			typeof(IVoucherApi), typeof(IVoucherPosApi)
+		};
+
 		services.AddTransient<ISupplierResolver, SupplierResolver>();
-		services.AddRefitClient<IAccountingContactApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IAccountingTypeApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ICheckAccountApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ICheckAccountTransactionApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ICommunicationWayApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IContactAddressApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
 
-		services.AddTransient<LoggingHttpMessageHandler<IContactApi>>();
-		services.AddRefitClient<IContactApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient)
-			.AddHttpMessageHandler<LoggingHttpMessageHandler<IContactApi>>();
+		foreach (Type apiInterface in apiInterfaces)
+		{
+			services.AddRefitClient(apiInterface, RefitSettings())
+				.ConfigureHttpClient(SetupRefitHttpClient)
+				.AddHttpMessageHandler<JsonInspectingHandler>();
+		}
 
-
-		services.AddRefitClient<IContactFieldApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ICostCentreApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ICreditNoteApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ICreditNotePosApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IExportApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IInvoiceApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IInvoicePosApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ILayoutApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IOrderApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IOrderPosApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IPartApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IReportApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ISaveVoucherApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<ITagApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IVoucherApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
-		services.AddRefitClient<IVoucherPosApi>(RefitSettings())
-			.ConfigureHttpClient(SetupRefitHttpClient);
 		return services;
 	}
 
