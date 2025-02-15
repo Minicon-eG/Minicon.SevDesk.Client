@@ -21,13 +21,14 @@ public static class ServiceCollectionExtensions
 		};
 
 		services.AddTransient<ISupplierResolver, SupplierResolver>();
-
+		services.AddSingleton<JsonInspectingHandler>();
 		foreach (Type apiInterface in apiInterfaces)
 		{
 			services.AddRefitClient(apiInterface, RefitSettings())
 				.ConfigureHttpClient(SetupRefitHttpClient)
 				.AddHttpMessageHandler<JsonInspectingHandler>();
 		}
+
 
 		return services;
 	}
