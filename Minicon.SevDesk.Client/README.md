@@ -10,7 +10,7 @@ handling multi-currency transactions.
 ## Setup
 
 1. **System Requirements**:
-	- Ensure that .NET SDK version 9.0.0 or a compatible version is installed. This
+	- Ensure that .NET[]() SDK version 9.0.0 or a compatible version is installed. This
 	  requirement is defined in the [global.json](global.json) specification.
 2. **Repository Cloning**:
    ```bash

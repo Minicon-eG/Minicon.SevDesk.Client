@@ -16,6 +16,7 @@
 		<FileVersion>$(Version)</FileVersion>
 		<UserSecretsId>42753045-108a-43dc-9ccd-aa3a8fd9d81f</UserSecretsId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,6 +31,7 @@
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="8.0.0"/>
 	</ItemGroup>
 	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath=""/>
 		<None Include="bin\Release\net6.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net6.0"/>
 		<None Include="bin\Release\net7.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net7.0"/>
 		<None Include="bin\Release\net8.0\Minicon.SevDesk.Client.dll" Pack="true" PackagePath="lib\net8.0"/>
