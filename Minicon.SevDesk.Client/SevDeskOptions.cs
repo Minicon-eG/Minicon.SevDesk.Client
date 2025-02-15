@@ -11,4 +11,5 @@ public class SevDeskOptions
 	public string ApiKey { get; init; } = "";
 
 	[Required] [Url] public string ApiUrl { get; init; } = "";
+	public bool InspectJson { get; set; }
 }

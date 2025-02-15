@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Minicon.SevDesk.Client.Api;
 using Minicon.SevDesk.Client.Extensions.Models;
-using Minicon.SevDesk.Client.Logging;
 using Refit;
 
 namespace Minicon.SevDesk.Client.Extensions.DependencyInjection;

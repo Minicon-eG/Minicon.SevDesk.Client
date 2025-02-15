@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Minicon.SevDesk.Client;
 
@@ -10,13 +11,19 @@ using System.Threading.Tasks;
 public class JsonInspectingHandler : DelegatingHandler
 {
 	private readonly ILogger<JsonInspectingHandler> _logger;
+	private readonly IOptionsMonitor<SevDeskOptions> _options;
 
-	public JsonInspectingHandler(ILogger<JsonInspectingHandler> logger)
+	public JsonInspectingHandler(ILogger<JsonInspectingHandler> logger, IOptionsMonitor<SevDeskOptions> options)
 	{
 		_logger = logger;
+		_options = options;
 	}
 	protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 	{
+		if (_options.CurrentValue.InspectJson)
+		{
+			return await base.SendAsync(request, cancellationToken);
+		}
 		// Inspizieren der JSON-Anfrage
 		if (request.Content is { Headers.ContentType.MediaType: "application/json" })
 		{
