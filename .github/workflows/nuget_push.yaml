@@ -1,0 +1,49 @@
+name: Publish NuGet Package
+
+on:
+    push:
+        branches:
+            - main
+        tags:
+            - 'v*.*.*' # Löst den Workflow bei Versionstags aus (z.B. v1.0.0)
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0 # Stellt sicher, dass der vollständige Git-Verlauf geklont wird
+
+            - name: Setup .NET SDK
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: '9.x' # Verwenden Sie die benötigte .NET SDK-Version
+
+            - name: Install Nerdbank.GitVersioning
+              run: dotnet tool install --tool-path . nbgv
+
+            - name: Retrieve version information
+              id: get_version
+              run: |
+                  ./nbgv get-version --format json > version.json
+                  echo "Version=$(jq -r .SemVer2 version.json)" >> $GITHUB_ENV
+                  echo "AssemblyVersion=$(jq -r .AssemblyVersion version.json)" >> $GITHUB_ENV
+                  echo "FileVersion=$(jq -r .AssemblyFileVersion version.json)" >> $GITHUB_ENV
+
+            - name: Restore dependencies
+              run: dotnet restore Minicon.SevDesk.Client.sln
+
+            - name: Build project
+              run: dotnet build Minicon.SevDesk.Client.sln --configuration Release --no-restore
+
+            - name: Pack NuGet package
+              run: dotnet pack Minicon.SevDesk.Client.sln --configuration Release --no-build --output ./output /p:Version=${{ env.Version }}
+
+            - name: Publish NuGet package
+              env:
+                  NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+              run: dotnet nuget push ./output/*.nupkg --skip-duplicate --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
