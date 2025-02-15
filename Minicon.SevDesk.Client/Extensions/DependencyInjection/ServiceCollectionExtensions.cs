@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
 			typeof(IContactFieldApi), typeof(ICostCentreApi), typeof(ICreditNoteApi), typeof(ICreditNotePosApi),
 			typeof(IExportApi), typeof(IInvoiceApi), typeof(IInvoicePosApi), typeof(ILayoutApi), typeof(IOrderApi),
 			typeof(IOrderPosApi), typeof(IPartApi), typeof(IReportApi), typeof(ISaveVoucherApi), typeof(ITagApi),
-			typeof(IVoucherApi), typeof(IVoucherPosApi)
+			typeof(IVoucherApi), typeof(IVoucherPosApi), typeof(IContactApi)
 		};
 
 		services.AddTransient<ISupplierResolver, SupplierResolver>();
