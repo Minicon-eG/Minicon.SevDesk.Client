@@ -52,8 +52,12 @@ public interface ITagApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of InlineResponse20030</returns>
 	[Get("/TagRelation")]
-	//Task<GetTagRelationResponse> GetTagRelationsAsync();
-	Task<GetTagRelationResponse> GetTagRelationsAsync();
+	Task<GetTagRelationResponse> GetTagRelationsAsync(
+		string? name = null,
+		int limit = 10000,
+		int offset = 0,
+		bool countAll = true
+	);
 
 	/// <summary>
 	///     Retrieve tags

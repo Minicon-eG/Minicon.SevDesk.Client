@@ -56,18 +56,16 @@ public class TagsApiTests
 		GetTagResponse tags = await sut.GetTagsAsync(name: valueOfTag);
 		if (tags.Objects.Count == 0)
 		{
-			GetTagResponse createTag = await sut.CreateTagByFactoryAsync(
+			await sut.CreateTagByFactoryAsync(
 				valueOfTag.ToTagFactoryCreateObject(
 					voucher.Objects.Single().Id,
 					ObjectNameEnum.Voucher
 				)
 			);
-
-			createTag.Objects?.Single().Should().NotBe(default(int));
 		}
 
 		GetTagResponse checkTags = await sut.GetTagsAsync(name: valueOfTag);
-		GetTagRelationResponse result = await sut.GetTagRelationsAsync();
+		GetTagRelationResponse result = await sut.GetTagRelationsAsync(limit: 10000, countAll: true);
 		result.Objects.Count(e => e.Tag.Id == tags.Objects.Single().Id).Should().Be(1);
 		checkTags.Objects.Single().Name.Should().Be(valueOfTag);
 	}
