@@ -100,5 +100,5 @@ public interface ITagApi
 	/// <param name="body"> (optional)</param>
 	/// <returns>Task of InlineResponse20019</returns>
 	[Post("/Tag/Factory/create")]
-	Task<GetTagResponse> CreateTagByFactoryAsync(TagFactoryCreateObject body);
+	Task CreateTagByFactoryAsync(TagFactoryCreateObject body);
 }
