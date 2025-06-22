@@ -145,4 +145,36 @@ public interface IExportApi
 	[Get("/Export/voucherZip")]
 	Task<object> ExportVoucherZipAsync(ExportVoucherZipRequsts sevQuery, bool? download = null,
 		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Create DATEV CSV export job
+	/// </summary>
+	/// <remarks>
+	///     Creates a DATEV export job for booking data in CSV format.
+	///     Returns a job ID that can be used to track the export progress.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="request">Export parameters</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of CreateDatevExportJobResponse</returns>
+	[Post("/Export/createDatevCsvZipExportJob")]
+	Task<CreateDatevExportJobResponse> CreateDatevCsvZipExportJobAsync(
+		[Body] CreateDatevCsvExportRequest request,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Create DATEV XML export job
+	/// </summary>
+	/// <remarks>
+	///     Creates a DATEV export job for invoice data in XML format.
+	///     Returns a job ID that can be used to track the export progress.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="request">Export parameters</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of CreateDatevExportJobResponse</returns>
+	[Post("/Export/createDatevXmlZipExportJob")]
+	Task<CreateDatevExportJobResponse> CreateDatevXmlZipExportJobAsync(
+		[Body] CreateDatevXmlExportRequest request,
+		CancellationToken cancellationToken = default);
 }
