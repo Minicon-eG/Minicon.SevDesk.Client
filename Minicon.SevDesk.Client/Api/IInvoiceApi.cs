@@ -19,11 +19,11 @@ public interface IInvoiceApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to book</param>
-	/// <param name="body">Booking data (optional)</param>
+	/// <param name="body">Booking data</param>
 	/// <param name="cancellationToken"></param>
-	/// <returns>Task of InlineResponse2008</returns>
-	[Get("/Invoice/{invoiceId}/bookAmount")]
-	Task<GetCreditNote> BookInvoiceAsync(int invoiceId, InvoiceIdBookAmountBody? body = null,
+	/// <returns>Task of BookVoucherResponse</returns>
+	[Put("/Invoice/{invoiceId}/bookAmount")]
+	Task<BookVoucherResponse> BookInvoiceAsync(int invoiceId, InvoiceIdBookAmountBody body,
 		CancellationToken cancellationToken = default);
 
 	/// <summary>
@@ -38,7 +38,7 @@ public interface IInvoiceApi
 	/// <param name="invoiceId">ID of invoice to be cancelled</param>
 	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetInvoicesResponse</returns>
-	[Get("/Invoice/{invoiceId}/cancelInvoice")]
+	[Post("/Invoice/{invoiceId}/cancelInvoice")]
 	Task<GetInvoicesResponse> CancelInvoiceAsync(int invoiceId,
 		CancellationToken cancellationToken = default);
 
@@ -96,15 +96,11 @@ public interface IInvoiceApi
 	///     Create an invoice from an order
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
-	/// <param name="invoiceId">the id of the invoice</param>
-	/// <param name="invoiceObjectName">Model name, which is &#x27;Invoice&#x27;</param>
-	/// <param name="body">Create invoice (optional)</param>
+	/// <param name="body">Create invoice</param>
 	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetInvoicesResponse</returns>
 	[Post("/Invoice/Factory/createInvoiceFromOrder")]
 	Task<GetInvoicesResponse> CreateInvoiceFromOrderAsync(
-		int invoiceId,
-		string invoiceObjectName,
 		ModelCreateInvoiceFromOrder body,
 		CancellationToken cancellationToken = default
 	);
@@ -118,13 +114,13 @@ public interface IInvoiceApi
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">the id of the invoice</param>
 	/// <param name="invoiceObjectName">Model name, which is &#x27;Invoice&#x27;</param>
-	/// <param name="body">Create invoice (optional)</param>
+	/// <param name="body">Create invoice reminder</param>
 	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetInvoicesResponse</returns>
 	[Post("/Invoice/Factory/createInvoiceReminder")]
 	Task<GetInvoicesResponse> CreateInvoiceReminderAsync(
-		int invoiceId,
-		string invoiceObjectName,
+		[AliasAs("invoice[id]")] int invoiceId,
+		[AliasAs("invoice[objectName]")] string invoiceObjectName,
 		FactoryCreateInvoiceReminderBody body,
 		CancellationToken cancellationToken = default
 	);
@@ -137,17 +133,11 @@ public interface IInvoiceApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="invoiceId">ID of invoice to return</param>
-	/// <param name="limit"></param>
-	/// <param name="offset"></param>
-	/// <param name="countAll"></param>
 	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetInvoicesResponse</returns>
 	[Get("/Invoice/{invoiceId}")]
 	Task<GetInvoicesResponse> GetInvoiceByIdAsync(
-		int? invoiceId,
-		int limit = 10000,
-		int offset = 0,
-		bool countAll = true,
+		int invoiceId,
 		CancellationToken cancellationToken = default
 	);
 
@@ -315,4 +305,60 @@ public interface IInvoiceApi
 	/// <returns>Task of string (XML content)</returns>
 	[Get("/Invoice/{invoiceId}/getXml")]
 	Task<string> GetInvoiceXmlAsync(int invoiceId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Enshrine
+	/// </summary>
+	/// <remarks>
+	///     Sets the current date and time as a value for the property `enshrined`.
+	///     This operation is only possible if the status is "Open" (`"status": "200"`) or higher.
+	///     Enshrined invoices cannot be changed. This operation cannot be undone.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="invoiceId">ID of the invoice to enshrine</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of GetInvoicesResponse</returns>
+	[Put("/Invoice/{invoiceId}/enshrine")]
+	Task<GetInvoicesResponse> EnshrineInvoiceAsync(int invoiceId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Reset status to open
+	/// </summary>
+	/// <remarks>
+	///     Resets the status of an invoice to "Open" (`"status": "200"`). This is only possible if the current status is "Draft" (`"status": "100"`).
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="invoiceId">ID of the invoice to reset</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of GetInvoicesResponse</returns>
+	[Put("/Invoice/{invoiceId}/resetToOpen")]
+	Task<GetInvoicesResponse> ResetInvoiceToOpenAsync(int invoiceId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Reset status to draft
+	/// </summary>
+	/// <remarks>
+	///     Resets the status of an invoice to "Draft" (`"status": "100"`). This is only possible if the current status is "Open" (`"status": "200"`).
+	///     Enshrined invoices cannot be changed. Only use this endpoint if you want to correct errors on the invoice.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="invoiceId">ID of the invoice to reset</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of GetInvoicesResponse</returns>
+	[Put("/Invoice/{invoiceId}/resetToDraft")]
+	Task<GetInvoicesResponse> ResetInvoiceToDraftAsync(int invoiceId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Change status of an invoice
+	/// </summary>
+	/// <remarks>
+	///     Change the status of an invoice. Not to be confused with Invoice/{invoiceId}/changeStatus.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="invoiceId">ID of invoice to change status</param>
+	/// <param name="value">Status to change to</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of GetInvoicesResponse</returns>
+	[Put("/Invoice/{invoiceId}/changeParameter")]
+	Task<GetInvoicesResponse> ChangeInvoiceParameterAsync(int invoiceId, [AliasAs("value")] int value, CancellationToken cancellationToken = default);
 }

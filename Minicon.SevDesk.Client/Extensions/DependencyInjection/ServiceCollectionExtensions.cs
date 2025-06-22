@@ -14,10 +14,13 @@ public static class ServiceCollectionExtensions
 		{
 			typeof(IAccountingContactApi), typeof(IAccountingTypeApi), typeof(ICheckAccountApi),
 			typeof(ICheckAccountTransactionApi), typeof(ICommunicationWayApi), typeof(IContactAddressApi),
+			typeof(IContactApi), typeof(IContactCustomFieldApi), typeof(IContactCustomFieldSettingApi),
 			typeof(IContactFieldApi), typeof(ICostCentreApi), typeof(ICreditNoteApi), typeof(ICreditNotePosApi),
-			typeof(IExportApi), typeof(IExportJobApi), typeof(IInvoiceApi), typeof(IInvoicePosApi), typeof(ILayoutApi),
-			typeof(IOrderApi), typeof(IOrderPosApi), typeof(IPartApi), typeof(IProgressApi), typeof(IReportApi),
-			typeof(ISaveVoucherApi), typeof(ITagApi), typeof(IVoucherApi), typeof(IVoucherPosApi), typeof(IContactApi)
+			typeof(IDocServerApi), typeof(IExportApi), typeof(IExportJobApi), typeof(IInvoiceApi), typeof(IInvoicePosApi),
+			typeof(ILayoutApi), typeof(IOrderApi), typeof(IOrderPosApi), typeof(IPartApi), typeof(IProgressApi),
+			typeof(IReceiptGuidanceApi), typeof(IReportApi), typeof(ISaveVoucherApi), typeof(ISevClientApi),
+			typeof(ITagApi), typeof(ITagRelationApi), typeof(ITextparserApi), typeof(IToolsApi),
+			typeof(IVoucherApi), typeof(IVoucherPosApi)
 		};
 
 		services.AddTransient<ISupplierResolver, SupplierResolver>();
@@ -43,6 +46,6 @@ public static class ServiceCollectionExtensions
 	{
 		SevDeskOptions options = serviceProvider.GetRequiredService<IOptions<SevDeskOptions>>().Value;
 		httpClient.BaseAddress = new Uri(options.ApiUrl);
-		httpClient.DefaultRequestHeaders.Add("Authorization", options.ApiKey);
+		httpClient.DefaultRequestHeaders.Add(nameof(httpClient.DefaultRequestHeaders.Authorization), options.ApiKey);
 	}
 }

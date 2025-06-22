@@ -123,4 +123,22 @@ public interface IContactApi
 	[Put("/Contact/{contactId}")]
 	Task<GetContactResponse> UpdateContactAsync(int contactId, ModelContactUpdate body,
 		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Find contacts by custom field value
+	/// </summary>
+	/// <remarks>
+	///     Returns an array of contacts having a certain custom field value set.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="value">The value to be checked.</param>
+	/// <param name="customFieldSettingId">ID of ContactCustomFieldSetting for which the value has to be checked. (optional)</param>
+	/// <param name="customFieldSettingObjectName">Object name of ContactCustomFieldSetting for which the value has to be checked. (optional)</param>
+	/// <returns>Task of GetContactResponse</returns>
+	[Get("/Contact/Factory/findContactsByCustomFieldValue")]
+	Task<GetContactResponse> FindContactsByCustomFieldValueAsync(
+		[AliasAs("value")] string value,
+		[AliasAs("customFieldSetting[id]")] string? customFieldSettingId = null,
+		[AliasAs("customFieldSetting[objectName]")] string? customFieldSettingObjectName = null,
+		CancellationToken cancellationToken = default);
 }

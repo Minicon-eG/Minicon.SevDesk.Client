@@ -10,12 +10,10 @@ namespace Minicon.SevDesk.Client;
 public class SevDeskClientFactory : ISevDeskClientFactory
 {
     private readonly ILoggerFactory _loggerFactory;
-    private readonly IServiceProvider _serviceProvider;
 
-    public SevDeskClientFactory(ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
+    public SevDeskClientFactory(ILoggerFactory loggerFactory)
     {
         _loggerFactory = loggerFactory;
-        _serviceProvider = serviceProvider;
     }
 
     public IAccountingContactApi CreateAccountingContactApi(SevDeskOptions options) => CreateApiClient<IAccountingContactApi>(options);
@@ -25,10 +23,13 @@ public class SevDeskClientFactory : ISevDeskClientFactory
     public ICommunicationWayApi CreateCommunicationWayApi(SevDeskOptions options) => CreateApiClient<ICommunicationWayApi>(options);
     public IContactApi CreateContactApi(SevDeskOptions options) => CreateApiClient<IContactApi>(options);
     public IContactAddressApi CreateContactAddressApi(SevDeskOptions options) => CreateApiClient<IContactAddressApi>(options);
+    public IContactCustomFieldApi CreateContactCustomFieldApi(SevDeskOptions options) => CreateApiClient<IContactCustomFieldApi>(options);
+    public IContactCustomFieldSettingApi CreateContactCustomFieldSettingApi(SevDeskOptions options) => CreateApiClient<IContactCustomFieldSettingApi>(options);
     public IContactFieldApi CreateContactFieldApi(SevDeskOptions options) => CreateApiClient<IContactFieldApi>(options);
     public ICostCentreApi CreateCostCentreApi(SevDeskOptions options) => CreateApiClient<ICostCentreApi>(options);
     public ICreditNoteApi CreateCreditNoteApi(SevDeskOptions options) => CreateApiClient<ICreditNoteApi>(options);
     public ICreditNotePosApi CreateCreditNotePosApi(SevDeskOptions options) => CreateApiClient<ICreditNotePosApi>(options);
+    public IDocServerApi CreateDocServerApi(SevDeskOptions options) => CreateApiClient<IDocServerApi>(options);
     public IExportApi CreateExportApi(SevDeskOptions options) => CreateApiClient<IExportApi>(options);
     public IExportJobApi CreateExportJobApi(SevDeskOptions options) => CreateApiClient<IExportJobApi>(options);
     public IInvoiceApi CreateInvoiceApi(SevDeskOptions options) => CreateApiClient<IInvoiceApi>(options);
@@ -38,9 +39,14 @@ public class SevDeskClientFactory : ISevDeskClientFactory
     public IOrderPosApi CreateOrderPosApi(SevDeskOptions options) => CreateApiClient<IOrderPosApi>(options);
     public IPartApi CreatePartApi(SevDeskOptions options) => CreateApiClient<IPartApi>(options);
     public IProgressApi CreateProgressApi(SevDeskOptions options) => CreateApiClient<IProgressApi>(options);
+    public IReceiptGuidanceApi CreateReceiptGuidanceApi(SevDeskOptions options) => CreateApiClient<IReceiptGuidanceApi>(options);
     public IReportApi CreateReportApi(SevDeskOptions options) => CreateApiClient<IReportApi>(options);
     public ISaveVoucherApi CreateSaveVoucherApi(SevDeskOptions options) => CreateApiClient<ISaveVoucherApi>(options);
+    public ISevClientApi CreateSevClientApi(SevDeskOptions options) => CreateApiClient<ISevClientApi>(options);
     public ITagApi CreateTagApi(SevDeskOptions options) => CreateApiClient<ITagApi>(options);
+    public ITagRelationApi CreateTagRelationApi(SevDeskOptions options) => CreateApiClient<ITagRelationApi>(options);
+    public ITextparserApi CreateTextparserApi(SevDeskOptions options) => CreateApiClient<ITextparserApi>(options);
+    public IToolsApi CreateToolsApi(SevDeskOptions options) => CreateApiClient<IToolsApi>(options);
     public IVoucherApi CreateVoucherApi(SevDeskOptions options) => CreateApiClient<IVoucherApi>(options);
     public IVoucherPosApi CreateVoucherPosApi(SevDeskOptions options) => CreateApiClient<IVoucherPosApi>(options);
 
@@ -80,26 +86,5 @@ public class SevDeskClientFactory : ISevDeskClientFactory
         }
         
         return handler;
-    }
-}
-
-internal class OptionsMonitor<T> : IOptionsMonitor<T> where T : class
-{
-    private readonly IOptions<T> _options;
-
-    public OptionsMonitor(IOptions<T> options)
-    {
-        _options = options;
-    }
-
-    public T CurrentValue => _options.Value;
-
-    public T Get(string name) => _options.Value;
-
-    public IDisposable OnChange(Action<T, string> listener) => new NullDisposable();
-
-    private class NullDisposable : IDisposable
-    {
-        public void Dispose() { }
     }
 }

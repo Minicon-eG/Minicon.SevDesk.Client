@@ -9,6 +9,54 @@ namespace Minicon.SevDesk.Client.Tests;
 public class TagsApiTests
 {
 	[Fact]
+	public void TagApi_IsAvailable()
+	{
+		using var scope = new TestScope<ITagApi>();
+		scope.Test(
+			() => scope.ServiceScope.ServiceProvider.GetRequiredService<ITagApi>(),
+			result => result.Should().NotBeNull()
+		);
+	}
+
+	[Fact]
+	public async Task GetTagsAsync_Returns_Tags()
+	{
+		using var scope = new TestScope<GetTagResponse>();
+		await scope.TestAsync(
+			async () => await scope.ServiceScope.ServiceProvider.GetRequiredService<ITagApi>()
+				.GetTagsAsync(),
+			result =>
+			{
+				result.Should().NotBeNull();
+				result.Objects.Should().NotBeNull();
+			}
+		);
+	}
+
+	[Fact]
+	public async Task GetTagByIdAsync_WithValidId_Returns_Tag()
+	{
+		using var scope = new TestScope<GetTagResponse>();
+		var api = scope.ServiceScope.ServiceProvider.GetRequiredService<ITagApi>();
+		
+		// First get any tag
+		var tags = await api.GetTagsAsync(limit: 1);
+		
+		if (tags?.Objects?.Count > 0)
+		{
+			var firstTagId = tags.Objects[0].Id;
+			await scope.TestAsync(
+				async () => await api.GetTagByIdAsync(Convert.ToInt32(firstTagId)),
+				result =>
+				{
+					result.Should().NotBeNull();
+					result.Objects.Should().NotBeEmpty();
+					result.Objects[0].Id.Should().Be(firstTagId);
+				}
+			);
+		}
+	}
+	[Fact]
 	public async Task CreateAndDeleteTags_Works()
 	{
 		using var scope = new TestScope<GetTagResponse>();

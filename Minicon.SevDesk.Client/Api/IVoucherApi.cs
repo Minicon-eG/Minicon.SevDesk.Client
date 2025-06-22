@@ -93,11 +93,11 @@ public interface IVoucherApi
 	/// <returns>Task of GetVoucherResponse</returns>
 	[Get("/Voucher")]
 	Task<GetVoucherResponse> GetVouchersAsync(
-		VoucherStatusEnum? status = null,
-		string? creditDebit = null,
-		string? descriptionLike = null,
-		int? contactId = null,
-		string? contactObjectName = null,
+		[AliasAs("status")] int? status = null,
+		[AliasAs("creditDebit")] string? creditDebit = null,
+		[AliasAs("descriptionLike")] string? descriptionLike = null,
+		[AliasAs("contact[id]")] int? contactId = null,
+		[AliasAs("contact[objectName]")] string? contactObjectName = null,
 		int limit = 10000,
 		int offset = 0,
 		bool countAll = true,
@@ -129,8 +129,44 @@ public interface IVoucherApi
 	///     the right order, the file will be attached to your voucher.
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
-	/// <param name="body">File to upload (optional)</param>
-	/// <returns>Task of InlineResponse2012</returns>
-	[Post("/Voucher")]
+	/// <param name="body">File to upload</param>
+	/// <returns>Task of UploadFileResponse</returns>
+	[Post("/Voucher/Factory/uploadTempFile")]
 	Task<UploadFileResponse> VoucherUploadFileAsync(FactoryUploadTempFileBody body);
+
+	/// <summary>
+	///     Enshrine
+	/// </summary>
+	/// <remarks>
+	///     Enshrine the voucher. This operation cannot be undone.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="voucherId">ID of the voucher to enshrine</param>
+	/// <returns>Task of GetVoucherResponse</returns>
+	[Put("/Voucher/{voucherId}/enshrine")]
+	Task<GetVoucherResponse> EnshrineVoucherAsync(int voucherId);
+
+	/// <summary>
+	///     Reset status to open
+	/// </summary>
+	/// <remarks>
+	///     Reset status of the voucher to "Open".
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="voucherId">ID of the voucher to reset</param>
+	/// <returns>Task of GetVoucherResponse</returns>
+	[Put("/Voucher/{voucherId}/resetToOpen")]
+	Task<GetVoucherResponse> ResetVoucherToOpenAsync(int voucherId);
+
+	/// <summary>
+	///     Reset status to draft
+	/// </summary>
+	/// <remarks>
+	///     Reset status of the voucher to "Draft".
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="voucherId">ID of the voucher to reset</param>
+	/// <returns>Task of GetVoucherResponse</returns>
+	[Put("/Voucher/{voucherId}/resetToDraft")]
+	Task<GetVoucherResponse> ResetVoucherToDraftAsync(int voucherId);
 }

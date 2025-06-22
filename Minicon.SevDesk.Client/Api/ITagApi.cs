@@ -41,7 +41,7 @@ public interface ITagApi
 	/// <param name="tagId">ID of tag to return</param>
 	/// <returns>Task of InlineResponse20019</returns>
 	[Get("/Tag/{tagId}")]
-	Task<GetTagResponse> GetTagByIdAsync(int? tagId);
+	Task<GetTagResponse> GetTagByIdAsync(int tagId);
 
 	/// <summary>
 	///     Retrieve tag relations

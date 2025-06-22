@@ -71,7 +71,7 @@ public class VoucherApiTests
 		int count = 10;
 		IVoucherApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
 		await scope.TestAsync(
-			() => sut.GetVouchersAsync(limit: 10, status: VoucherStatusEnum.Draft),
+			() => sut.GetVouchersAsync(limit: 10, status: 100), // 100 = Draft status
 			result => result.Objects.Count.Should().Be(count)
 		);
 	}

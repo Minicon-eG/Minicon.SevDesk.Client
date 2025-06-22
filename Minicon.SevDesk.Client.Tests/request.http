@@ -1,17 +1,452 @@
-### Simple Request
-GET https://my.sevdesk.de/api/v1/Contact?limit=100&offset=0
-Authorization: {{ApiKey}}
-Conent-Type: application/json
+### Variables
+@baseUrl = https://my.sevdesk.de/api/v1
+@apiKey = {{ApiKey}}
 
+### ===================== ACCOUNTING CONTACT =====================
 
-### Get Vouchers
-GET https://my.sevdesk.de/api/v1/Voucher
-Authorization: {{ApiKey}}
+### Get all accounting contacts
+GET {{baseUrl}}/AccountingContact
+Authorization: {{apiKey}}
 Content-Type: application/json
 
-### Get Voucher Positions
-#https://my.sevdesk.de/api/v1/VoucherPos?voucher%5Bid%5D=80659678&voucher%5BobjectName%5D=Voucher&limit=10000&offset=0&countAll=True
-https://my.sevdesk.de/api/v1/VoucherPos?voucher[id]=80659559&voucher%5BobjectName%5D=Voucher&limit=10000&offset=0&
-    countAll=True
-Authorization: {{ApiKey}}
+### Get accounting contacts filtered by contact
+GET {{baseUrl}}/AccountingContact?contact[id]=1&contact[objectName]=Contact
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get accounting contact by ID
+GET {{baseUrl}}/AccountingContact/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CHECK ACCOUNT =====================
+
+### Get all check accounts
+GET {{baseUrl}}/CheckAccount
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get check account by ID
+GET {{baseUrl}}/CheckAccount/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get balance at date
+GET {{baseUrl}}/CheckAccount/1/getBalanceAtDate?date=2024-01-01
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CHECK ACCOUNT TRANSACTION =====================
+
+### Get all check account transactions
+GET {{baseUrl}}/CheckAccountTransaction
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get check account transaction by ID
+GET {{baseUrl}}/CheckAccountTransaction/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== COMMUNICATION WAY =====================
+
+### Get all communication ways
+GET {{baseUrl}}/CommunicationWay
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get communication way by ID
+GET {{baseUrl}}/CommunicationWay/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get communication way keys
+GET {{baseUrl}}/CommunicationWayKey
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CONTACT =====================
+
+### Get all contacts
+GET {{baseUrl}}/Contact?limit=100&offset=0
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get contacts with depth (organizations and persons)
+GET {{baseUrl}}/Contact?depth=1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get contact by ID
+GET {{baseUrl}}/Contact/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get next customer number
+GET {{baseUrl}}/Contact/Factory/getNextCustomerNumber
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Check customer number availability
+GET {{baseUrl}}/Contact/Mapper/checkCustomerNumberAvailability?customerNumber=10001
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get contact tabs item count
+GET {{baseUrl}}/Contact/1/getTabsItemCount
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Find contacts by custom field value
+GET {{baseUrl}}/Contact/Factory/findContactsByCustomFieldValue?value=test&customFieldSetting[id]=1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CONTACT ADDRESS =====================
+
+### Get all contact addresses
+GET {{baseUrl}}/ContactAddress
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get contact address by ID
+GET {{baseUrl}}/ContactAddress/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CONTACT CUSTOM FIELD =====================
+
+### Get all contact custom fields
+GET {{baseUrl}}/ContactCustomField
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get contact custom field by ID
+GET {{baseUrl}}/ContactCustomField/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CONTACT CUSTOM FIELD SETTING =====================
+
+### Get all contact custom field settings
+GET {{baseUrl}}/ContactCustomFieldSetting
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get contact custom field setting by ID
+GET {{baseUrl}}/ContactCustomFieldSetting/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get reference count for contact custom field setting
+GET {{baseUrl}}/ContactCustomFieldSetting/1/getReferenceCount
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CREDIT NOTE =====================
+
+### Get all credit notes
+GET {{baseUrl}}/CreditNote
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get credit note by ID
+GET {{baseUrl}}/CreditNote/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get credit note PDF
+GET {{baseUrl}}/CreditNote/1/getPdf
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== CREDIT NOTE POS =====================
+
+### Get all credit note positions
+GET {{baseUrl}}/CreditNotePos
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== DOC SERVER =====================
+
+### Get letterpapers with thumbnails
+GET {{baseUrl}}/DocServer/getLetterpapersWithThumb
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get templates with thumbnails
+GET {{baseUrl}}/DocServer/getTemplatesWithThumb?type=Invoice
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== INVOICE =====================
+
+### Get all invoices
+GET {{baseUrl}}/Invoice
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get invoices with filters
+GET {{baseUrl}}/Invoice?status=200&startDate=2024-01-01&endDate=2024-12-31
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get invoice by ID
+GET {{baseUrl}}/Invoice/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get invoice positions
+GET {{baseUrl}}/Invoice/1/getPositions
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get invoice PDF
+GET {{baseUrl}}/Invoice/1/getPdf
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get invoice XML (e-invoice)
+GET {{baseUrl}}/Invoice/1/getXml
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Check if invoice is partially paid
+GET {{baseUrl}}/Invoice/1/getIsPartiallyPaid
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Render invoice
+GET {{baseUrl}}/Invoice/1/render
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== INVOICE POS =====================
+
+### Get all invoice positions
+GET {{baseUrl}}/InvoicePos
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== ORDER =====================
+
+### Get all orders
+GET {{baseUrl}}/Order
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order by ID
+GET {{baseUrl}}/Order/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order positions
+GET {{baseUrl}}/Order/1/getPositions
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order discounts
+GET {{baseUrl}}/Order/1/getDiscounts
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order PDF
+GET {{baseUrl}}/Order/1/getPdf
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order related objects
+GET {{baseUrl}}/Order/1/getRelatedObjects
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== ORDER POS =====================
+
+### Get all order positions
+GET {{baseUrl}}/OrderPos
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order position by ID
+GET {{baseUrl}}/OrderPos/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== PART =====================
+
+### Get all parts
+GET {{baseUrl}}/Part
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get part by ID
+GET {{baseUrl}}/Part/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get part stock
+GET {{baseUrl}}/Part/1/getStock
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== PROGRESS =====================
+
+### Get progress
+GET {{baseUrl}}/Progress/getProgress?hash=abc123
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== RECEIPT GUIDANCE =====================
+
+### Get all account guides
+GET {{baseUrl}}/ReceiptGuidance/forAllAccounts
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get guidance by account number
+GET {{baseUrl}}/ReceiptGuidance/forAccountNumber?accountNumber=1000
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get guidance by tax rule
+GET {{baseUrl}}/ReceiptGuidance/forTaxRule?taxRule=USTPFL_UMS_EINN
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get revenue guidance
+GET {{baseUrl}}/ReceiptGuidance/forRevenue
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get expense guidance
+GET {{baseUrl}}/ReceiptGuidance/forExpense
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== TAG =====================
+
+### Get all tags
+GET {{baseUrl}}/Tag
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get tag by ID
+GET {{baseUrl}}/Tag/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== TAG RELATION =====================
+
+### Get all tag relations
+GET {{baseUrl}}/TagRelation
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== TEXTPARSER =====================
+
+### Get placeholders for model
+GET {{baseUrl}}/Textparser/fetchDictionaryEntriesByType?objectName=Invoice
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get placeholders for email
+GET {{baseUrl}}/Textparser/fetchDictionaryEntriesByType?objectName=Email&subObjectName=Invoice
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== TOOLS =====================
+
+### Get bookkeeping system version
+GET {{baseUrl}}/Tools/bookkeepingSystemVersion
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== VOUCHER =====================
+
+### Get all vouchers
+GET {{baseUrl}}/Voucher
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get vouchers with filters
+GET {{baseUrl}}/Voucher?status=100&creditDebit=C&contact[id]=1&contact[objectName]=Contact
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get voucher by ID
+GET {{baseUrl}}/Voucher/1
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== VOUCHER POS =====================
+
+### Get all voucher positions
+GET {{baseUrl}}/VoucherPos
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get voucher positions for specific voucher
+GET {{baseUrl}}/VoucherPos?voucher[id]=1&voucher[objectName]=Voucher
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== EXPORT =====================
+
+### Export contact list CSV
+GET {{baseUrl}}/Export/contactListCsv
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Export credit note CSV
+GET {{baseUrl}}/Export/creditNoteCsv
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Export invoice CSV
+GET {{baseUrl}}/Export/invoiceCsv
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Export transactions CSV
+GET {{baseUrl}}/Export/transactionsCsv
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Export voucher list CSV
+GET {{baseUrl}}/Export/voucherListCsv
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Export DATEV CSV
+GET {{baseUrl}}/Export/datevCSV
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== EXPORT JOB =====================
+
+### Get export job download info
+GET {{baseUrl}}/ExportJob/jobDownloadInfo?jobId=123456
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### ===================== REPORT =====================
+
+### Get contact list report
+GET {{baseUrl}}/Report/contactlist
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get invoice list report
+GET {{baseUrl}}/Report/invoicelist
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get order list report
+GET {{baseUrl}}/Report/orderlist
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+### Get voucher list report
+GET {{baseUrl}}/Report/voucherlist
+Authorization: {{apiKey}}
 Content-Type: application/json

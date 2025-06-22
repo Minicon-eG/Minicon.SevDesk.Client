@@ -49,8 +49,8 @@ public interface IAccountingContactApi
 	/// <returns>Task of GetAccountContactResponse</returns>
 	[Get("/AccountingContact")]
 	Task<GetAccountContactResponse> GetAccountingContactAsync(
-		string? contactId = null,
-		string? contactObjectName = null,
+		[AliasAs("id")] string? contactId = null,
+		[AliasAs("objectName")] string? contactObjectName = null,
 		int limit = 10000,
 		int offset = 0,
 		bool countAll = true,
