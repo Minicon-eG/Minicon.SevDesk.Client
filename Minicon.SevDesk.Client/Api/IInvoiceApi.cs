@@ -301,4 +301,18 @@ public interface IInvoiceApi
 	[Post("/Invoice/{invoiceId}/sendViaEmail")]
 	Task<SendInvoiceViaEMailResponse> SendInvoiceViaEMailAsync(int invoiceId, InvoiceIdSendViaEmailBody body,
 		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Get invoice as XML for e-invoicing
+	/// </summary>
+	/// <remarks>
+	///     Returns the invoice data in XML format for electronic invoicing (e-invoice).
+	///     This is useful for automated invoice processing and compliance with e-invoicing standards.
+	/// </remarks>
+	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
+	/// <param name="invoiceId">ID of the invoice to retrieve as XML</param>
+	/// <param name="cancellationToken"></param>
+	/// <returns>Task of string (XML content)</returns>
+	[Get("/Invoice/{invoiceId}/getXml")]
+	Task<string> GetInvoiceXmlAsync(int invoiceId, CancellationToken cancellationToken = default);
 }

@@ -35,6 +35,10 @@ handling multi-currency transactions.
   [`ModelInvoiceUpdate`](src/Models/ModelInvoiceUpdate.cs), and [`ModelCreditNote`](src/Models/ModelCreditNote.cs).
 - Key operations include setting tax configurations, overseeing payment terms, and managing
   recurring vouchers for diverse clientele.
+- **NEW**: DATEV export support for both CSV and XML formats
+- **NEW**: Export job tracking and progress monitoring
+- **NEW**: E-invoice XML retrieval for electronic invoicing compliance
+- Updated tax system: `taxType = noteu` replaced with `taxRule: 17` for non-EU transactions
 
 ### Usage Examples
 
@@ -57,10 +61,14 @@ case implementations.
    public class InvoiceController : ControllerBase
    {
        private readonly IVoucherApi _voucherApi;
+       private readonly IExportApi _exportApi;
+       private readonly IExportJobApi _exportJobApi;
 
-       public InvoiceController(IVoucherApi voucherApi)
+       public InvoiceController(IVoucherApi voucherApi, IExportApi exportApi, IExportJobApi exportJobApi)
        {
            _voucherApi = voucherApi;
+           _exportApi = exportApi;
+           _exportJobApi = exportJobApi;
        }
 
        [HttpPost]
@@ -68,6 +76,18 @@ case implementations.
        {
            var voucher = await _voucherApi.GetVoucherByIdAsync(id);
            return Ok(voucher);
+       }
+
+       [HttpPost]
+       public async Task<IActionResult> ExportDatevCsv([FromBody] CreateDatevCsvExportRequest request)
+       {
+           // Create DATEV export job
+           var jobResponse = await _exportApi.CreateDatevCsvZipExportJobAsync(request);
+           
+           // Get download info
+           var downloadInfo = await _exportJobApi.GetJobDownloadInfoAsync(jobResponse.Objects.JobId);
+           
+           return Ok(downloadInfo);
        }
    }
 ```
