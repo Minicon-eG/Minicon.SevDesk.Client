@@ -22,13 +22,14 @@ public static class ServiceCollectionExtensions
 
 		services.AddTransient<ISupplierResolver, SupplierResolver>();
 		services.AddTransient<JsonInspectingHandler>();
+		services.AddSingleton<ISevDeskClientFactory, SevDeskClientFactory>();
+		
 		foreach (Type apiInterface in apiInterfaces)
 		{
 			services.AddRefitClient(apiInterface, RefitSettings())
 				.ConfigureHttpClient(SetupRefitHttpClient)
 				.AddHttpMessageHandler<JsonInspectingHandler>();
 		}
-
 
 		return services;
 	}

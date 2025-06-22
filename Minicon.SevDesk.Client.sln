@@ -7,9 +7,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{BC38FC00-B3BF-4F3B-A006-8514BB575B4A}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\nuget_push.yaml = .github\workflows\nuget_push.yaml
-		Minicon.SevDesk.Client\README.md = Minicon.SevDesk.Client\README.md
 		Directory.Build.props = Directory.Build.props
 		Minicon.SevDesk.Client\version.json = Minicon.SevDesk.Client\version.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
