@@ -459,3 +459,56 @@ Content-Type: application/json
 GET {{baseUrl}}/Report/voucherlist
 Authorization: {{apiKey}}
 Content-Type: application/json
+
+### Create a Voucher
+
+POST {{baseUrl}}/Voucher/Factory/saveVoucher
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+{
+    "voucher" : {
+        "status" : "50",
+        "creditDebit" : "D",
+        "voucherType" : "VOU",
+        "objectName" : "Voucher",
+        "mapAll" : true,
+        "sevClient" : {
+            "id" : 663709,
+            "objectName" : "SevClient"
+        },
+        "createUser" : {
+            "id" : 1154585,
+            "objectName" : "SevUser"
+        },
+        "voucherDate" : "2025-06-23T23:47:44.096908+02:00",
+        "supplier" : {
+            "id" : 106077777,
+            "objectName" : "Contact"
+        },
+        "supplierName" : "Rabot Charge",
+        "description" : "Test voucher with uploaded file",
+        "taxType" : "default",
+        "currency" : "EUR"
+    },
+    "voucherPosSave" : [ {
+        "objectName" : "VoucherPos",
+        "mapAll" : true,
+        "sevClient" : {
+            "id" : 663709,
+            "objectName" : "SevClientReference"
+        },
+        "accountingType" : {
+            "id" : 1,
+            "objectName" : "AccountingType"
+        },
+        "taxRate" : 19.0,
+        "net" : false,
+        "isAsset" : false,
+        "sumNet" : 100.0,
+        "sumGross" : 119.0
+    } ],
+    "mapAll" : true,
+    "objectName" : "Voucher",
+    "filename" : "1955f656424f18de7355a189ecfd50eb.pdf"
+}

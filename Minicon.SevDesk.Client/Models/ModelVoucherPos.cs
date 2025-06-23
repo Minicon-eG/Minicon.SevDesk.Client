@@ -46,7 +46,7 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	/// <param name="comment">Comment for the voucher position..</param>
 	public ModelVoucherPos(
 		ModelVoucherPosSevClient sevClient,
-		ModelVoucherPosVoucher voucher,
+		ModelVoucherPosVoucher? voucher,
 		ModelVoucherPosAccountingType? accountingType,
 		ModelVoucherPosEstimatedAccountingType? estimatedAccountingType,
 		decimal taxRate,
@@ -116,7 +116,7 @@ public class ModelVoucherPos : IEquatable<ModelVoucherPos>, IValidatableObject
 	///     Gets or Sets Voucher
 	/// </summary>
 	[DataMember(Name = "voucher", EmitDefaultValue = false)]
-	public ModelVoucherPosVoucher Voucher { get; set; }
+	public ModelVoucherPosVoucher? Voucher { get; set; }
 
 	/// <summary>
 	///     Gets or Sets AccountingTypeReference

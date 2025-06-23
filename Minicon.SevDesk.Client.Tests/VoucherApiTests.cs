@@ -13,7 +13,7 @@ public class VoucherApiTests
 	[Fact]
 	public async Task SaveVoucherAsync()
 	{
-		using var scope = new TestScope<SaveVoucherResponse>();
+		using var scope = new TestScope<object>();
 		IVoucherPosApi sut = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherPosApi>();
 		IVoucherApi voucherApi = scope.ServiceScope.ServiceProvider.GetRequiredService<IVoucherApi>();
 		ModelVoucherResponse voucher = (await voucherApi.GetVoucherByIdAsync(80659657)).Objects.Single();
@@ -31,7 +31,7 @@ public class VoucherApiTests
 					posDeletes
 				);
 
-				SaveVoucherResponse response = await voucherApi.CreateVoucherByFactoryAsync(
+				object response = await voucherApi.CreateVoucherByFactoryAsync(
 					request
 				);
 

@@ -27,17 +27,18 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	/// <param name="voucher">voucher (required).</param>
 	/// <param name="voucherPosSave">voucherPosSave.</param>
 	/// <param name="voucherPosDelete">voucherPosDelete.</param>
+	/// <param name="mapAll"></param>
 	/// <param name="filename">Filename of a previously upload file which should be attached..</param>
-	public SaveVoucher(
-		ModelVoucher voucher,
+	public SaveVoucher(ModelVoucher voucher,
 		ModelVoucherPos[]? voucherPosSave = default,
 		SaveVoucherVoucherPosDelete[]? voucherPosDelete = default,
-		byte[] filename = default
-	)
+		bool mapAll = true,
+		string filename = default)
 	{
 		Voucher = voucher;
 		VoucherPosSave = voucherPosSave;
 		VoucherPosDelete = voucherPosDelete;
+		MapAll = mapAll;
 		Filename = filename;
 	}
 
@@ -59,12 +60,18 @@ public class SaveVoucher : IEquatable<SaveVoucher>, IValidatableObject
 	[DataMember(Name = "voucherPosDelete", EmitDefaultValue = false)]
 	public SaveVoucherVoucherPosDelete[]? VoucherPosDelete { get; set; }
 
+	[DataMember(Name = "mapAll", EmitDefaultValue = false)]
+	public bool MapAll { get; } = true;
+	
+	[DataMember(Name = "objectName", EmitDefaultValue = false)]
+	public string ObjectName { get; } = "Voucher";
+
 	/// <summary>
 	///     Filename of a previously upload file which should be attached.
 	/// </summary>
 	/// <value>Filename of a previously upload file which should be attached.</value>
 	[DataMember(Name = "filename", EmitDefaultValue = false)]
-	public byte[] Filename { get; set; }
+	public string Filename { get; set; }
 
 	/// <summary>
 	///     Returns true if SaveVoucher instances are equal
