@@ -3,3 +3,4 @@ obj/
 .idea/
 http-client.private.env.json
 *.user
+.DS_Store

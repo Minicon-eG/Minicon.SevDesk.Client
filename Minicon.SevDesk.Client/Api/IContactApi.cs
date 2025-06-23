@@ -29,9 +29,9 @@ public interface IContactApi
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
 	/// <param name="body">Creation data (optional)</param>
-	/// <returns>Task of GetContactResponse</returns>
+	/// <returns>Task of CreateContactResponse</returns>
 	[Post("/Contact")]
-	Task<GetContactResponse> CreateContactAsync(ModelContact body);
+	Task<CreateContactResponse> CreateContactAsync(ModelContact body);
 
 	/// <summary>
 	///     Deletes a contact

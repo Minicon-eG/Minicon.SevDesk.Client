@@ -7,6 +7,8 @@ managing various operations related to SevDesk vouchers, invoices, and credit no
 functionalities include generating invoices from orders, updating voucher details, and
 handling multi-currency transactions.
 
+📋 **[View Changelog](CHANGELOG.md)** for recent updates and version history.
+
 ## Setup
 
 1. **System Requirements**:
@@ -35,10 +37,12 @@ handling multi-currency transactions.
   [`ModelInvoiceUpdate`](src/Models/ModelInvoiceUpdate.cs), and [`ModelCreditNote`](src/Models/ModelCreditNote.cs).
 - Key operations include setting tax configurations, overseeing payment terms, and managing
   recurring vouchers for diverse clientele.
+- **NEW**: User API support for retrieving current user information
 - **NEW**: DATEV export support for both CSV and XML formats
 - **NEW**: Export job tracking and progress monitoring
 - **NEW**: E-invoice XML retrieval for electronic invoicing compliance
 - Updated tax system: `taxType = noteu` replaced with `taxRule: 17` for non-EU transactions
+- Enhanced file upload functionality with proper multipart/form-data support
 
 ### Usage Examples
 
@@ -76,12 +80,30 @@ public void ConfigureServices(IServiceCollection services)
        private readonly IVoucherApi _voucherApi;
        private readonly IExportApi _exportApi;
        private readonly IExportJobApi _exportJobApi;
+       private readonly ISevUserApi _sevUserApi;
 
-       public InvoiceController(IVoucherApi voucherApi, IExportApi exportApi, IExportJobApi exportJobApi)
+       public InvoiceController(IVoucherApi voucherApi, IExportApi exportApi, 
+           IExportJobApi exportJobApi, ISevUserApi sevUserApi)
        {
            _voucherApi = voucherApi;
            _exportApi = exportApi;
            _exportJobApi = exportJobApi;
+           _sevUserApi = sevUserApi;
+       }
+
+       [HttpGet("user")]
+       public async Task<IActionResult> GetCurrentUser()
+       {
+           var userResponse = await _sevUserApi.GetCurrentUserAsync();
+           var user = userResponse.Objects.First();
+           
+           // Use for creating vouchers
+           var createUser = new ModelVoucherCreateUser(
+               id: int.Parse(user.Id),
+               objectName: "SevUser"
+           );
+           
+           return Ok(user);
        }
 
        [HttpPost]
@@ -89,6 +111,15 @@ public void ConfigureServices(IServiceCollection services)
        {
            var voucher = await _voucherApi.GetVoucherByIdAsync(id);
            return Ok(voucher);
+       }
+
+       [HttpPost("upload")]
+       public async Task<IActionResult> UploadVoucherFile(IFormFile file)
+       {
+           using var stream = file.OpenReadStream();
+           var streamPart = new StreamPart(stream, file.FileName, file.ContentType);
+           var result = await _voucherApi.VoucherUploadFileAsync(streamPart);
+           return Ok(result);
        }
 
        [HttpPost]
@@ -203,6 +234,9 @@ var invoiceApi = factory.CreateInvoiceApi(options);
 var voucherApi = factory.CreateVoucherApi(options);
 var orderApi = factory.CreateOrderApi(options);
 var creditNoteApi = factory.CreateCreditNoteApi(options);
+
+// User and authentication
+var sevUserApi = factory.CreateSevUserApi(options);
 
 // Financial management
 var checkAccountApi = factory.CreateCheckAccountApi(options);

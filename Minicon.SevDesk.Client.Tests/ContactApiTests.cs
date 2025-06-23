@@ -1,3 +1,4 @@
+using System.Globalization;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -157,6 +158,53 @@ public class ContactApiTests
 					result.Objects.Should().NotBeNull();
 				}
 			);
+		}
+	}
+
+	[Fact]
+	public async Task CreateContactAsync_WithCategoryIdSupplier_Creates_SupplierContact()
+	{
+		using var scope = new TestScope<CreateContactResponse>();
+		var api = scope.ServiceScope.ServiceProvider.GetRequiredService<IContactApi>();
+		
+		int? createdContactId = null;
+
+		try
+		{
+			// Create a new supplier contact with category ID 2
+			var supplierContact = new ModelContact(
+				name: $"Test Supplier {Guid.NewGuid()}", // Unique name to avoid conflicts
+				category: new ModelContactCategory(id: 2, objectName: "Category"),
+				status: 1000 // Active status
+			);
+
+			await scope.TestAsync(
+				async () => await api.CreateContactAsync(supplierContact),
+				result =>
+				{
+					var createdContact = result.Objects;
+					createdContact.Name.Should().StartWith("Test Supplier");
+					createdContact.Category.Should().NotBeNull();
+					createdContact.Category.Id.Should().Be("2"); // Category ID 2 for supplier
+					createdContact.Status.Should().Be("1000"); // Active status
+					createdContactId = int.Parse(createdContact.Id, CultureInfo.InvariantCulture);
+				}
+			);
+		}
+		finally
+		{
+			// Clean up: Delete the created contact
+			if (createdContactId.HasValue)
+			{
+				try
+				{
+					await api.DeleteContactAsync(createdContactId.Value);
+				}
+				catch
+				{
+					// Ignore cleanup errors
+				}
+			}
 		}
 	}
 }
