@@ -26,10 +26,16 @@ public class FileResponse : Pageable, IEquatable<FileResponse>, IValidatableObje
 	/// </summary>
 	/// <param name="filename">filename.</param>
 	/// <param name="mimeType">mimeType.</param>
-	public FileResponse(string filename = default, string mimeType = default)
+	/// <param name="pages">pages.</param>
+	/// <param name="originMimeType">originMimeType.</param>
+	/// <param name="contentHash">contentHash.</param>
+	public FileResponse(string filename = default, string mimeType = default, int? pages = default, string originMimeType = default, string contentHash = default)
 	{
 		Filename = filename;
 		MimeType = mimeType;
+		Pages = pages;
+		OriginMimeType = originMimeType;
+		ContentHash = contentHash;
 	}
 
 	/// <summary>
@@ -43,6 +49,24 @@ public class FileResponse : Pageable, IEquatable<FileResponse>, IValidatableObje
 	/// </summary>
 	[DataMember(Name = "mimeType", EmitDefaultValue = false)]
 	public string MimeType { get; set; }
+
+	/// <summary>
+	///     Gets or Sets Pages
+	/// </summary>
+	[DataMember(Name = "pages", EmitDefaultValue = false)]
+	public int? Pages { get; set; }
+
+	/// <summary>
+	///     Gets or Sets OriginMimeType
+	/// </summary>
+	[DataMember(Name = "originMimeType", EmitDefaultValue = false)]
+	public string OriginMimeType { get; set; }
+
+	/// <summary>
+	///     Gets or Sets ContentHash
+	/// </summary>
+	[DataMember(Name = "contentHash", EmitDefaultValue = false)]
+	public string ContentHash { get; set; }
 
 	/// <summary>
 	///     Returns true if InlineResponse2012Objects instances are equal
@@ -66,6 +90,21 @@ public class FileResponse : Pageable, IEquatable<FileResponse>, IValidatableObje
 				MimeType == input.MimeType ||
 				(MimeType != null &&
 				 MimeType.Equals(input.MimeType))
+			) &&
+			(
+				Pages == input.Pages ||
+				(Pages != null &&
+				 Pages.Equals(input.Pages))
+			) &&
+			(
+				OriginMimeType == input.OriginMimeType ||
+				(OriginMimeType != null &&
+				 OriginMimeType.Equals(input.OriginMimeType))
+			) &&
+			(
+				ContentHash == input.ContentHash ||
+				(ContentHash != null &&
+				 ContentHash.Equals(input.ContentHash))
 			);
 	}
 
@@ -89,6 +128,9 @@ public class FileResponse : Pageable, IEquatable<FileResponse>, IValidatableObje
 		sb.Append("class InlineResponse2012Objects {\n");
 		sb.Append("  Filename: ").Append(Filename).Append('\n');
 		sb.Append("  MimeType: ").Append(MimeType).Append('\n');
+		sb.Append("  Pages: ").Append(Pages).Append('\n');
+		sb.Append("  OriginMimeType: ").Append(OriginMimeType).Append('\n');
+		sb.Append("  ContentHash: ").Append(ContentHash).Append('\n');
 		sb.Append("}\n");
 		return sb.ToString();
 	}
@@ -129,6 +171,21 @@ public class FileResponse : Pageable, IEquatable<FileResponse>, IValidatableObje
 			if (MimeType != null)
 			{
 				hashCode = hashCode * 59 + MimeType.GetHashCode();
+			}
+
+			if (Pages != null)
+			{
+				hashCode = hashCode * 59 + Pages.GetHashCode();
+			}
+
+			if (OriginMimeType != null)
+			{
+				hashCode = hashCode * 59 + OriginMimeType.GetHashCode();
+			}
+
+			if (ContentHash != null)
+			{
+				hashCode = hashCode * 59 + ContentHash.GetHashCode();
 			}
 
 			return hashCode;

@@ -25,7 +25,7 @@ public class UploadFileResponse : Pageable, IEquatable<UploadFileResponse>, IVal
 	///     Initializes a new instance of the <see cref="UploadFileResponse" /> class.
 	/// </summary>
 	/// <param name="objects">objects.</param>
-	public UploadFileResponse(List<FileResponse> objects = default)
+	public UploadFileResponse(FileResponse objects = default)
 	{
 		Objects = objects;
 	}
@@ -34,7 +34,7 @@ public class UploadFileResponse : Pageable, IEquatable<UploadFileResponse>, IVal
 	///     Gets or Sets Objects
 	/// </summary>
 	[DataMember(Name = "objects", EmitDefaultValue = false)]
-	public List<FileResponse> Objects { get; set; }
+	public FileResponse Objects { get; set; }
 
 	/// <summary>
 	///     Returns true if InlineResponse2012 instances are equal
@@ -51,8 +51,7 @@ public class UploadFileResponse : Pageable, IEquatable<UploadFileResponse>, IVal
 		return
 			Objects == input.Objects ||
 			(Objects != null &&
-			 input.Objects != null &&
-			 Objects.SequenceEqual(input.Objects));
+			 Objects.Equals(input.Objects));
 	}
 
 	/// <summary>

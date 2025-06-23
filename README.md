@@ -45,17 +45,30 @@ handling multi-currency transactions.
 For comprehensive usage details, refer to the model-specific documentation or examine the test
 case implementations.
 
+#### Dependency Injection Registration
+
 ```csharp
-   public void ConfigureServices(IServiceCollection services)
-   {
-       // Register other services...
-       services.AddSevdeskClient(options =>
-       {
-           options.ApiKey = "YOUR_API_KEY"; // Set the required API key
-           options.BaseUrl = "https://api.sevdesk.de"; // Set the base URL if different
-       });
-   }
- ```
+public void ConfigureServices(IServiceCollection services)
+{
+    // Register other services...
+    services.AddSevdeskClient();
+    
+    // Configure options via appsettings.json or user secrets
+    services.Configure<SevDeskOptions>(configuration.GetSection("SevDesk"));
+}
+```
+
+#### Configuration via appsettings.json
+
+```json
+{
+  "SevDesk": {
+    "ApiKey": "your-sevdesk-api-key",
+    "ApiUrl": "https://my.sevdesk.de/api/v1",
+    "InspectJson": false
+  }
+}
+```
 
 ```csharp
    public class InvoiceController : ControllerBase
@@ -91,6 +104,137 @@ case implementations.
        }
    }
 ```
+
+#### Using the Factory Pattern
+
+The `ISevDeskClientFactory` allows you to create API clients with custom configurations on-demand, which is useful for:
+- Multi-tenant applications with different API keys
+- Runtime configuration changes
+- Testing scenarios with different endpoints
+
+```csharp
+public class MultiTenantService
+{
+    private readonly ISevDeskClientFactory _clientFactory;
+    
+    public MultiTenantService(ISevDeskClientFactory clientFactory)
+    {
+        _clientFactory = clientFactory;
+    }
+    
+    public async Task<GetVoucherResponse> GetVoucherForTenant(string tenantApiKey, int voucherId)
+    {
+        var options = new SevDeskOptions
+        {
+            ApiKey = tenantApiKey,
+            ApiUrl = "https://my.sevdesk.de/api/v1",
+            InspectJson = false
+        };
+        
+        var voucherApi = _clientFactory.CreateVoucherApi(options);
+        return await voucherApi.GetVoucherByIdAsync(voucherId);
+    }
+    
+    public async Task ProcessMultipleTenants(Dictionary<string, string> tenantApiKeys)
+    {
+        foreach (var (tenantId, apiKey) in tenantApiKeys)
+        {
+            var options = new SevDeskOptions { ApiKey = apiKey, ApiUrl = "https://my.sevdesk.de/api/v1" };
+            
+            // Create specific API clients for this tenant
+            var contactApi = _clientFactory.CreateContactApi(options);
+            var invoiceApi = _clientFactory.CreateInvoiceApi(options);
+            
+            // Process tenant-specific data
+            var contacts = await contactApi.GetContactsAsync();
+            var invoices = await invoiceApi.GetInvoicesAsync();
+            
+            // Process data...
+        }
+    }
+}
+```
+
+#### Factory vs Dependency Injection
+
+**Use Dependency Injection when:**
+- You have a single SevDesk account/configuration
+- Configuration is static and known at startup
+- You want automatic logging and HTTP client management
+
+**Use Factory Pattern when:**
+- You need to support multiple SevDesk accounts (multi-tenant)
+- Configuration changes at runtime
+- You need different settings per operation
+- Testing with different endpoints or mock configurations
+
+```csharp
+// DI approach - single configuration
+public class SingleTenantService
+{
+    private readonly IVoucherApi _voucherApi;
+    
+    public SingleTenantService(IVoucherApi voucherApi)
+    {
+        _voucherApi = voucherApi; // Configured via DI
+    }
+}
+
+// Factory approach - multiple configurations
+public class MultiTenantService
+{
+    private readonly ISevDeskClientFactory _factory;
+    
+    public MultiTenantService(ISevDeskClientFactory factory)
+    {
+        _factory = factory; // Create clients as needed
+    }
+}
+```
+
+#### Available Factory Methods
+
+The factory provides creation methods for all SevDesk API interfaces:
+
+```csharp
+// Core business entities
+var contactApi = factory.CreateContactApi(options);
+var invoiceApi = factory.CreateInvoiceApi(options);
+var voucherApi = factory.CreateVoucherApi(options);
+var orderApi = factory.CreateOrderApi(options);
+var creditNoteApi = factory.CreateCreditNoteApi(options);
+
+// Financial management
+var checkAccountApi = factory.CreateCheckAccountApi(options);
+var checkAccountTransactionApi = factory.CreateCheckAccountTransactionApi(options);
+var accountingContactApi = factory.CreateAccountingContactApi(options);
+
+// Export and reporting
+var exportApi = factory.CreateExportApi(options);
+var exportJobApi = factory.CreateExportJobApi(options);
+var reportApi = factory.CreateReportApi(options);
+
+// And many more... (see ISevDeskClientFactory for complete list)
+```
+
+#### Factory Registration
+
+To use the factory pattern, register it in your DI container:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // Register logging
+    services.AddLogging();
+    
+    // Register the factory
+    services.AddSingleton<ISevDeskClientFactory, SevDeskClientFactory>();
+    
+    // Optional: also register for DI approach
+    services.AddSevdeskClient();
+}
+```
+
 ## System Configuration
 
 - Confirm your environment is configured to utilize .NET SDK 9.0.0 as specified by the

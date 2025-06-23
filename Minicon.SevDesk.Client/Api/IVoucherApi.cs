@@ -129,10 +129,11 @@ public interface IVoucherApi
 	///     the right order, the file will be attached to your voucher.
 	/// </remarks>
 	/// <exception cref="ApiException">Thrown when fails to make API call</exception>
-	/// <param name="body">File to upload</param>
+	/// <param name="file">File to upload</param>
 	/// <returns>Task of UploadFileResponse</returns>
+	[Multipart]
 	[Post("/Voucher/Factory/uploadTempFile")]
-	Task<UploadFileResponse> VoucherUploadFileAsync(FactoryUploadTempFileBody body);
+	Task<UploadFileResponse> VoucherUploadFileAsync([AliasAs("file")] StreamPart file);
 
 	/// <summary>
 	///     Enshrine
