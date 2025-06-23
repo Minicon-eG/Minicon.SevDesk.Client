@@ -31,6 +31,7 @@ public interface ISevDeskClientFactory
     IReportApi CreateReportApi(SevDeskOptions options);
     ISaveVoucherApi CreateSaveVoucherApi(SevDeskOptions options);
     ISevClientApi CreateSevClientApi(SevDeskOptions options);
+    ISevUserApi CreateSevUserApi(SevDeskOptions options);
     ITagApi CreateTagApi(SevDeskOptions options);
     ITagRelationApi CreateTagRelationApi(SevDeskOptions options);
     ITextparserApi CreateTextparserApi(SevDeskOptions options);

@@ -43,6 +43,7 @@ public class SevDeskClientFactory : ISevDeskClientFactory
     public IReportApi CreateReportApi(SevDeskOptions options) => CreateApiClient<IReportApi>(options);
     public ISaveVoucherApi CreateSaveVoucherApi(SevDeskOptions options) => CreateApiClient<ISaveVoucherApi>(options);
     public ISevClientApi CreateSevClientApi(SevDeskOptions options) => CreateApiClient<ISevClientApi>(options);
+    public ISevUserApi CreateSevUserApi(SevDeskOptions options) => CreateApiClient<ISevUserApi>(options);
     public ITagApi CreateTagApi(SevDeskOptions options) => CreateApiClient<ITagApi>(options);
     public ITagRelationApi CreateTagRelationApi(SevDeskOptions options) => CreateApiClient<ITagRelationApi>(options);
     public ITextparserApi CreateTextparserApi(SevDeskOptions options) => CreateApiClient<ITextparserApi>(options);

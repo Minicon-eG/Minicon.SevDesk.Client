@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
 			typeof(IDocServerApi), typeof(IExportApi), typeof(IExportJobApi), typeof(IInvoiceApi), typeof(IInvoicePosApi),
 			typeof(ILayoutApi), typeof(IOrderApi), typeof(IOrderPosApi), typeof(IPartApi), typeof(IProgressApi),
 			typeof(IReceiptGuidanceApi), typeof(IReportApi), typeof(ISaveVoucherApi), typeof(ISevClientApi),
-			typeof(ITagApi), typeof(ITagRelationApi), typeof(ITextparserApi), typeof(IToolsApi),
+			typeof(ISevUserApi), typeof(ITagApi), typeof(ITagRelationApi), typeof(ITextparserApi), typeof(IToolsApi),
 			typeof(IVoucherApi), typeof(IVoucherPosApi)
 		};
 

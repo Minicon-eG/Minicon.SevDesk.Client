@@ -2,6 +2,15 @@
 @baseUrl = https://my.sevdesk.de/api/v1
 @apiKey = {{ApiKey}}
 
+
+### ===================== SevUser  =====================
+### Get all accounting contacts
+GET {{baseUrl}}/SevUser
+Authorization: {{apiKey}}
+Content-Type: application/json
+
+###
+
 ### ===================== ACCOUNTING CONTACT =====================
 
 ### Get all accounting contacts
