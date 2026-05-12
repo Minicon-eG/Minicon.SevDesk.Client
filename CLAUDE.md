@@ -60,17 +60,25 @@ Configuration via `SevDeskOptions`:
 
 ### API Implementation Status
 
-The client implements most SevDesk API endpoints. Key differences from the official OpenAPI spec:
-- Missing: `ContactCustomField`, `ContactCustomFieldSetting`, `DocServer`, `ReceiptGuidance`, `Tools`, `SevClient`, `TagRelation`, `Textparser`
-- Additional (possibly legacy): `IAccountingTypeApi`, `ICostCentreApi`, `ILayoutApi`
+Verified against sevDesk OpenAPI spec **2.0.0** (`https://api.sevdesk.de/openapi.yaml`, retrieved 2026-05-12). All documented endpoints are implemented.
+
+Legacy / undocumented interfaces (marked `[Obsolete]`, kept for backwards compatibility):
+- `IAccountingTypeApi` — `/AccountingType` (not in spec)
+- `ICostCentreApi` — `/CostCentre` (not in spec)
+- `ILayoutApi` — `/Layout` (superseded by `IDocServerApi`)
+- `ISevUserApi` — `/SevUser` (not in spec)
+- `IContactFieldApi` — redundant aggregate of `IContactCustomFieldApi`, `IContactCustomFieldSettingApi`, `ITextparserApi`
 
 ### Recent Updates
 
-- Added support for DATEV export jobs (`/Export/createDatevCsvZipExportJob`, `/Export/createDatevXmlZipExportJob`)
-- Added export job tracking (`/ExportJob/jobDownloadInfo`)
-- Added progress monitoring (`/Progress/generateDownloadHash`, `/Progress/getProgress`)
-- Added e-invoice XML retrieval (`/Invoice/{invoiceId}/getXml`)
-- Updated to latest OpenAPI specification
+- Verified completeness against OpenAPI spec 2.0.0 (2026-05-12)
+- New: `IPrivateTransactionRuleApi` (`GET/POST /PrivateTransactionRule`, `DELETE /PrivateTransactionRule/{id}`)
+- New: `CreditNote` lifecycle endpoints — `enshrine`, `resetToOpen`, `resetToDraft`, `Factory/createFromInvoice`, `Factory/createFromVoucher`
+- New: `CheckAccountTransaction/{id}/enshrine`
+- Fix: `IReportApi.ReportContactAsync` was missing `[Get("/Report/contactlist")]` route attribute
+- Fix: `ICreditNoteApi.UpdateCreditNoteAsync` route was `"/CreditNote/{creditNoteId"` (missing `}`)
+- Fix: `ICreditNoteApi.SendCreditNoteByPrintingAsync` path used lowercase `/creditNote/...` (sevDesk routes are case-sensitive)
+- DATEV export jobs (`/Export/createDatevCsv/XmlZipExportJob`), `/ExportJob/jobDownloadInfo`, `/Progress/*`, `/Invoice/{id}/getXml`
 - Tax system changes: `taxType = noteu` replaced with `taxRule: 17`
 
 ### Testing Approach

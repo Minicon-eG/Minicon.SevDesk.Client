@@ -10,6 +10,7 @@ public static class ServiceCollectionExtensions
 {
 	public static IServiceCollection AddSevdeskClient(this IServiceCollection services)
 	{
+#pragma warning disable CS0618 // Legacy/undocumented APIs are still registered for backwards compatibility.
 		var apiInterfaces = new Type[]
 		{
 			typeof(IAccountingContactApi), typeof(IAccountingTypeApi), typeof(ICheckAccountApi),
@@ -18,10 +19,12 @@ public static class ServiceCollectionExtensions
 			typeof(IContactFieldApi), typeof(ICostCentreApi), typeof(ICreditNoteApi), typeof(ICreditNotePosApi),
 			typeof(IDocServerApi), typeof(IExportApi), typeof(IExportJobApi), typeof(IInvoiceApi), typeof(IInvoicePosApi),
 			typeof(ILayoutApi), typeof(IOrderApi), typeof(IOrderPosApi), typeof(IPartApi), typeof(IProgressApi),
+			typeof(IPrivateTransactionRuleApi),
 			typeof(IReceiptGuidanceApi), typeof(IReportApi), typeof(ISaveVoucherApi), typeof(ISevClientApi),
 			typeof(ISevUserApi), typeof(ITagApi), typeof(ITagRelationApi), typeof(ITextparserApi), typeof(IToolsApi),
 			typeof(IVoucherApi), typeof(IVoucherPosApi)
 		};
+#pragma warning restore CS0618
 
 		services.AddTransient<ISupplierResolver, SupplierResolver>();
 		services.AddTransient<JsonInspectingHandler>();

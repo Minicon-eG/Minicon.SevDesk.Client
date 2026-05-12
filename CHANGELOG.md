@@ -8,6 +8,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **IPrivateTransactionRuleApi**: New endpoints from sevDesk OpenAPI spec 2.0.0
+  - `ListPrivateTransactionRulesAsync()` — `GET /PrivateTransactionRule`
+  - `CreatePrivateTransactionRuleAsync(body)` — `POST /PrivateTransactionRule`
+  - `DeletePrivateTransactionRuleAsync(id)` — `DELETE /PrivateTransactionRule/{id}`
+  - Models: `ModelPrivateTransactionRuleResponse`, `GetPrivateTransactionRuleResponse`,
+    `PrivateTransactionRuleResponse`, `CreatePrivateTransactionRule`
+- **ICreditNoteApi**: Added missing lifecycle endpoints
+  - `EnshrineCreditNoteAsync` — `PUT /CreditNote/{id}/enshrine`
+  - `ResetCreditNoteToOpenAsync` — `PUT /CreditNote/{id}/resetToOpen`
+  - `ResetCreditNoteToDraftAsync` — `PUT /CreditNote/{id}/resetToDraft`
+  - `CreateCreditNoteFromInvoiceAsync` — `POST /CreditNote/Factory/createFromInvoice`
+  - `CreateCreditNoteFromVoucherAsync` — `POST /CreditNote/Factory/createFromVoucher`
+    (not supported with sevdesk-Update 2.0)
+  - Models: `CreditNoteFactoryCreateFromInvoiceBody`, `CreditNoteFactoryCreateFromVoucherBody`
+- **ICheckAccountTransactionApi**: `EnshrineCheckAccountTransactionAsync` —
+  `PUT /CheckAccountTransaction/{id}/enshrine`
+
+### Fixed
+- **ICreditNoteApi.UpdateCreditNoteAsync**: route was `"/CreditNote/{creditNoteId"` (missing `}`).
+  All update calls would have failed.
+- **ICreditNoteApi.SendCreditNoteByPrintingAsync**: path used lowercase `/creditNote/...`;
+  corrected to `/CreditNote/{creditNoteId}/sendByWithRender` (sevDesk routes are case-sensitive).
+- **IReportApi.ReportContactAsync**: missing `[Get("/Report/contactlist")]` attribute; calls
+  would never have reached the API.
+
+### Deprecated
+- Marked the following undocumented interfaces as `[Obsolete]` (kept for backwards compatibility):
+  `IAccountingTypeApi`, `ICostCentreApi`, `ILayoutApi`, `ISevUserApi`, `IContactFieldApi`.
+  These endpoints are not part of the official sevDesk OpenAPI spec 2.0.0.
+
+### Added (earlier in this cycle)
 - **ISevUserApi**: New API interface for retrieving current user information
   - `GetCurrentUserAsync()` - Get details about the currently authenticated user
   - Response models: `GetSevUserResponse`, `SevUserResponse`

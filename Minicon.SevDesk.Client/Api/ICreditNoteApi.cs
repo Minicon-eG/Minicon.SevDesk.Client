@@ -174,7 +174,7 @@ public interface ICreditNoteApi
 	/// <param name="sendType">the type you want to print.</param>
 	/// <param name="cancellationToken"></param>
 	/// <returns>Task of GetCreditNoteResponse</returns>
-	[Get("/creditNote/{creditNoteId}/sendByWithRender")]
+	[Get("/CreditNote/{creditNoteId}/sendByWithRender")]
 	Task<GetCreditNoteResponse> SendCreditNoteByPrintingAsync(int creditNoteId, string sendType,
 		CancellationToken cancellationToken = default);
 
@@ -209,7 +209,47 @@ public interface ICreditNoteApi
 	/// <param name="body">Update data (optional)</param>
 	/// <param name="cancellationToken"></param>
 	/// <returns>Task of InlineResponse2005</returns>
-	[Put("/CreditNote/{creditNoteId")]
+	[Put("/CreditNote/{creditNoteId}")]
 	Task<GetCreditNoteResponse> UpdateCreditNoteAsync(int creditNoteId, ModelCreditNoteUpdate body,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Enshrine credit note. Sets the current date as <c>enshrined</c>. Only possible when status is "Open" (200) or higher.
+	///     Enshrined credit notes cannot be changed. This operation cannot be undone.
+	/// </summary>
+	[Put("/CreditNote/{creditNoteId}/enshrine")]
+	Task<GetCreditNoteResponse> EnshrineCreditNoteAsync(int creditNoteId,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Reset credit note status to "Open" (200). Linked transactions will be unlinked.
+	///     Not possible if the credit note or one of its transactions is enshrined.
+	/// </summary>
+	[Put("/CreditNote/{creditNoteId}/resetToOpen")]
+	Task<GetCreditNoteResponse> ResetCreditNoteToOpenAsync(int creditNoteId,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Reset credit note status to "Draft" (100). Only possible if status is currently "Open" (200).
+	/// </summary>
+	[Put("/CreditNote/{creditNoteId}/resetToDraft")]
+	Task<GetCreditNoteResponse> ResetCreditNoteToDraftAsync(int creditNoteId,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Create a new credit note from an existing invoice.
+	/// </summary>
+	[Post("/CreditNote/Factory/createFromInvoice")]
+	Task<SaveCreditNoteResponse> CreateCreditNoteFromInvoiceAsync(
+		CreditNoteFactoryCreateFromInvoiceBody body,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///     Create a new credit note from an existing voucher.
+	///     <para><b>Not supported with sevdesk-Update 2.0.</b></para>
+	/// </summary>
+	[Post("/CreditNote/Factory/createFromVoucher")]
+	Task<SaveCreditNoteResponse> CreateCreditNoteFromVoucherAsync(
+		CreditNoteFactoryCreateFromVoucherBody body,
 		CancellationToken cancellationToken = default);
 }

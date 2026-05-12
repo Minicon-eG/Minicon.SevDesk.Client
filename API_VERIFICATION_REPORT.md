@@ -1,83 +1,73 @@
 # SevDesk API Client Verification Report
 
+**Last verified:** 2026-05-12 against sevDesk OpenAPI spec **2.0.0**
+(`https://api.sevdesk.de/openapi.yaml`)
+
 ## Summary
 
-This report compares the Minicon.SevDesk.Client implementation against the official SevDesk API documentation.
+All path/operation combinations defined in the official OpenAPI specification are
+implemented in `Minicon.SevDesk.Client`. The previous version of this report listed
+several "missing" endpoint groups (ContactCustomField, DocServer, ReceiptGuidance,
+Tools, SevClient, TagRelation, Textparser) — those are all implemented today.
 
 ## API Base URLs
 
-### OpenAPI Specification (Local)
 - Production: `https://my.sevdesk.de/api/v1`
-- Local: `http://sevdesk.local/api/v1`
+- Development: `http://sevdesk.local/api/v1`
 
 ## Authentication
 
-### OpenAPI Specification
-- **Type**: API Key
-- **Header Name**: `Authorization`
-- **Description**: Uses a 32-character hexadecimal API token
+API Key in `Authorization` header (32-character hexadecimal token).
 
-## Missing API Endpoints in Client
+## Changes added in this verification round
 
-The following endpoints are defined in the OpenAPI specification but are NOT implemented in the client:
+### New endpoints implemented
 
-1. **CommunicationWayKey** - `/CommunicationWayKey`
-2. **ContactCustomField** - `/ContactCustomField` and `/ContactCustomField/{contactCustomFieldId}`
-3. **ContactCustomFieldSetting** - `/ContactCustomFieldSetting` and related endpoints
-4. **DocServer** - `/DocServer/getLetterpapersWithThumb` and `/DocServer/getTemplatesWithThumb`
-5. **ReceiptGuidance** - Multiple endpoints:
-   - `/ReceiptGuidance/forAllAccounts`
-   - `/ReceiptGuidance/forAccountNumber`
-   - `/ReceiptGuidance/forTaxRule`
-   - `/ReceiptGuidance/forRevenue`
-   - `/ReceiptGuidance/forExpense`
-6. **SevClient** - `/SevClient/{SevClientId}/updateExportConfig`
-7. **TagRelation** - `/TagRelation`
-8. **Textparser** - `/Textparser/fetchDictionaryEntriesByType`
-9. **Tools** - `/Tools/bookkeepingSystemVersion`
+| Endpoint                                            | Interface                       |
+|-----------------------------------------------------|---------------------------------|
+| `PUT /CheckAccountTransaction/{id}/enshrine`        | `ICheckAccountTransactionApi`   |
+| `PUT /CreditNote/{id}/enshrine`                     | `ICreditNoteApi`                |
+| `PUT /CreditNote/{id}/resetToOpen`                  | `ICreditNoteApi`                |
+| `PUT /CreditNote/{id}/resetToDraft`                 | `ICreditNoteApi`                |
+| `POST /CreditNote/Factory/createFromInvoice`        | `ICreditNoteApi`                |
+| `POST /CreditNote/Factory/createFromVoucher`        | `ICreditNoteApi`                |
+| `GET  /PrivateTransactionRule`                      | `IPrivateTransactionRuleApi` *  |
+| `POST /PrivateTransactionRule`                      | `IPrivateTransactionRuleApi` *  |
+| `DELETE /PrivateTransactionRule/{id}`               | `IPrivateTransactionRuleApi` *  |
 
-## Potentially Extra/Undocumented APIs in Client
+\* new interface; registered in `ServiceCollectionExtensions.AddSevdeskClient()`.
 
-The following API interfaces exist in the client but don't have direct endpoint matches in the OpenAPI specification:
+### Bugs fixed
 
-1. **IAccountingTypeApi** - `/AccountingType` endpoint
-2. **IContactFieldApi** - Appears to be implementing ContactCustomField functionality
-3. **ICostCentreApi** - Cost Centre related operations
-4. **ILayoutApi** - Layout related operations
+- `ICreditNoteApi.UpdateCreditNoteAsync` route was `"/CreditNote/{creditNoteId"` (missing closing brace).
+- `ICreditNoteApi.SendCreditNoteByPrintingAsync` path used lowercase `/creditNote/...`
+  (sevDesk routes are case-sensitive).
+- `IReportApi.ReportContactAsync` was missing the `[Get("/Report/contactlist")]` attribute,
+  so the call would never have reached the API.
 
-## Special Cases
+### Legacy / undocumented interfaces (marked `[Obsolete]`)
 
-1. **ISaveVoucherApi** - This correctly implements `/Voucher/Factory/saveVoucher` endpoint
+These interfaces are not present in the official OpenAPI spec but are retained for
+backwards compatibility:
 
-## API Naming Discrepancies
+| Interface            | Path              | Recommendation                                                                 |
+|----------------------|-------------------|--------------------------------------------------------------------------------|
+| `IAccountingTypeApi` | `/AccountingType` | May be removed by sevDesk without notice.                                      |
+| `ICostCentreApi`     | `/CostCentre`     | May be removed by sevDesk without notice.                                      |
+| `ILayoutApi`         | `/Layout`         | Use `IDocServerApi` (documented).                                              |
+| `ISevUserApi`        | `/SevUser`        | May be removed by sevDesk without notice.                                      |
+| `IContactFieldApi`   | (aggregate)       | Use `IContactCustomFieldApi`/`IContactCustomFieldSettingApi`/`ITextparserApi`. |
 
-1. **ContactField vs ContactCustomField**: The client uses `IContactFieldApi` while the OpenAPI spec defines `ContactCustomField` endpoints
-2. **CheckAccount**: There appears to be a whitespace issue in the endpoint list ("CheckAccount  " with trailing spaces)
+DI registration in `ServiceCollectionExtensions` suppresses `CS0618` so existing
+consumers keep working without compiler warnings.
 
-## Model Count
+## Verification method
 
-- The client has **328 model files** in the Models directory
+```bash
+curl -sL https://api.sevdesk.de/openapi.yaml -o /tmp/sevdesk-openapi.yaml
+grep -E '^  /[A-Z]' /tmp/sevdesk-openapi.yaml | sort -u
+# diff against:
+grep -rohE '"/[A-Z][^"]*"' Minicon.SevDesk.Client/Api/ | sort -u
+```
 
-## Recommendations
-
-1. **Add Missing Endpoints**: Implement the missing endpoints listed above, particularly:
-   - CommunicationWayKey (for complete communication way functionality)
-   - ContactCustomField endpoints (or verify if IContactFieldApi covers this)
-   - ReceiptGuidance endpoints (important for sevdesk-Update 2.0)
-   - Tools endpoint (for checking bookkeeping system version)
-
-2. **Verify Undocumented Endpoints**: Check if the following are still valid:
-   - AccountingType endpoint
-   - CostCentre endpoint
-   - Layout endpoint
-
-3. **Naming Consistency**: Consider renaming `IContactFieldApi` to `IContactCustomFieldApi` to match the OpenAPI specification
-
-4. **Documentation**: Add XML documentation to indicate which endpoints might be using older/undocumented API versions
-
-## Notes
-
-- The OpenAPI specification version is 2.0.0
-- The API supports both XML and JSON responses
-- The API includes support for sevdesk-Update 2.0 with changes to tax rules and booking accounts
-- Some endpoints have been deprecated or removed in sevdesk-Update 2.0
+Spec version: 2.0.0.

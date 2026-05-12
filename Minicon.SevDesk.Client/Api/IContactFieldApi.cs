@@ -6,6 +6,21 @@ namespace Minicon.SevDesk.Client.Api;
 /// <summary>
 ///     Represents a collection of functions to interact with the API endpoints
 /// </summary>
+/// <summary>
+///     Redundant aggregate of three documented interfaces. The methods exist 1:1 on the dedicated APIs.
+/// </summary>
+/// <remarks>
+///     <b>Alternatives</b> (per endpoint group, 1:1 replacement):
+///     <list type="bullet">
+///         <item><c>/ContactCustomField[/{id}]</c> → <see cref="IContactCustomFieldApi"/></item>
+///         <item><c>/ContactCustomFieldSetting[/{id}]</c>, <c>.../getReferenceCount</c> → <see cref="IContactCustomFieldSettingApi"/></item>
+///         <item><c>/Textparser/fetchDictionaryEntriesByType</c> → <see cref="ITextparserApi"/></item>
+///     </list>
+/// </remarks>
+/// <seealso cref="IContactCustomFieldApi"/>
+/// <seealso cref="IContactCustomFieldSettingApi"/>
+/// <seealso cref="ITextparserApi"/>
+[Obsolete("Aggregate of three documented interfaces. Replace with: IContactCustomFieldApi (/ContactCustomField), IContactCustomFieldSettingApi (/ContactCustomFieldSetting), ITextparserApi (/Textparser/fetchDictionaryEntriesByType). Methods are identical.")]
 public interface IContactFieldApi
 {
 	/// <summary>

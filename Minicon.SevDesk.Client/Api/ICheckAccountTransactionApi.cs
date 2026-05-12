@@ -107,4 +107,17 @@ public interface ICheckAccountTransactionApi
 		ModelCheckAccountTransactionUpdate body,
 		CancellationToken cancellationToken = default
 	);
+
+	/// <summary>
+	///     Enshrine a transaction. Sets the current date and time as <c>enshrined</c>.
+	///     Only possible if the status is "Linked" (200) or higher. Linked invoices, credit notes
+	///     or vouchers cannot be changed when the transaction is enshrined.
+	/// </summary>
+	/// <param name="checkAccountTransactionId">ID of the transaction to enshrine</param>
+	/// <param name="cancellationToken"></param>
+	[Put("/CheckAccountTransaction/{checkAccountTransactionId}/enshrine")]
+	Task EnshrineCheckAccountTransactionAsync(
+		int checkAccountTransactionId,
+		CancellationToken cancellationToken = default
+	);
 }

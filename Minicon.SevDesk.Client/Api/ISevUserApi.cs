@@ -6,6 +6,17 @@ namespace Minicon.SevDesk.Client.Api;
 /// <summary>
 ///     Represents a collection of functions to interact with the SevUser API endpoints
 /// </summary>
+/// <summary>
+///     Legacy / undocumented endpoint: <c>/SevUser</c> is not part of the official sevDesk OpenAPI spec
+///     (verified against spec 2.0.0).
+/// </summary>
+/// <remarks>
+///     <b>No alternative.</b> User/account info has no documented replacement.
+///     <see cref="ISevClientApi"/> only exposes <c>/SevClient/{id}/updateExportConfig</c> (client-level export
+///     config), not user details. Keep using the legacy endpoint at your own risk — sevDesk may remove it.
+/// </remarks>
+/// <seealso cref="ISevClientApi"/>
+[Obsolete("Not in the official sevDesk OpenAPI spec (2.0.0). No replacement for current-user info — ISevClientApi exposes only client export config, not user details. May be removed by sevDesk without notice.")]
 public interface ISevUserApi
 {
 	/// <summary>

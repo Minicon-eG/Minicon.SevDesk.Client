@@ -3,6 +3,18 @@ using Refit;
 
 namespace Minicon.SevDesk.Client.Api;
 
+/// <summary>
+///     Legacy / undocumented endpoint: <c>/AccountingType</c> is not part of the official sevDesk OpenAPI spec
+///     (verified against spec 2.0.0).
+/// </summary>
+/// <remarks>
+///     <b>No direct alternative.</b> sevDesk dropped SKR booking accounts from the public API. Closest documented
+///     concept is <see cref="ICheckAccountApi"/> (<c>/CheckAccount</c>) — but that covers <i>bank/cash accounts</i>,
+///     not bookkeeping (SKR) accounts. If you genuinely need SKR accounts, keep using this legacy endpoint at your
+///     own risk; sevDesk may remove it without notice.
+/// </remarks>
+/// <seealso cref="ICheckAccountApi"/>
+[Obsolete("Not in the official sevDesk OpenAPI spec (2.0.0). No direct replacement — /CheckAccount (ICheckAccountApi) covers bank/cash accounts but NOT SKR bookkeeping accounts. May be removed by sevDesk without notice.")]
 public interface IAccountingTypeApi
 {
 	/// <summary>

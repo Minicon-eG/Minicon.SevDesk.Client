@@ -6,6 +6,19 @@ namespace Minicon.SevDesk.Client.Api;
 /// <summary>
 ///     Represents a collection of functions to interact with the API endpoints
 /// </summary>
+/// <summary>
+///     Legacy / undocumented endpoint: <c>/Layout</c> is not part of the official sevDesk OpenAPI spec
+///     (verified against spec 2.0.0).
+/// </summary>
+/// <remarks>
+///     <b>Alternative:</b> Use <see cref="IDocServerApi"/> — 1:1 replacement, sevDesk only renamed the path.
+///     <list type="bullet">
+///         <item><c>/Layout/getLetterpapersWithThumb</c> → <c>/DocServer/getLetterpapersWithThumb</c></item>
+///         <item><c>/Layout/getTemplatesWithThumb</c> → <c>/DocServer/getTemplatesWithThumb</c></item>
+///     </list>
+/// </remarks>
+/// <seealso cref="IDocServerApi"/>
+[Obsolete("Replaced by IDocServerApi: /Layout/getLetterpapersWithThumb → /DocServer/getLetterpapersWithThumb, /Layout/getTemplatesWithThumb → /DocServer/getTemplatesWithThumb. 1:1 drop-in replacement.")]
 public interface ILayoutApi
 {
 	/// <summary>
