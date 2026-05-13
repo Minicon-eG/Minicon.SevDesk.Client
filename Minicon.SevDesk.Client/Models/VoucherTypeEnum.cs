@@ -23,5 +23,14 @@ public enum VoucherTypeEnum
 	/// <summary>
 	///     Enum RV for value: RV
 	/// </summary>
-	[EnumMember(Value = "RV")] RV = 2
+	[EnumMember(Value = "RV")] RV = 2,
+
+	/// <summary>
+	///     Enum VU for value: VU. Returned by the sevDesk API for vouchers in
+	///     the &quot;voucher&quot; list (observed on /Voucher responses); not
+	///     formally documented in the OpenAPI spec but appears on legacy /
+	///     auto-imported vouchers. Without this member, Newtonsoft.Json fails
+	///     the whole response with &quot;Requested value 'VU' was not found&quot;.
+	/// </summary>
+	[EnumMember(Value = "VU")] VU = 3
 }
